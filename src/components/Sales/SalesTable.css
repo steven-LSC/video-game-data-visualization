@@ -15,6 +15,7 @@
 .game-table h3 {
   margin-top: 0;
   margin-bottom: 15px;
+  color: #333;
 }
 
 .table-container {
@@ -31,6 +32,14 @@ th, td {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+}
+
+/* Right align Rank and Sales columns */
+th:first-child, 
+td:first-child,
+th:last-child, 
+td:last-child {
+  text-align: right !important;
 }
 
 th {
