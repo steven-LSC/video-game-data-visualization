@@ -3,78 +3,217 @@
   overflow-y: auto;
   margin: 0;
   padding: 0;
+  background-color: white;
 }
 
+/* 統一所有section的基本樣式 */
+section {
+  padding: 50px 0;
+  width: 100%;
+}
+
+/* 確保所有section內的子元素受到相同控制 */
+section > * {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
+
+/* 各section背景色 */
 .hero-section {
-  text-align: center;
-  padding: 6rem 0;
   background-color: #f0f0f0;
   margin-bottom: 0;
-  position: relative;
 }
 
-.hero-section h1 {
-  font-size: 3rem;
-  color: #212529;
-  margin-bottom: 1rem;
+.ranking-section {
+  background-color: white;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
-.hero-section .subtitle {
-  font-size: 1.25rem;
-  color: #495057;
+.analysis-section {
+  background-color: white;
+  margin-top: 2rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
-.why-section {
-  background-color: #f0f0f0;
-  padding: 4rem 0;
-  margin-bottom: 0;
-}
-
-.why-section .container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 2rem;
+/* Hero section元素樣式 */
+.product-title {
   text-align: left;
 }
 
-.why-section h2 {
+.hero-section h1 {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+/* 搜索欄樣式 */
+.search-container {
+  width: 100%;
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  z-index: 20;
+}
+
+.search-bar {
+  flex: 1;
+  padding: 12px 20px;
+  padding-right: 40px;
+  font-size: 1.1rem;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.search-bar:focus {
+  border-color: #4a90e2;
+}
+
+.clear-search {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #999;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.clear-search:hover {
+  color: #666;
+  background-color: #f0f0f0;
+}
+
+/* Why content樣式 */
+.why-content {
+  margin-top: 30px;
+}
+
+.why-content h2 {
   color: #343a40;
   margin-bottom: 1.5rem;
   text-align: left;
   font-size: 2.2rem;
 }
 
-.why-section p {
+.why-content p {
   color: #495057;
   line-height: 1.8;
   font-size: 1.1rem;
   text-align: left;
 }
 
-/* Ranking Section */
-.ranking-section {
+/* Section標題和描述 */
+.section-title {
+  text-align: left;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.section-description {
+  /* margin: 2rem; */
+  text-align: left;
+}
+
+.section-description p {
+  color: #555;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+/* 分析部分樣式 */
+.analysis-section .chart-container {
   background-color: white;
-  padding: 4rem 0;
 }
 
-@media (max-width: 768px) {
-  .why-section {
-    padding: 3rem 0;
-  }
-  
-  .why-section .container {
-    padding: 0 1.5rem;
-  }
-  
-  .why-section p {
-    padding: 0;
-  }
-  
-  .ranking-section {
-    padding: 3rem 0;
-  }
+.analysis-section h1 {
+  display: none; /* 隱藏分析組件內部的標題 */
 }
 
+/* 搜索結果下拉列表 */
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.search-result-item {
+  display: flex;
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover {
+  background-color: #f9f9f9;
+}
+
+.result-thumbnail {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 15px;
+}
+
+.result-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.result-title {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.result-genre {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* 載入和錯誤提示 */
 .error-message {
   text-align: center;
   padding: 2rem;

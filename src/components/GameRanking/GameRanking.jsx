@@ -146,47 +146,49 @@ const GameRanking = ({ gameData, genres, pegiRatings, getGameSlug }) => {
       <h2>Game Ranking</h2>
 
       <div className="filter-container">
-        <div className="filter-buttons">
-          <button className="filter-button" onClick={openFilterModal}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-            </svg>
-            Filter
-          </button>
-        </div>
-        <div className="tag-container">
-          {/* Genre 過濾標籤 */}
-          {activeGenreFilters.map((filter, index) => (
-            <div key={`genre-${index}`} className="tag genre-tag">
-              {filter}
-              <button
-                className="tag-remove"
-                onClick={() => removeGenreFilter(filter)}
+        <div className="filter-actions">
+          <div className="filter-buttons">
+            <button className="filter-button" onClick={openFilterModal}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
-                ×
-              </button>
-            </div>
-          ))}
+                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+              </svg>
+              Filter
+            </button>
+          </div>
+          <div className="tag-container">
+            {/* Genre 過濾標籤 */}
+            {activeGenreFilters.map((filter, index) => (
+              <div key={`genre-${index}`} className="tag genre-tag">
+                {filter}
+                <button
+                  className="tag-remove"
+                  onClick={() => removeGenreFilter(filter)}
+                >
+                  ×
+                </button>
+              </div>
+            ))}
 
-          {/* PEGI 分級標籤，只有當 selectedPegiRating 不為空時顯示 */}
-          {selectedPegiRating !== "" && (
-            <div className="tag pegi-tag">
-              PEGI {selectedPegiRating}+
-              <button className="tag-remove" onClick={removePegiFilter}>
-                ×
-              </button>
-            </div>
-          )}
+            {/* PEGI 分級標籤，只有當 selectedPegiRating 不為空時顯示 */}
+            {selectedPegiRating !== "" && (
+              <div className="tag pegi-tag">
+                PEGI {selectedPegiRating}+
+                <button className="tag-remove" onClick={removePegiFilter}>
+                  ×
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -207,7 +209,7 @@ const GameRanking = ({ gameData, genres, pegiRatings, getGameSlug }) => {
         <table className="ranking-table">
           <thead>
             <tr>
-              <th className="game-title">Game Title</th>
+              <th className="game-title">Game</th>
               <th className="sales">
                 <div
                   style={{
@@ -247,12 +249,21 @@ const GameRanking = ({ gameData, genres, pegiRatings, getGameSlug }) => {
                     to={`/game/${getGameSlug(game.title)}`}
                     className="game-title-link"
                   >
-                    {game.title}
+                    <div className="game-info">
+                      <img
+                        src={game.featuredImage}
+                        alt={game.title}
+                        className="game-thumbnail"
+                      />
+                      <span>{game.title}</span>
+                    </div>
                   </Link>
                 </td>
                 <td>{game.sales}</td>
                 <td>
-                  <div className="rating-box">{game.pegiRating}</div>
+                  <div className={`rating-box pegi-${game.pegiRating}`}>
+                    {game.pegiRating}
+                  </div>
                 </td>
                 <td>
                   <div className="label-container">
