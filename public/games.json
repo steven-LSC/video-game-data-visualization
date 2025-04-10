@@ -1,0 +1,67 @@
+[
+  {
+    "title": "Minecraft",
+    "sales": "238,000,000",
+    "pegiRating": "7",
+    "genres": ["Open World", "Sandbox", "Survival"],
+    "publisher": "Mojang Studios / Microsoft Studios",
+    "platform": "Mobile",
+    "otherLabels": ["Cross-Platform", "Modding Support", "Free Updates"],
+    "description": "Minecraft is a sandbox video game developed by Mojang Studios. The game was created by Markus 'Notch' Persson in the Java programming language. Players explore a blocky, procedurally generated 3D world with virtually infinite terrain, and may discover and extract raw materials, craft tools and items, and build structures or earthworks. The game offers various modes: survival mode where players must acquire resources to build the world and maintain health; creative mode where players have unlimited resources; adventure mode where players can play custom maps created by other players; and spectator mode where players can fly around and clip through blocks, but cannot place or destroy any.",
+    "positiveImpacts": ["Creativity", "Spatial Reasoning", "Problem Solving", "Resource Management", "Collaboration", "Educational Value"],
+    "negativeImpacts": ["Addiction", "Screen Time", "Social Isolation", "Eye Strain"],
+    "featuredImage": "https://i.namu.wiki/i/LVwPoLGxp4_O9KRZKp5ehWAkBDK45xklMuyfUH3yZZ9oVzsNnvPlw8TAZ0r-mERQx6CZTo0uF4hA4ZSaf87qHA.webp"
+  },
+  {
+    "title": "Grand Theft Auto V",
+    "sales": "170,000,000",
+    "pegiRating": "18",
+    "genres": ["Open World", "Sandbox", "Action", "Adventure"],
+    "publisher": "Rockstar Games",
+    "platform": "PC/Console",
+    "otherLabels": ["Online Mode", "Premium", "DLC"],
+    "description": "Grand Theft Auto V is an action-adventure game developed by Rockstar North and published by Rockstar Games. It is set in the fictional state of San Andreas, based on Southern California. The single-player story follows three criminals and their efforts to commit heists while under pressure from a government agency and powerful crime figures. The open world design lets players freely roam San Andreas' open countryside and the fictional city of Los Santos, based on Los Angeles.",
+    "positiveImpacts": ["Strategic Thinking", "Decision Making", "Narrative Appreciation", "Stress Relief", "Social Bonding"],
+    "negativeImpacts": ["Violence", "Criminal Behavior Normalization", "Mature Content Exposure", "Addiction", "Aggression"],
+    "featuredImage": "https://i.namu.wiki/i/XCBBpvTlPXGObUFsrdpJNfFdGJ47GbpqfbHfMtGtDM8_LYiEQEQoVFpEwtMKvQJfGoz_53M5SqSGZkpBYYEiag.webp"
+  },
+  {
+    "title": "PUBG: Battlegrounds",
+    "sales": "75,000,000",
+    "pegiRating": "16",
+    "genres": ["Battle Royale", "Shooter", "Survival"],
+    "publisher": "PUBG Corporation",
+    "platform": "Mobile",
+    "otherLabels": ["Free-to-Play", "Seasonal Updates", "Esports"],
+    "description": "PUBG: Battlegrounds (previously known as PlayerUnknown's Battlegrounds) is an online multiplayer battle royale game developed and published by PUBG Corporation. In the game, up to one hundred players parachute onto an island and scavenge for weapons and equipment to kill others while avoiding getting killed themselves. The available safe area of the game's map decreases in size over time, directing surviving players into tighter areas to force encounters. The last player or team standing wins the round.",
+    "positiveImpacts": ["Team Coordination", "Quick Decision Making", "Tactical Thinking", "Reaction Time", "Strategic Planning"],
+    "negativeImpacts": ["Violence", "Addiction", "Microtransaction Spending", "Competitive Stress", "Toxicity"],
+    "featuredImage": "https://assets-prd.ignimgs.com/2022/03/09/pubgbattlegrounds-1646861967387.jpg"
+  },
+  {
+    "title": "The Witcher 3: Wild Hunt",
+    "sales": "40,000,000",
+    "pegiRating": "18",
+    "genres": ["Open World", "RPG", "Fantasy"],
+    "publisher": "CD Projekt",
+    "platform": "PC/Console",
+    "otherLabels": ["Premium", "DLC", "Mod Support"],
+    "description": "The Witcher 3: Wild Hunt is an action role-playing game developed and published by CD Projekt. Based on The Witcher series of fantasy novels by Andrzej Sapkowski, it is the sequel to the 2011 game The Witcher 2: Assassins of Kings. Players control protagonist Geralt of Rivia, a monster slayer (known as a Witcher) who is looking for his missing adopted daughter on the run from the Wild Hunt, an otherworldly force determined to capture her and use her powers.",
+    "positiveImpacts": ["Moral Decision Making", "Storytelling Appreciation", "Cultural Awareness", "Problem Solving", "Literary Interest"],
+    "negativeImpacts": ["Violence", "Sexual Content", "Mature Themes", "Addiction", "Time Consumption"],
+    "featuredImage": "https://image.api.playstation.com/vulcan/ap/rnd/202211/0711/kh4MUIuMmHlktOHar3lVl6rY.png"
+  },
+  {
+    "title": "Super Smash Bros. Ultimate",
+    "sales": "30,440,000",
+    "pegiRating": "12",
+    "genres": ["Fighting", "Party", "Multiplayer"],
+    "publisher": "Nintendo",
+    "platform": "PC/Console",
+    "otherLabels": ["Premium", "DLC", "Online Subscription"],
+    "description": "Super Smash Bros. Ultimate is a 2018 crossover fighting game developed by Bandai Namco Studios and Sora Ltd., and published by Nintendo for the Nintendo Switch. It is the fifth installment in the Super Smash Bros. series, succeeding Super Smash Bros. for Nintendo 3DS and Wii U. The game follows the series' traditional style of gameplay: controlling one of the various characters, players must use differing attacks to weaken their opponents and knock them out of an arena.",
+    "positiveImpacts": ["Hand-Eye Coordination", "Social Interaction", "Gaming History Appreciation", "Reaction Time", "Competitive Spirit"],
+    "negativeImpacts": ["Mild Violence", "Competitive Frustration", "Sedentary Behavior", "Gaming Obsession"],
+    "featuredImage": "https://assets.nintendo.com/image/upload/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000012332/ac4d1fc9824876ce756406f0525d50c57ded4b2a666f6dfe40a6ac5c3563fad9"
+  }
+] 
