@@ -3,6 +3,8 @@ import "./Introduction.css";
 import GameRanking from "../GameRanking/GameRanking";
 import AggressionAnalysis from "../AggressionAnalysis/AggressionAnalysis";
 import AnxietyAnalysis from "../AnxietyAnalysis/AnxietyAnalysis";
+import CreativityAnalysis from "../CreativityAnalysis/CreativityAnalysis";
+import CreativityTimeAnalysis from "../CreativityTimeAnalysis/CreativityTimeAnalysis";
 
 // 應用程式的全局遊戲資料存儲
 export const gameDataStore = {
@@ -270,7 +272,9 @@ const Introduction = () => {
         <div className="section-description">
           <p>
             According to our research, longer gaming hours, especially violent
-            games, do lead to more aggressive behaviors.
+            games, do lead to a little bit more aggressive behaviors, but not
+            very obvious. Our Recommendation: Don't play games / video games
+            more than 2 hours a day.
           </p>
         </div>
         <AggressionAnalysis />
@@ -289,6 +293,30 @@ const Introduction = () => {
           </p>
         </div>
         <AnxietyAnalysis />
+      </section>
+
+      <section className="analysis-section">
+        <h2 className="section-title">Gaming Hours and Creativity Analysis</h2>
+        <div className="section-description">
+          <p>
+            Explore the relationship between daily gaming hours and creativity
+            test (TTCT) scores. The analysis reveals interesting patterns in how
+            gaming time might influence creative thinking abilities.
+          </p>
+        </div>
+        <CreativityTimeAnalysis />
+      </section>
+
+      <section className="analysis-section">
+        <h2 className="section-title">Game Types Analysis</h2>
+        <div className="section-description">
+          <p>
+            Explore the relationship between different game types and creativity
+            scores, physical activities, musical activities, and artistic
+            activities.
+          </p>
+        </div>
+        <CreativityAnalysis />
       </section>
     </div>
   );

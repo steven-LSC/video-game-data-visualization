@@ -1,0 +1,74 @@
+.creativity-analysis-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 所有容器內元素最大寬度與Introduction頁面保持一致 */
+.creativity-analysis-container > * {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
+
+.creativity-analysis-container h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.metric-controls {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.metric-selector {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.metric-button {
+  padding: 8px 16px;
+  border: 2px solid #4bc0c0;
+  background-color: white;
+  color: #4bc0c0;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.metric-button:hover {
+  background-color: #4bc0c0;
+  color: white;
+}
+
+.metric-button.active {
+  background-color: #4bc0c0;
+  color: white;
+}
+
+.chart-container {
+  position: relative;
+  height: 500px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  color: #666;
+}
+
+.error {
+  text-align: center;
+  padding: 20px;
+  color: #ff0000;
+  font-size: 18px;
+} 
