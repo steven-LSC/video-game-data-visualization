@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./GameRanking.css";
+import styles from "./GameRanking.module.css";
 import FilterModal from "./FilterModal";
 
 const GameRanking = ({ gameData, genres, pegiRatings, getGameSlug }) => {
@@ -142,36 +142,37 @@ const GameRanking = ({ gameData, genres, pegiRatings, getGameSlug }) => {
   }, {});
 
   return (
-    <div className="ranking-container">
+    <div className={styles.rankingContainer}>
       <h2>Game Ranking</h2>
 
-      <div className="filter-container">
-        <div className="filter-actions">
-          <div className="filter-buttons">
-            <button className="filter-button" onClick={openFilterModal}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-              </svg>
-              Filter
-            </button>
-          </div>
-          <div className="tag-container">
+      <div className={styles.filterContainer}>
+        <div className={styles.filterActions}>
+          <button className={styles.filterButton} onClick={openFilterModal}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+            </svg>
+            Filter
+          </button>
+          <div className={styles.tagContainer}>
             {/* Genre 過濾標籤 */}
             {activeGenreFilters.map((filter, index) => (
-              <div key={`genre-${index}`} className="tag genre-tag">
+              <div
+                key={`genre-${index}`}
+                className={`${styles.tag} ${styles.genreTag}`}
+              >
                 {filter}
                 <button
-                  className="tag-remove"
+                  className={styles.tagRemove}
                   onClick={() => removeGenreFilter(filter)}
                 >
                   ×
@@ -179,11 +180,14 @@ const GameRanking = ({ gameData, genres, pegiRatings, getGameSlug }) => {
               </div>
             ))}
 
-            {/* PEGI 分級標籤，只有當 selectedPegiRating 不為空時顯示 */}
+            {/* PEGI 分級標籤 */}
             {selectedPegiRating !== "" && (
-              <div className="tag pegi-tag">
+              <div
+                className={`${styles.tag} ${styles.pegiTag}`}
+                data-rating={selectedPegiRating}
+              >
                 PEGI {selectedPegiRating}+
-                <button className="tag-remove" onClick={removePegiFilter}>
+                <button className={styles.tagRemove} onClick={removePegiFilter}>
                   ×
                 </button>
               </div>
@@ -192,7 +196,6 @@ const GameRanking = ({ gameData, genres, pegiRatings, getGameSlug }) => {
         </div>
       </div>
 
-      {/* 過濾器 Modal 組件 */}
       <FilterModal
         showModal={showFilterModal}
         onClose={closeModal}
@@ -205,12 +208,12 @@ const GameRanking = ({ gameData, genres, pegiRatings, getGameSlug }) => {
         applyFilters={applyFilters}
       />
 
-      <div className="table-container">
-        <table className="ranking-table">
+      <div className={styles.tableContainer}>
+        <table className={styles.rankingTable}>
           <thead>
             <tr>
-              <th className="game-title">Game</th>
-              <th className="sales">
+              <th className={styles.gameTitle}>Game</th>
+              <th className={styles.sales}>
                 <div
                   style={{
                     display: "flex",
@@ -220,7 +223,7 @@ const GameRanking = ({ gameData, genres, pegiRatings, getGameSlug }) => {
                 >
                   Sales
                   <svg
-                    className="sort-icon"
+                    className={styles.sortIcon}
                     xmlns="http://www.w3.org/2000/svg"
                     width="12"
                     height="12"
@@ -235,25 +238,23 @@ const GameRanking = ({ gameData, genres, pegiRatings, getGameSlug }) => {
                   </svg>
                 </div>
               </th>
-              <th className="pegi-rating">PEGI Rating</th>
-              <th className="label" style={{ textAlign: "left" }}>
-                Genre
-              </th>
+              <th className={styles.pegiRating}>PEGI Rating</th>
+              <th className={styles.label}>Genre</th>
             </tr>
           </thead>
           <tbody>
             {filteredGames.map((game, index) => (
               <tr key={index}>
-                <td style={{ textAlign: "left" }}>
+                <td>
                   <Link
                     to={`/game/${getGameSlug(game.title)}`}
-                    className="game-title-link"
+                    className={styles.gameTitleLink}
                   >
-                    <div className="game-info">
+                    <div className={styles.gameInfo}>
                       <img
                         src={game.featuredImage}
                         alt={game.title}
-                        className="game-thumbnail"
+                        className={styles.gameThumbnail}
                       />
                       <span>{game.title}</span>
                     </div>
@@ -261,14 +262,18 @@ const GameRanking = ({ gameData, genres, pegiRatings, getGameSlug }) => {
                 </td>
                 <td>{game.sales}</td>
                 <td>
-                  <div className={`rating-box pegi-${game.pegiRating}`}>
+                  <div
+                    className={`${styles.ratingBox} ${
+                      styles[`pegi${game.pegiRating}`]
+                    }`}
+                  >
                     {game.pegiRating}
                   </div>
                 </td>
                 <td>
-                  <div className="label-container">
+                  <div className={styles.labelContainer}>
                     {game.genres.map((genre, genreIndex) => (
-                      <span key={genreIndex} className="label-tag">
+                      <span key={genreIndex} className={styles.labelTag}>
                         {genre}
                       </span>
                     ))}

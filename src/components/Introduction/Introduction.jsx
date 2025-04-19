@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./Introduction.css";
 import GameRanking from "../GameRanking/GameRanking";
-import AggressionAnalysis from "../AggressionAnalysis/AggressionAnalysis";
-import AnxietyAnalysis from "../AnxietyAnalysis/AnxietyAnalysis";
-import CreativityAnalysis from "../CreativityAnalysis/CreativityAnalysis";
-import CreativityTimeAnalysis from "../CreativityTimeAnalysis/CreativityTimeAnalysis";
+import GamingHoursAggressionAnalysis from "../GamingHoursAggressionAnalysis/GamingHoursAggressionAnalysis";
+import GamingHoursMentalHealthAnalysis from "../GamingHoursMentalHealthAnalysis/GamingHoursMentalHealthAnalysis";
+import GameTypesAnalysis from "../GameTypesAnalysis/GameTypesAnalysis";
+import GamingHoursCreativityAnalysis from "../GamingHoursCreativityAnalysis/GamingHoursCreativityAnalysis";
 
 // 應用程式的全局遊戲資料存儲
 export const gameDataStore = {
@@ -277,7 +277,7 @@ const Introduction = () => {
             more than 2 hours a day.
           </p>
         </div>
-        <AggressionAnalysis />
+        <GamingHoursAggressionAnalysis />
       </section>
 
       <section className="analysis-section">
@@ -292,7 +292,7 @@ const Introduction = () => {
             phobia, and it does not reduce life satisfaction.
           </p>
         </div>
-        <AnxietyAnalysis />
+        <GamingHoursMentalHealthAnalysis />
       </section>
 
       <section className="analysis-section">
@@ -304,7 +304,7 @@ const Introduction = () => {
             gaming time might influence creative thinking abilities.
           </p>
         </div>
-        <CreativityTimeAnalysis />
+        <GamingHoursCreativityAnalysis />
       </section>
 
       <section className="analysis-section">
@@ -316,7 +316,7 @@ const Introduction = () => {
             activities.
           </p>
         </div>
-        <CreativityAnalysis />
+        <GameTypesAnalysis />
       </section>
     </div>
   );

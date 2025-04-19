@@ -1,11 +1,11 @@
-.creativity-time-analysis-container {
+.creativityTimeAnalysisContainer {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
 
-.creativity-time-analysis-container h2 {
+.creativityTimeAnalysisContainer h2 {
   text-align: center;
   color: #333;
   margin-bottom: 1rem;
@@ -19,7 +19,7 @@
   line-height: 1.5;
 }
 
-.chart-container {
+.chartContainer {
   position: relative;
   height: 500px;
   width: 100%;

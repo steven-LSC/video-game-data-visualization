@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./FilterModal.module.css";
 
 const FilterModal = ({
   showModal,
@@ -14,23 +15,25 @@ const FilterModal = ({
   if (!showModal) return null;
 
   return (
-    <div className="filter-modal-overlay">
-      <div className="filter-modal">
-        <div className="filter-modal-header">
+    <div className={styles.filterModalOverlay}>
+      <div className={styles.filterModal}>
+        <div className={styles.filterModalHeader}>
           <h3>Filters</h3>
-          <button className="close-button" onClick={onClose}>
+          <button className={styles.closeButton} onClick={onClose}>
             ×
           </button>
         </div>
 
-        <div className="filter-section">
+        <div className={styles.filterSection}>
           <h4>Genre</h4>
-          <div className="filter-options genre-options">
+          <div className={`${styles.filterOptions} ${styles.genreOptions}`}>
             {Object.entries(genreCounts).map(([genre, count]) => (
               <div
                 key={genre}
-                className={`filter-option ${
-                  tempGenreFilters.includes(genre) ? "selected" : ""
+                className={`${styles.filterOption} ${
+                  tempGenreFilters.includes(genre)
+                    ? styles.filterOptionSelected
+                    : ""
                 }`}
                 onClick={() => toggleGenreFilter(genre)}
               >
@@ -40,16 +43,17 @@ const FilterModal = ({
           </div>
         </div>
 
-        <div className="filter-section">
+        <div className={styles.filterSection}>
           <h4>PEGI Rating</h4>
-          <div className="filter-options pegi-options">
+          <div className={`${styles.filterOptions} ${styles.pegiOptions}`}>
             {allPegiRatings.map((rating) => (
               <div
                 key={rating}
-                className={`filter-option ${
-                  tempPegiRating === rating ? "selected" : ""
+                className={`${styles.filterOption} ${
+                  tempPegiRating === rating ? styles.filterOptionSelected : ""
                 }`}
                 onClick={() => setTempPegiFilter(rating)}
+                data-rating={rating}
               >
                 {rating}
               </div>
@@ -57,8 +61,11 @@ const FilterModal = ({
           </div>
         </div>
 
-        <div className="filter-modal-footer">
-          <button className="apply-button" onClick={applyFilters}>
+        <div className={styles.filterModalFooter}>
+          <button className={styles.cancelButton} onClick={onClose}>
+            Cancel
+          </button>
+          <button className={styles.applyButton} onClick={applyFilters}>
             Apply
           </button>
         </div>

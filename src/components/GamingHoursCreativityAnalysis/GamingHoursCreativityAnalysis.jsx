@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Chart } from "chart.js/auto";
 import Papa from "papaparse";
-import "./CreativityTimeAnalysis.css";
+import styles from "./GamingHoursCreativityAnalysis.module.css";
+import ChartExplanation from "../common/ChartExplanation";
 
 // 禁用 Chart.js 中的 datalabels 插件
 Chart.overrides.scatter.plugins = Chart.overrides.scatter.plugins || {};
@@ -141,6 +142,7 @@ const CreativityTimeAnalysis = () => {
             borderWidth: 1,
             pointRadius: 5,
             pointHoverRadius: 7,
+            order: 2,
           },
           {
             label: "Average Creativity Score",
@@ -158,6 +160,7 @@ const CreativityTimeAnalysis = () => {
             pointHoverRadius: 8,
             pointHoverBackgroundColor: "rgba(255, 99, 132, 1)",
             pointHoverBorderColor: "#fff",
+            order: 1,
           },
         ],
       },
@@ -177,7 +180,7 @@ const CreativityTimeAnalysis = () => {
               weight: "bold",
             },
             padding: {
-              bottom: 30,
+              bottom: 20,
             },
           },
           tooltip: {
@@ -207,7 +210,7 @@ const CreativityTimeAnalysis = () => {
                 size: 12,
               },
               usePointStyle: true,
-              padding: 20,
+              // padding: 20,
             },
           },
         },
@@ -249,25 +252,27 @@ const CreativityTimeAnalysis = () => {
   };
 
   return (
-    <div className="creativity-time-analysis-container">
-      <h2>Gaming Hours and Creativity Score Analysis</h2>
-      <div className="description">
-        <p>
-          This chart shows the relationship between daily gaming hours and
-          creativity test (TTCT) scores. Blue dots represent individual data
-          points, while the red line shows the average creativity score for each
-          gaming time interval.
-        </p>
-      </div>
+    <div className={styles.creativityTimeAnalysisContainer}>
+      <h1>Gaming Hours and Creativity Analysis</h1>
 
       {loading ? (
-        <div className="loading">Loading data...</div>
+        <div className={styles.loading}>Loading data...</div>
       ) : error ? (
-        <div className="error">{error}</div>
+        <div className={styles.error}>{error}</div>
       ) : (
-        <div className="chart-container">
-          <canvas ref={chartRef}></canvas>
-        </div>
+        <>
+          <div className={styles.chartContainer}>
+            <canvas ref={chartRef}></canvas>
+          </div>
+          <ChartExplanation
+            explanations={[
+              `This chart shows the relationship between daily gaming hours and creativity scores (TTCT).`,
+              `Each blue dot represents an individual participant with their gaming time and creativity score. The size of the scattered points indicates the number of participants with the same values.`,
+              `The red line shows the average creativity score for each gaming time category, revealing trends in how gaming time might relate to creativity levels.`,
+              `Gaming time categories range from non-gamers to those who play more than 6 hours daily.`,
+            ]}
+          />
+        </>
       )}
     </div>
   );

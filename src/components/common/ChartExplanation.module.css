@@ -1,0 +1,42 @@
+.chartExplanation {
+  background-color: #f8f9fa !important;
+  border-radius: 8px !important;
+  padding: 20px !important;
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  color: #333 !important;
+  width: calc(100% - 40px) !important;
+  max-width: 1160px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.chartExplanation p {
+  margin: 12px 0 !important;
+  padding: 0 !important;
+  line-height: 1.5 !important;
+  color: #333 !important;
+}
+
+.chartExplanation p:first-child {
+  margin-top: 0 !important;
+}
+
+.chartExplanation p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.chartExplanation strong {
+  font-weight: 600 !important;
+  color: #0056b3 !important;
+}
+
+@media (max-width: 768px) {
+  .chartExplanation {
+    padding: 15px !important;
+    font-size: 13px !important;
+  }
+} 

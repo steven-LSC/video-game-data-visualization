@@ -76,7 +76,7 @@ section > * {
   padding-right: 40px;
   font-size: 1.1rem;
   border: 2px solid #ddd;
-  border-radius: 4px;
+  border-radius: 12px;
   outline: none;
   transition: border-color 0.3s;
 }
@@ -134,27 +134,29 @@ section > * {
   text-align: left;
   font-size: 2rem;
   color: #333;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .section-description {
-  /* margin: 2rem; */
   text-align: left;
+  margin-bottom: 1.5rem;
 }
 
 .section-description p {
   color: #555;
   line-height: 1.6;
   font-size: 1.1rem;
+  margin: 0;
 }
 
 /* 分析部分樣式 */
 .analysis-section .chart-container {
   background-color: white;
+  margin-top: 0;
 }
 
 .analysis-section h1 {
-  display: none; /* 隱藏分析組件內部的標題 */
+  display: none;
 }
 
 /* 搜索結果下拉列表 */
@@ -164,7 +166,7 @@ section > * {
   left: 0;
   right: 0;
   background-color: white;
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 12px 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 10;
   max-height: 350px;

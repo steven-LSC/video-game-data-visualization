@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Chart } from "chart.js/auto";
 import Papa from "papaparse";
-import "./CreativityAnalysis.css";
+import styles from "./GameTypesAnalysis.module.css";
+import TabSelector from "../common/TabSelector";
+import ChartExplanation from "../common/ChartExplanation";
 
 // 禁用 Chart.js 中的 datalabels 插件
 Chart.overrides.scatter.plugins = Chart.overrides.scatter.plugins || {};
@@ -24,6 +26,14 @@ const CreativityAnalysis = () => {
     "Musical activities": "Musical Activities",
     "Artistic activities": "Artistic Activities",
   };
+
+  // 指標選項配置
+  const metricOptions = [
+    { id: "TTCT Test Score", label: "Creativity Test Score" },
+    { id: "Physical exercise/sports", label: "Physical Activities" },
+    { id: "Musical activities", label: "Musical Activities" },
+    { id: "Artistic activities", label: "Artistic Activities" },
+  ];
 
   // 遊戲類型列表
   const gameTypes = [
@@ -79,6 +89,11 @@ const CreativityAnalysis = () => {
     };
   }, [chartData, selectedMetric]);
 
+  // 切換選項指標
+  const changeMetric = (metric) => {
+    setSelectedMetric(metric);
+  };
+
   const createBubbleChart = (data) => {
     if (chartInstance.current) {
       chartInstance.current.destroy();
@@ -110,21 +125,29 @@ const CreativityAnalysis = () => {
 
         if (filteredData.length > 0) {
           const avgScore =
-            filteredData.reduce(
-              (sum, item) => sum + parseInt(item[selectedMetric]),
-              0
-            ) / filteredData.length;
+            filteredData.reduce((sum, item) => {
+              const score = parseInt(item[selectedMetric]);
+              return sum + (isNaN(score) ? 0 : score);
+            }, 0) / filteredData.length;
 
-          maxScore = Math.max(maxScore, avgScore);
-          minScore = Math.min(minScore, avgScore);
+          if (!isNaN(avgScore)) {
+            maxScore = Math.max(maxScore, avgScore);
+            minScore = Math.min(minScore, avgScore);
+          }
         }
       }
     });
 
-    // 計算氣泡大小的範圍
-    const minBubbleSize = 5;
+    // 確保分數範圍有效
+    if (minScore === Infinity) minScore = 0;
+    if (maxScore === -Infinity) maxScore = 100;
+    if (maxScore === minScore) maxScore = minScore + 50;
+
+    // 計算氣泡大小的範圍，增大大小差異
+    const minBubbleSize = 4;
     const maxBubbleSize = 40;
 
+    // 為每個遊戲類型和頻率組合創建氣泡數據
     gameTypes.forEach((gameType, gameIndex) => {
       for (let frequency = 1; frequency <= 5; frequency++) {
         const key = `${gameType}-${frequency}`;
@@ -133,26 +156,37 @@ const CreativityAnalysis = () => {
         );
 
         if (filteredData.length > 0) {
-          const avgScore =
-            filteredData.reduce(
-              (sum, item) => sum + parseInt(item[selectedMetric]),
-              0
-            ) / filteredData.length;
+          let totalScore = 0;
+          let validScores = 0;
 
-          // 使用指數縮放來強調差異
-          const normalizedScore = (avgScore - minScore) / (maxScore - minScore);
-          const exponentialFactor = 2;
-          const scaledScore = Math.pow(normalizedScore, exponentialFactor);
-          const bubbleSize =
-            minBubbleSize + (maxBubbleSize - minBubbleSize) * scaledScore;
+          filteredData.forEach((item) => {
+            const score = parseInt(item[selectedMetric]);
+            if (!isNaN(score)) {
+              totalScore += score;
+              validScores++;
+            }
+          });
 
-          bubbleData[key] = {
-            x: gameIndex,
-            y: frequency,
-            r: bubbleSize,
-            avgScore: avgScore,
-            sampleCount: filteredData.length,
-          };
+          if (validScores > 0) {
+            const avgScore = totalScore / validScores;
+
+            // 使用指數縮放來增強氣泡大小差異
+            const normalizedScore =
+              (avgScore - minScore) / (maxScore - minScore);
+            const exponentialFactor = 1.5; // 指數因子，增強差異
+            const scaledScore = Math.pow(normalizedScore, exponentialFactor);
+            const bubbleSize =
+              minBubbleSize + (maxBubbleSize - minBubbleSize) * scaledScore;
+
+            bubbleData[key] = {
+              x: gameIndex, // 使用遊戲類型的索引作為 x 座標
+              y: frequency, // 使用頻率作為 y 座標
+              r: bubbleSize, // 氣泡半徑
+              avgScore: avgScore, // 平均分數
+              sampleCount: filteredData.length, // 樣本數量
+              gameType: gameType, // 遊戲類型名稱
+            };
+          }
         }
       }
     });
@@ -170,7 +204,8 @@ const CreativityAnalysis = () => {
               const point = context.raw;
               const normalizedScore =
                 (point.avgScore - minScore) / (maxScore - minScore);
-              return `rgba(75, 192, 192, ${0.3 + normalizedScore * 0.7})`;
+              // 增強顏色差異
+              return `rgba(75, 192, 192, ${0.2 + normalizedScore * 0.8})`;
             },
             borderColor: "rgba(75, 192, 192, 1)",
             borderWidth: 1,
@@ -189,7 +224,7 @@ const CreativityAnalysis = () => {
               weight: "bold",
             },
             padding: {
-              bottom: 30,
+              bottom: 20, // 統一使用 20px 的間距
             },
           },
           tooltip: {
@@ -199,10 +234,10 @@ const CreativityAnalysis = () => {
                 const gameType = gameTypes[point.x];
                 return [
                   `Game Type: ${gameType}`,
-                  `Play Frequency: ${point.y}`,
-                  `${metricNames[selectedMetric]}: ${point.avgScore.toFixed(
-                    2
-                  )}`,
+                  `Frequency: ${point.y}`,
+                  `Average ${
+                    metricNames[selectedMetric]
+                  }: ${point.avgScore.toFixed(2)}`,
                   `Sample Size: ${point.sampleCount}`,
                 ];
               },
@@ -220,16 +255,30 @@ const CreativityAnalysis = () => {
                 return gameTypes[value];
               },
             },
+            offset: true,
+            grid: {
+              offset: true,
+            },
           },
           y: {
             title: {
               display: true,
-              text: "Play Frequency (1-5)",
+              text: "Frequency of Play",
             },
-            min: 0,
-            max: 6,
+            min: 1,
+            max: 5,
             ticks: {
               stepSize: 1,
+              callback: function (value) {
+                // 確保只顯示 1-5 的整數
+                return Number.isInteger(value) && value >= 1 && value <= 5
+                  ? value
+                  : "";
+              },
+            },
+            offset: true, // 使Y軸標籤對齊格子中心
+            grid: {
+              offset: true, // 使格線與數據點之間錯開
             },
           },
         },
@@ -238,30 +287,35 @@ const CreativityAnalysis = () => {
   };
 
   return (
-    <div className="creativity-analysis-container">
-      <div className="metric-controls">
-        <div className="metric-selector">
-          {Object.entries(metricNames).map(([key, name]) => (
-            <button
-              key={key}
-              className={`metric-button ${
-                selectedMetric === key ? "active" : ""
-              }`}
-              onClick={() => setSelectedMetric(key)}
-            >
-              {name}
-            </button>
-          ))}
-        </div>
+    <div className={styles.creativityAnalysisContainer}>
+      <h1>Game Types Analysis</h1>
+
+      <div className={styles.chartControls}>
+        <TabSelector
+          options={metricOptions}
+          activeTab={selectedMetric}
+          onChange={changeMetric}
+        />
       </div>
+
       {loading ? (
-        <div className="loading">Loading data...</div>
+        <div className={styles.loading}>Loading data...</div>
       ) : error ? (
-        <div className="error">{error}</div>
+        <div className={styles.error}>{error}</div>
       ) : (
-        <div className="chart-container">
-          <canvas ref={chartRef}></canvas>
-        </div>
+        <>
+          <div className={styles.chartContainer}>
+            <canvas ref={chartRef}></canvas>
+          </div>
+          <ChartExplanation
+            explanations={[
+              `This bubble chart shows the relationship between different game types and ${metricNames[selectedMetric]}.`,
+              `Each bubble represents a combination of game type and play frequency. The size and color intensity of the bubble indicate the average ${metricNames[selectedMetric]} - larger and darker bubbles represent higher scores.`,
+              `The vertical axis (1-5) represents how frequently participants play each game type, with 5 being the most frequent.`,
+              `You can switch between different metrics using the tabs above to explore various relationships.`,
+            ]}
+          />
+        </>
       )}
     </div>
   );

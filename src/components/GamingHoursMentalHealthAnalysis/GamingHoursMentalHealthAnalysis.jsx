@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Chart } from "chart.js/auto";
 import Papa from "papaparse";
-import "./AnxietyAnalysis.css";
+import styles from "./GamingHoursMentalHealthAnalysis.module.css";
+import TabSelector from "../common/TabSelector";
+import ChartExplanation from "../common/ChartExplanation";
 
 // 禁用 Chart.js 中的 datalabels 插件（如果已自動註冊）
 Chart.overrides.bubble.plugins = Chart.overrides.bubble.plugins || {};
@@ -23,6 +25,13 @@ const AnxietyAnalysis = () => {
     SWL_T: "Satisfaction with Life",
     SPIN_T: "Social Phobia Inventory",
   };
+
+  // Tab 選項配置
+  const tabOptions = [
+    { id: "GAD_T", label: "Anxiety (GAD)" },
+    { id: "SWL_T", label: "Life Satisfaction" },
+    { id: "SPIN_T", label: "Social Anxiety" },
+  ];
 
   // 第一個 useEffect：獲取和解析數據
   useEffect(() => {
@@ -208,7 +217,7 @@ const AnxietyAnalysis = () => {
               weight: "bold",
             },
             padding: {
-              bottom: 30,
+              bottom: 20,
             },
           },
           tooltip: {
@@ -259,46 +268,34 @@ const AnxietyAnalysis = () => {
   };
 
   return (
-    <div className="anxiety-analysis-container">
-      <h1>Gaming Hours and Mental Health Metrics</h1>
+    <div className={styles.anxietyAnalysisContainer}>
+      <h1>Gaming Hours and Mental Health Analysis</h1>
+
+      <div className={styles.chartControls}>
+        <TabSelector
+          options={tabOptions}
+          activeTab={yAxisMetric}
+          onChange={changeYAxisMetric}
+        />
+      </div>
 
       {loading ? (
-        <div className="loading">Loading data...</div>
+        <div className={styles.loading}>Loading data...</div>
       ) : error ? (
-        <div className="error">{error}</div>
+        <div className={styles.error}>{error}</div>
       ) : (
         <>
-          <div className="metric-controls">
-            <div className="metric-selector">
-              <button
-                className={`metric-button ${
-                  yAxisMetric === "GAD_T" ? "active" : ""
-                }`}
-                onClick={() => changeYAxisMetric("GAD_T")}
-              >
-                Anxiety
-              </button>
-              <button
-                className={`metric-button ${
-                  yAxisMetric === "SWL_T" ? "active" : ""
-                }`}
-                onClick={() => changeYAxisMetric("SWL_T")}
-              >
-                Life Satisfaction
-              </button>
-              <button
-                className={`metric-button ${
-                  yAxisMetric === "SPIN_T" ? "active" : ""
-                }`}
-                onClick={() => changeYAxisMetric("SPIN_T")}
-              >
-                Social Phobia
-              </button>
-            </div>
-          </div>
-          <div className="chart-container">
+          <div className={styles.chartContainer}>
             <canvas ref={chartRef}></canvas>
           </div>
+          <ChartExplanation
+            explanations={[
+              `This bubble chart shows the relationship between daily gaming hours and ${metricNames[yAxisMetric]} scores.`,
+              `Each bubble represents a group of participants with the same gaming hours and ${metricNames[yAxisMetric]} score. The size of the bubble indicates the number of participants in that group.`,
+              `The red line shows the average ${metricNames[yAxisMetric]} score for each gaming hour, calculated only for hours with at least 5 participants.`,
+              `You can switch between different mental health metrics using the tabs above.`,
+            ]}
+          />
         </>
       )}
     </div>

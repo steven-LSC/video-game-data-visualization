@@ -1,0 +1,122 @@
+.aggressionAnalysisContainer {
+  font-family: 'Arial', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 所有容器內元素最大寬度與Introduction頁面保持一致 */
+.aggressionAnalysisContainer > * {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
+
+.aggressionAnalysisContainer h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.controlsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.controlGroup {
+  min-width: 250px;
+}
+
+.controlGroup h3 {
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 16px;
+  color: #555;
+}
+
+.chartContainer {
+  height: 500px;
+  position: relative;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 20px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  font-size: 18px;
+  color: #666;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  font-size: 18px;
+  color: #d9534f;
+  background-color: rgba(217, 83, 79, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .controlsContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .chartContainer {
+    height: 400px;
+  }
+}
+
+.chartControls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* 指標選擇器樣式 */
+.metricSelector {
+  display: flex;
+  gap: 10px;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.metricButton {
+  padding: 10px 15px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.metricButton:hover {
+  background-color: #f1f8ff;
+  border-color: #bfdcff;
+}
+
+.metricButton.active {
+  background-color: #4a90e2;
+  color: white;
+  border-color: #3a7bc8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+} 
