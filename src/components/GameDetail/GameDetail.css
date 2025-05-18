@@ -16,7 +16,7 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 20px;
 }
 
 .game-header {
@@ -105,7 +105,7 @@
 }
 
 .game-introduction .container {
-  padding: 1.5rem;
+  padding: 20px;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -241,7 +241,7 @@
 }
 
 .game-impact-visualization .container {
-  padding: 2rem;
+  padding: 20px;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);

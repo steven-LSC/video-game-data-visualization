@@ -5,6 +5,7 @@ import GamingHoursAggressionAnalysis from "../GamingHoursAggressionAnalysis/Gami
 import GamingHoursMentalHealthAnalysis from "../GamingHoursMentalHealthAnalysis/GamingHoursMentalHealthAnalysis";
 import GameTypesAnalysis from "../GameTypesAnalysis/GameTypesAnalysis";
 import GamingHoursCreativityAnalysis from "../GamingHoursCreativityAnalysis/GamingHoursCreativityAnalysis";
+import Carousel from "../Carousel/Carousel";
 
 // 應用程式的全局遊戲資料存儲
 export const gameDataStore = {
@@ -72,6 +73,8 @@ const Introduction = () => {
   const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
+  const [carouselItems, setCarouselItems] = useState([]);
+  const [negativeCarouselItems, setNegativeCarouselItems] = useState([]);
 
   // 搜索遊戲的函數
   const searchGames = (query) => {
@@ -170,11 +173,43 @@ const Introduction = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
+        // 同時加載遊戲資料和輪播資料
+        const loadCarouselData = fetch("/positive-news.json").then((res) =>
+          res.json()
+        );
+        // 加載負面影響輪播數據
+        const loadNegativeCarouselData = fetch("/negative-news.json").then(
+          (res) => res.json()
+        );
+
         await gameDataStore.loadDataFromJSON();
+
+        // 設置輪播數據
+        const carouselData = await loadCarouselData;
+        setCarouselItems(
+          carouselData.map((item) => ({
+            title: item.title,
+            description: item.content,
+            image: item.image,
+            link: item.link,
+          }))
+        );
+
+        // 設置負面影響輪播數據（假設你會添加一個新的狀態來存儲它）
+        const negativeCarouselData = await loadNegativeCarouselData;
+        setNegativeCarouselItems(
+          negativeCarouselData.map((item) => ({
+            title: item.title,
+            description: item.content,
+            image: item.image,
+            link: item.link,
+          }))
+        );
+
         setDataLoaded(true);
       } catch (error) {
-        console.error("載入遊戲數據失敗:", error);
-        setError("無法載入遊戲數據，請刷新頁面重試");
+        console.error("Loading data failed:", error);
+        setError("Unable to load data. Please refresh the page and try again.");
         // 設置為已加載，這樣用戶會看到錯誤訊息
         setDataLoaded(true);
       }
@@ -187,7 +222,7 @@ const Introduction = () => {
     <div className="introduction-container">
       <section className="hero-section">
         <div className="product-title">
-          <h1>Game Data Insights</h1>
+          <h1>Game Guardian</h1>
           <p className="subtitle">Search a Video Game to Learn More!</p>
         </div>
         <div className="search-container">
@@ -240,12 +275,47 @@ const Introduction = () => {
 
         <div className="why-content">
           <h2>Why did we make this website?</h2>
+          <p>Video games are powerful—and complex.</p>
           <p>
-            In modern game development, data analysis plays a crucial role. Our
-            platform aims to help developers and analysts better understand
-            player behavior, game performance, and market trends. Through
-            intuitive data visualization, we make complex data simple and
-            understandable.
+            They can support learning, focus, and social connection, but they
+            also raise valid concerns like addiction, excessive screen time, and
+            behavioral risks. We believe users deserve a space to explore both
+            sides, grounded in real data—not assumptions. That's why we built
+            this website.
+          </p>
+          <p>Here, you can:</p>
+          <ul>
+            <li>
+              Dive into research-backed sections on both the concerns and
+              benefits of video games
+            </li>
+            <li>
+              Search individual titles to see their key features and potential
+              impacts
+            </li>
+            <li>
+              Use checkbox filters to find or avoid games with similar traits
+            </li>
+            <li>
+              Browse our Editor's Picks, featuring:
+              <ul>
+                <li>
+                  🎮 Accessibility – games well-suited for younger or
+                  inexperienced players
+                </li>
+                <li>
+                  🏆 Artistry – award-winning or critically acclaimed titles
+                </li>
+                <li>
+                  🔥 Popularity – games selected by community votes and cultural
+                  buzz
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <p>
+            Our goal is simple: to offer a comprehensive, balanced perspective
+            on games—whether you're a parent, educator, or gamer yourself.
           </p>
         </div>
       </section>
@@ -263,7 +333,47 @@ const Introduction = () => {
             />
           )
         ) : (
-          <div className="loading">載入數據中...</div>
+          <div className="loading">Loading data...</div>
+        )}
+      </section>
+
+      <section className="carousel-section positive-carousel">
+        <h2 className="section-title">
+          Understanding the <span className="benefit-text">Benefits</span> of
+          Video Games
+        </h2>
+        <div className="section-description">
+          <p>
+            Explore the positive impacts and benefits that video games can
+            bring. Discover how different types of games can enhance various
+            skills and provide entertainment value. Click on the cards to learn
+            more.
+          </p>
+        </div>
+        {carouselItems.length > 0 && <Carousel items={carouselItems} />}
+      </section>
+
+      <section className="carousel-section negative-carousel">
+        <h2 className="section-title">
+          Understanding the <span className="concern-text">Concerns</span>{" "}
+          Around Video Games
+        </h2>
+        <div className="section-description">
+          <p>
+            Video games are often linked in the media to issues like violence,
+            addiction, and social withdrawal. Reports raise valid concerns about
+            their potential impact on mental health and behavior, especially in
+            young users. However, these narratives often overlook context, such
+            as individual differences or broader societal factors. It's
+            important to critically assess these claims and seek a balanced
+            understanding.
+          </p>
+        </div>
+        {negativeCarouselItems && negativeCarouselItems.length > 0 && (
+          <Carousel
+            items={negativeCarouselItems}
+            className="negative-carousel"
+          />
         )}
       </section>
 

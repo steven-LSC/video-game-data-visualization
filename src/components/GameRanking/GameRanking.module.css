@@ -143,12 +143,32 @@
   border-collapse: collapse;
   margin-top: 1rem;
   font-size: 14px;
+  table-layout: fixed;
+}
+
+/* 固定欄位寬度 */
+.rankingTable .gameTitle {
+  width: 40%;
+}
+
+.rankingTable .sales {
+  width: 10%;
+}
+
+.rankingTable .pegiRating {
+  width: 10%;
+}
+
+.rankingTable .label {
+  width: 40%;
 }
 
 .rankingTable th,
 .rankingTable td {
   padding: 12px 16px;
   border-bottom: 1px solid #e9ecef;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .rankingTable th {
@@ -321,6 +341,16 @@
   align-items: center;
   gap: 10px;
   font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.gameInfo span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .gameThumbnail {
@@ -328,6 +358,7 @@
   height: 40px;
   object-fit: cover;
   border-radius: 4px;
+  flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
@@ -360,4 +391,38 @@
   background-color: #F44336; /* 紅色 */
   color: white;
   border-color: #F44336;
+}
+
+/* 分頁控制樣式 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 15px;
+}
+
+.paginationButton {
+  background-color: #1f2937;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.paginationButton:hover:not(:disabled) {
+  background-color: #374151;
+}
+
+.paginationButton:disabled {
+  background-color: #4b5563;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.pageInfo {
+  color: #374151;
+  font-size: 0.9rem;
 } 

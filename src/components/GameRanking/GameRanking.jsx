@@ -22,6 +22,10 @@ const GameRanking = ({ gameData, genres, pegiRatings, getGameSlug }) => {
   // Modal 內臨時存儲的 PEGI 過濾標籤
   const [tempPegiRating, setTempPegiRating] = useState("");
 
+  // 分頁相關狀態
+  const [currentPage, setCurrentPage] = useState(1);
+  const gamesPerPage = 5;
+
   // 在組件載入時從 sessionStorage 中讀取過濾器設置
   useEffect(() => {
     try {
@@ -68,6 +72,7 @@ const GameRanking = ({ gameData, genres, pegiRatings, getGameSlug }) => {
     setSelectedPegiRating(tempPegiRating);
     saveFiltersToSessionStorage(tempGenreFilters, tempPegiRating);
     setShowFilterModal(false);
+    setCurrentPage(1); // 重置到第一頁
   };
 
   // 關閉 Modal
@@ -80,6 +85,7 @@ const GameRanking = ({ gameData, genres, pegiRatings, getGameSlug }) => {
     const newFilters = activeGenreFilters.filter((f) => f !== filter);
     setActiveGenreFilters(newFilters);
     saveFiltersToSessionStorage(newFilters, selectedPegiRating);
+    setCurrentPage(1); // 重置到第一頁
   };
 
   // 添加 Genre 過濾標籤並更新 sessionStorage
@@ -88,6 +94,7 @@ const GameRanking = ({ gameData, genres, pegiRatings, getGameSlug }) => {
       const newFilters = [...activeGenreFilters, filter];
       setActiveGenreFilters(newFilters);
       saveFiltersToSessionStorage(newFilters, selectedPegiRating);
+      setCurrentPage(1); // 重置到第一頁
     }
   };
 
@@ -96,6 +103,7 @@ const GameRanking = ({ gameData, genres, pegiRatings, getGameSlug }) => {
     setSelectedPegiRating("");
     // 保存空字串到 sessionStorage
     saveFiltersToSessionStorage(activeGenreFilters, "");
+    setCurrentPage(1); // 重置到第一頁
   };
 
   // 移除 Genre 過濾標籤（Modal 內使用）
@@ -131,6 +139,32 @@ const GameRanking = ({ gameData, genres, pegiRatings, getGameSlug }) => {
 
     return genreMatch && pegiMatch;
   });
+
+  // 根據 Sales 排序遊戲（降序）
+  const sortedGames = [...filteredGames].sort((a, b) => {
+    // 如果 sales 是字符串，先轉換為數字
+    const salesA =
+      typeof a.sales === "string"
+        ? parseInt(a.sales.replace(/[^0-9]/g, ""))
+        : a.sales;
+    const salesB =
+      typeof b.sales === "string"
+        ? parseInt(b.sales.replace(/[^0-9]/g, ""))
+        : b.sales;
+
+    return salesB - salesA; // 降序排列
+  });
+
+  // 分頁邏輯：計算當前頁應顯示的遊戲
+  const indexOfLastGame = currentPage * gamesPerPage;
+  const indexOfFirstGame = indexOfLastGame - gamesPerPage;
+  const currentGames = sortedGames.slice(indexOfFirstGame, indexOfLastGame);
+
+  // 計算總頁數
+  const totalPages = Math.ceil(sortedGames.length / gamesPerPage);
+
+  // 頁面切換函數
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   // 計算每個流派在遊戲數據中出現的次數
   const genreCounts = genres.reduce((acc, genre) => {
@@ -238,12 +272,12 @@ const GameRanking = ({ gameData, genres, pegiRatings, getGameSlug }) => {
                   </svg>
                 </div>
               </th>
-              <th className={styles.pegiRating}>PEGI Rating</th>
+              <th className={styles.pegiRating}>PEGI</th>
               <th className={styles.label}>Genre</th>
             </tr>
           </thead>
           <tbody>
-            {filteredGames.map((game, index) => (
+            {currentGames.map((game, index) => (
               <tr key={index}>
                 <td>
                   <Link
@@ -283,6 +317,29 @@ const GameRanking = ({ gameData, genres, pegiRatings, getGameSlug }) => {
             ))}
           </tbody>
         </table>
+
+        {/* 分頁控制組件 */}
+        <div className={styles.pagination}>
+          <button
+            onClick={() => paginate(currentPage - 1)}
+            disabled={currentPage === 1}
+            className={styles.paginationButton}
+          >
+            &laquo; Previous
+          </button>
+
+          <span className={styles.pageInfo}>
+            Page {currentPage} of {totalPages}
+          </span>
+
+          <button
+            onClick={() => paginate(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className={styles.paginationButton}
+          >
+            Next &raquo;
+          </button>
+        </div>
       </div>
     </div>
   );

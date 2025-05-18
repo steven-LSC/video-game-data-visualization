@@ -66,13 +66,7 @@ const GameDetail = () => {
     <div className="game-detail-container">
       <div className="game-header">
         <div className="container">
-          <div className="header-top">
-            <div className="back-navigation">
-              <Link to="/" className="back-link">
-                ← Back to Games
-              </Link>
-            </div>
-          </div>
+          <div className="header-top">{/* 移除返回連結 */}</div>
           <h1>{game.title}</h1>
           <div className="game-meta">
             <div className="meta-item">
