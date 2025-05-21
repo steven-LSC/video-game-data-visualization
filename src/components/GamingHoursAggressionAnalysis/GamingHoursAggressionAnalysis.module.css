@@ -1,16 +1,14 @@
 .aggressionAnalysisContainer {
   font-family: 'Arial', sans-serif;
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 32px;
 }
 
 /* 所有容器內元素最大寬度與Introduction頁面保持一致 */
 .aggressionAnalysisContainer > * {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 20px;
+  max-width: 1500px;
+  padding: 0 32px;
 }
 
 .aggressionAnalysisContainer h1 {

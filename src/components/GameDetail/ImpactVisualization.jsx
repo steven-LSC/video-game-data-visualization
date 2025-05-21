@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
-import "./ImpactVisualization.css";
+import styles from "./ImpactVisualization.module.css";
 
 const ImpactVisualization = ({ game }) => {
   const svgRef = useRef(null);
@@ -93,11 +93,14 @@ const ImpactVisualization = ({ game }) => {
     // 繪製連結線
     const links_g = svg
       .append("g")
-      .attr("class", "links")
+      .attr("class", styles.links)
       .selectAll("line")
       .data(links)
       .join("line")
-      .attr("class", (d) => `connector ${d.type}-connector`)
+      .attr(
+        "class",
+        (d) => `${styles.connector} ${styles[`${d.type}Connector`]}`
+      )
       .attr("x1", (d) => {
         const source = nodes.find((node) => node.id === d.source);
         return source.x;
@@ -118,18 +121,18 @@ const ImpactVisualization = ({ game }) => {
     // 節點群組
     const nodes_g = svg
       .append("g")
-      .attr("class", "nodes")
+      .attr("class", styles.nodes)
       .selectAll("g")
       .data(nodes)
       .join("g")
-      .attr("class", (d) => `node ${d.type}-node`)
+      .attr("class", (d) => `${styles.node} ${styles[`${d.type}Node`]}`)
       .attr("transform", (d) => `translate(${d.x}, ${d.y})`);
 
     // 節點圓形
     nodes_g
       .append("circle")
       .attr("r", (d) => d.radius)
-      .attr("class", (d) => `${d.type}-circle`)
+      .attr("class", (d) => styles[`${d.type}Circle`])
       .on("mouseover", function (event, d) {
         // 只保留放大動畫效果
         d3.select(this)
@@ -146,7 +149,7 @@ const ImpactVisualization = ({ game }) => {
     nodes_g
       .append("text")
       .text((d) => d.name)
-      .attr("class", "node-text")
+      .attr("class", styles.nodeText)
       .attr("text-anchor", "middle")
       .attr("dominant-baseline", "middle")
       .attr("font-size", (d) => (d.type === "center" ? "15px" : "13px"))
@@ -214,25 +217,22 @@ const ImpactVisualization = ({ game }) => {
   }, [game]);
 
   return (
-    <section className="game-impact-visualization">
-      <div className="container" ref={containerRef}>
-        <h2 className="impact-title">Game Impact Analysis</h2>
-        <div className="impact-visualization-container">
-          <svg ref={svgRef} className="impact-visualization-svg"></svg>
-        </div>
+    <div ref={containerRef}>
+      <div className={styles.impactVisualizationContainer}>
+        <svg ref={svgRef} className={styles.impactVisualizationSvg}></svg>
+      </div>
 
-        <div className="impact-legend">
-          <div className="legend-item positive">
-            <span className="legend-color"></span>
-            <span className="legend-text">Positive Impacts</span>
-          </div>
-          <div className="legend-item negative">
-            <span className="legend-color"></span>
-            <span className="legend-text">Negative Impacts</span>
-          </div>
+      <div className={styles.impactLegend}>
+        <div className={`${styles.legendItem} ${styles.positive}`}>
+          <span className={styles.legendColor}></span>
+          <span className={styles.legendText}>Positive Impacts</span>
+        </div>
+        <div className={`${styles.legendItem} ${styles.negative}`}>
+          <span className={styles.legendColor}></span>
+          <span className={styles.legendText}>Negative Impacts</span>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -3,7 +3,6 @@ import { Chart } from "chart.js/auto";
 import Papa from "papaparse";
 import styles from "./GamingHoursAggressionAnalysis.module.css";
 import TabSelector from "../common/TabSelector";
-import ChartExplanation from "../common/ChartExplanation";
 
 // 禁用 Chart.js 中的 datalabels 插件（如果已自動註冊）
 Chart.overrides.bubble.plugins = Chart.overrides.bubble.plugins || {};
@@ -11,7 +10,7 @@ Chart.overrides.bubble.plugins.datalabels =
   Chart.overrides.bubble.plugins.datalabels || {};
 Chart.overrides.bubble.plugins.datalabels.display = false;
 
-const AggressionAnalysis = () => {
+const AggressionAnalysis = ({ onGameTypeChange }) => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
   const [loading, setLoading] = useState(true);
@@ -88,9 +87,16 @@ const AggressionAnalysis = () => {
     };
   }, [chartData, chartRef, xAxisType]);
 
-  // 切換 X 軸類型
+  // 當 X 軸類型變更時
   const changeXAxisType = (type) => {
     setXAxisType(type);
+    if (chartData) {
+      setChartOption(type);
+    }
+    // 通知父組件當前選定的遊戲類型
+    if (onGameTypeChange) {
+      onGameTypeChange(type);
+    }
   };
 
   const createChart = (data) => {
@@ -327,26 +333,9 @@ const AggressionAnalysis = () => {
       ) : error ? (
         <div className={styles.error}>{error}</div>
       ) : (
-        <>
-          <div className={styles.chartContainer}>
-            <canvas ref={chartRef}></canvas>
-          </div>
-          <ChartExplanation
-            explanations={[
-              `This chart shows the relationship between ${
-                xAxisType === "gameHours"
-                  ? "general gaming hours"
-                  : "violent gaming hours"
-              } and aggression scores.`,
-              `Each dot represents a participant with the specified ${
-                xAxisType === "gameHours"
-                  ? "gaming hours"
-                  : "violent gaming hours"
-              } and aggression score. The red line shows the average aggression score for each time category.`,
-              `You can switch between general gaming hours and violent gaming hours using the tabs above.`,
-            ]}
-          />
-        </>
+        <div className={styles.chartContainer}>
+          <canvas ref={chartRef}></canvas>
+        </div>
       )}
     </div>
   );

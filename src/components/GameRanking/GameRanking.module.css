@@ -1,7 +1,7 @@
 .rankingContainer {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  max-width: 1500px;
+  /* margin: 0 auto; */
+  padding: 2rem;
   text-align: left;
 }
 
@@ -26,11 +26,10 @@
 
 /* 統一按鈕和標籤樣式 */
 .filterButton,
-.resetButton,
 .tag,
 .labelTag,
+.tableLabelTag,
 .pegiSelect {
-  font-size: 14px;
   padding: 8px 16px;
   border-radius: 4px;
 }
@@ -48,6 +47,12 @@
   font-weight: 500;
   min-height: 38px;
   box-sizing: border-box;
+  min-width: 100px;
+  text-align: center;
+}
+
+.filterButton:focus {
+  outline: none;
 }
 
 .filterButton svg {
@@ -58,19 +63,7 @@
 
 .filterButton:hover {
   background-color: #e9ecef;
-}
-
-.resetButton {
-  background-color: #f1f1f1;
-  border: 1px solid #d1d1d1;
-  color: #666;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.resetButton:hover {
-  background-color: #e2e2e2;
-  color: #333;
+  border-color: #dee2e6;
 }
 
 .tagContainer {
@@ -126,7 +119,12 @@
   align-items: center;
   justify-content: center;
   padding: 0;
-  margin-left: 4px;
+  width: 16px;
+  height: 16px;
+}
+
+.tagRemove:focus {
+  outline: none;
 }
 
 .tagRemove:hover {
@@ -148,11 +146,11 @@
 
 /* 固定欄位寬度 */
 .rankingTable .gameTitle {
-  width: 40%;
+  width: 35%;
 }
 
 .rankingTable .sales {
-  width: 10%;
+  width: 15%;
 }
 
 .rankingTable .pegiRating {
@@ -208,8 +206,33 @@
   vertical-align: middle;
 }
 
-.rankingTable tbody tr:hover {
+.rankingTable tbody tr {
+  height: 72px; /* 設定固定行高 */
+}
+
+.rankingTable tbody tr:nth-child(odd) {
   background-color: #f8f9fa;
+}
+
+.rankingTable tbody tr:nth-child(even) {
+  background-color: #fff;
+}
+
+.rankingTable tbody tr.emptyRow {
+  height: 72px;
+}
+
+/* 空白行也要保持黑白交替 */
+.rankingTable tbody tr.emptyRow:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+
+.rankingTable tbody tr.emptyRow:nth-child(even) {
+  background-color: #fff;
+}
+
+.rankingTable tbody tr.emptyRow td {
+  border-bottom: 1px solid #e9ecef;
 }
 
 .ratingBox {
@@ -237,6 +260,7 @@
   justify-content: flex-start;
 }
 
+/* 過濾器中的標籤樣式 */
 .labelTag {
   background-color: #e9ecef;
   white-space: nowrap;
@@ -247,9 +271,28 @@
   display: inline-flex;
   align-items: center;
   box-sizing: border-box;
+  font-size: 14px;
+  padding: 8px 12px;
+  min-width: auto;
 }
 
-.labelTag:hover {
+/* 表格中的標籤樣式 */
+.tableLabelTag {
+  background-color: #e9ecef;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 500;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 14px;
+  padding: 8px 12px;
+  min-width: auto;
+}
+
+.labelTag:hover, .tableLabelTag:hover {
   background-color: #dee2e6;
 }
 
@@ -398,31 +441,36 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  gap: 15px;
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
 
 .paginationButton {
-  background-color: #1f2937;
-  color: white;
-  border: none;
-  padding: 8px 15px;
+  min-width: 100px;
+  padding: 8px 16px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 16px;
+  color: #495057;
+  text-align: center;
+  transition: all 0.2s;
 }
 
 .paginationButton:hover:not(:disabled) {
-  background-color: #374151;
+  background-color: #e9ecef;
 }
 
 .paginationButton:disabled {
-  background-color: #4b5563;
+  opacity: 0.5;
   cursor: not-allowed;
-  opacity: 0.6;
+  background-color: #f8f9fa;
 }
 
 .pageInfo {
-  color: #374151;
-  font-size: 0.9rem;
+  font-size: 16px;
+  color: #6c757d;
+  min-width: 50px;
+  text-align: center;
 } 

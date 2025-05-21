@@ -1,7 +1,7 @@
 .carousel-container {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 0 2rem;
 }
@@ -38,6 +38,12 @@
   z-index: 10;
 }
 
+/* 卡片 hover 效果 */
+.carousel-card.active:hover {
+  transform: translateX(-50%) translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
 /* 卡片位置 - 均勻分佈 */
 .carousel-card.position-0 {
   left: 50%;
@@ -69,6 +75,36 @@
   z-index: 3;
 }
 
+/* 為所有位置的卡片添加 hover 效果 */
+.carousel-card.position--1:hover {
+  transform: translateX(calc(-50% - 300px)) translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-card.position--2:hover {
+  transform: translateX(calc(-50% - 600px)) translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-card.position-1:hover {
+  transform: translateX(calc(-50% + 300px)) translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-card.position-2:hover {
+  transform: translateX(calc(-50% + 600px)) translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* 卡片整體連結樣式 */
+.card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+}
+
 /* 卡片內容 */
 .carousel-card img {
   width: 100%;
@@ -98,7 +134,7 @@
   line-height: 1.4;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
 }
 
@@ -115,43 +151,54 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  background-color: white;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(76, 175, 80, 0.7); /* 預設綠色，帶透明度 */
   border-radius: 50%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border: none;
+  outline: none; /* 移除點擊時的藍色外框 */
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 24px;
   cursor: pointer;
   z-index: 20;
   transition: all 0.2s ease;
-  padding: 0; /* 移除內邊距 */
-  line-height: 1; /* 確保文字垂直居中 */
-  text-align: center; /* 確保文字水平居中 */
-  aspect-ratio: 1 / 1; /* 強制寬高比為1:1 */
+  padding: 0;
+  line-height: 1;
+  text-align: center;
+  aspect-ratio: 1 / 1;
+}
+
+.carousel-arrow:focus {
+  outline: none; /* 確保即使在聚焦時也不顯示藍色外框 */
+}
+
+.arrow-icon {
+  width: 24px;
+  height: 24px;
 }
 
 .carousel-arrow span {
   display: block;
   line-height: 0;
   position: relative;
-  top: -1px; /* 微調垂直位置 */
+  top: -1px;
+  color: white; /* 箭頭顏色改為白色 */
 }
 
 .carousel-arrow:hover {
-  background-color: #f9f9f9;
+  background-color: rgba(76, 175, 80, 0.9); /* 懸停時提高不透明度 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .carousel-arrow.prev {
-  left: 10px; /* 貼近內容左邊緣 */
+  left: 15px;
 }
 
 .carousel-arrow.next {
-  right: 10px; /* 貼近內容右邊緣 */
+  right: 15px;
 }
 
 /* 指示器點 */
@@ -198,6 +245,23 @@
   .carousel-card.position-2 {
     transform: translateX(calc(-50% + 520px)); /* 較小的間距 */
   }
+  
+  /* 平板的 hover 效果 */
+  .carousel-card.position--1:hover {
+    transform: translateX(calc(-50% - 260px)) translateY(-10px);
+  }
+  
+  .carousel-card.position--2:hover {
+    transform: translateX(calc(-50% - 520px)) translateY(-10px);
+  }
+  
+  .carousel-card.position-1:hover {
+    transform: translateX(calc(-50% + 260px)) translateY(-10px);
+  }
+  
+  .carousel-card.position-2:hover {
+    transform: translateX(calc(-50% + 520px)) translateY(-10px);
+  }
 }
 
 @media (max-width: 768px) {
@@ -220,6 +284,23 @@
   
   .carousel-card.position-2 {
     transform: translateX(calc(-50% + 440px)); /* 適合手機的間距 */
+  }
+  
+  /* 手機的 hover 效果 */
+  .carousel-card.position--1:hover {
+    transform: translateX(calc(-50% - 220px)) translateY(-10px);
+  }
+  
+  .carousel-card.position--2:hover {
+    transform: translateX(calc(-50% - 440px)) translateY(-10px);
+  }
+  
+  .carousel-card.position-1:hover {
+    transform: translateX(calc(-50% + 220px)) translateY(-10px);
+  }
+  
+  .carousel-card.position-2:hover {
+    transform: translateX(calc(-50% + 440px)) translateY(-10px);
   }
 }
 
@@ -247,6 +328,11 @@
 
 .negative-carousel .dot.active {
   background-color: #F44336; /* 紅色指示點 */
+}
+
+.negative-carousel .carousel-card.active:hover {
+  transform: translateX(-50%) translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* 圖片容器 */
@@ -286,4 +372,13 @@
   border-width: 10px 0 10px 20px;
   border-color: transparent transparent transparent white;
   margin-left: 5px;
+}
+
+/* 負面輪播的箭頭樣式 */
+.negative-carousel .carousel-arrow {
+  background-color: rgba(244, 67, 54, 0.7); /* 紅色帶透明度 */
+}
+
+.negative-carousel .carousel-arrow:hover {
+  background-color: rgba(244, 67, 54, 0.9); /* 懸停時提高不透明度 */
 } 

@@ -12,12 +12,14 @@ const ChartExplanation = ({
   explanations = [],
 }) => {
   return (
-    <div className={styles.chartExplanation}>
-      {explanations.map((explanation, index) => (
-        <p key={index}>
-          {index === 0 && <strong>{title}</strong>} {explanation}
-        </p>
-      ))}
+    <div className={styles.chartExplanationWrapper}>
+      <div className={styles.chartExplanation}>
+        {explanations.map((explanation, index) => (
+          <p key={index}>
+            {index === 0 && <strong>{title}</strong>} {explanation}
+          </p>
+        ))}
+      </div>
     </div>
   );
 };

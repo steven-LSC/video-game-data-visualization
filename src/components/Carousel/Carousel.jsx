@@ -53,22 +53,21 @@ const Carousel = ({ items, className = "" }) => {
               position === 0 ? "active" : ""
             } position-${position}`}
           >
-            <div className="image-container">
-              <img src={item.image} alt={item.title} />
-              {isYouTube && <div className="youtube-icon"></div>}
-            </div>
-            <div className="card-content">
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-              <a
-                href={item.link}
-                className="learn-more"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn More →
-              </a>
-            </div>
+            <a
+              href={item.link}
+              className="card-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="image-container">
+                <img src={item.image} alt={item.title} />
+                {isYouTube && <div className="youtube-icon"></div>}
+              </div>
+              <div className="card-content">
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            </a>
           </div>
         ))}
 
@@ -77,7 +76,11 @@ const Carousel = ({ items, className = "" }) => {
           onClick={prevSlide}
           aria-label="Previous slide"
         >
-          <span>&lt;</span>
+          <img
+            src="/icons/arrow_left_alt.svg"
+            alt="Previous"
+            className="arrow-icon"
+          />
         </button>
 
         <button
@@ -85,7 +88,11 @@ const Carousel = ({ items, className = "" }) => {
           onClick={nextSlide}
           aria-label="Next slide"
         >
-          <span>&gt;</span>
+          <img
+            src="/icons/arrow_right_alt.svg"
+            alt="Next"
+            className="arrow-icon"
+          />
         </button>
       </div>
 

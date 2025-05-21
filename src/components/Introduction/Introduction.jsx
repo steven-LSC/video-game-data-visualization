@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import "./Introduction.css";
+import styles from "./Introduction.module.css";
 import GameRanking from "../GameRanking/GameRanking";
 import GamingHoursAggressionAnalysis from "../GamingHoursAggressionAnalysis/GamingHoursAggressionAnalysis";
 import GamingHoursMentalHealthAnalysis from "../GamingHoursMentalHealthAnalysis/GamingHoursMentalHealthAnalysis";
 import GameTypesAnalysis from "../GameTypesAnalysis/GameTypesAnalysis";
 import GamingHoursCreativityAnalysis from "../GamingHoursCreativityAnalysis/GamingHoursCreativityAnalysis";
 import Carousel from "../Carousel/Carousel";
+import ChartExplanation from "./ChartExplanation";
 
 // 應用程式的全局遊戲資料存儲
 export const gameDataStore = {
@@ -75,6 +76,51 @@ const Introduction = () => {
   const [showResults, setShowResults] = useState(false);
   const [carouselItems, setCarouselItems] = useState([]);
   const [negativeCarouselItems, setNegativeCarouselItems] = useState([]);
+  const [currentMetric, setCurrentMetric] = useState("Anxiety");
+  const [currentGameType, setCurrentGameType] = useState("gameHours");
+
+  // 圖表說明內容
+  const aggressionExplanations = [
+    `This chart shows the relationship between ${
+      currentGameType === "gameHours"
+        ? "general gaming hours"
+        : "violent gaming hours"
+    } and aggression scores.`,
+    `Each dot represents a participant with the specified ${
+      currentGameType === "gameHours" ? "gaming hours" : "violent gaming hours"
+    } and aggression score. The red line shows the average aggression score for each time category.`,
+    `You can switch between general gaming hours and violent gaming hours using the tabs above.`,
+  ];
+
+  const mentalHealthExplanations = [
+    `This bubble chart shows the relationship between daily gaming hours and ${currentMetric} scores.`,
+    `Each bubble represents a group of participants with the same gaming hours and ${currentMetric} score. The size of the bubble indicates the number of participants in that group.`,
+    `The red line shows the average ${currentMetric} score for each gaming hour, calculated only for hours with at least 5 participants.`,
+    `You can switch between different mental health metrics using the tabs above.`,
+  ];
+
+  const creativityExplanations = [
+    `This chart shows the relationship between daily gaming hours and creativity scores (TTCT).`,
+    `Each blue dot represents an individual participant with their gaming time and creativity score. The size of the scattered points indicates the number of participants with the same values.`,
+    `The red line shows the average creativity score for each gaming time category, revealing trends in how gaming time might relate to creativity levels.`,
+    `Gaming time categories range from non-gamers to those who play more than 6 hours daily.`,
+  ];
+
+  const gameTypesExplanations = [
+    `This bubble chart shows the relationship between different game types and creativity scores.`,
+    `Each bubble represents a combination of game type and play frequency. The size and color intensity of the bubble indicate the average creativity score - larger and darker bubbles represent higher scores.`,
+    `The vertical axis (1-5) represents how frequently participants play each game type, with 5 being the most frequent.`,
+    `You can switch between different metrics using the tabs above to explore various relationships.`,
+  ];
+
+  // 接收來自子組件的指標更新
+  const handleMetricChange = (metric) => {
+    setCurrentMetric(metric);
+  };
+
+  const handleGameTypeChange = (type) => {
+    setCurrentGameType(type);
+  };
 
   // 搜索遊戲的函數
   const searchGames = (query) => {
@@ -219,17 +265,17 @@ const Introduction = () => {
   }, []);
 
   return (
-    <div className="introduction-container">
-      <section className="hero-section">
-        <div className="product-title">
+    <div className={styles.introductionContainer}>
+      <section className={`${styles.heroSection} ${styles.section}`}>
+        <div className={styles.productTitle}>
           <h1>Game Guardian</h1>
-          <p className="subtitle">Search a Video Game to Learn More!</p>
+          <p className={styles.subtitle}>Search a Video Game to Learn More!</p>
         </div>
-        <div className="search-container">
-          <div className="search-input-wrapper">
+        <div className={styles.searchContainer}>
+          <div className={styles.searchInputWrapper}>
             <input
               type="text"
-              className="search-bar"
+              className={styles.searchBar}
               placeholder="Enter a game name..."
               value={searchText}
               onChange={handleSearchChange}
@@ -237,7 +283,7 @@ const Introduction = () => {
             />
             {searchText && (
               <button
-                className="clear-search"
+                className={styles.clearSearch}
                 onClick={() => {
                   setSearchText("");
                   setSearchResults([]);
@@ -248,21 +294,21 @@ const Introduction = () => {
               </button>
             )}
             {showResults && searchResults.length > 0 && (
-              <div className="search-results">
+              <div className={styles.searchResults}>
                 {searchResults.map((game, index) => (
                   <div
                     key={index}
-                    className="search-result-item"
+                    className={styles.searchResultItem}
                     onClick={() => handleSelectResult(game)}
                   >
                     <img
                       src={game.featuredImage}
                       alt={game.title}
-                      className="result-thumbnail"
+                      className={styles.resultThumbnail}
                     />
-                    <div className="result-info">
-                      <div className="result-title">{game.title}</div>
-                      <div className="result-genre">
+                    <div className={styles.resultInfo}>
+                      <div className={styles.resultTitle}>{game.title}</div>
+                      <div className={styles.resultGenre}>
                         {game.genres.join(", ")}
                       </div>
                     </div>
@@ -273,7 +319,7 @@ const Introduction = () => {
           </div>
         </div>
 
-        <div className="why-content">
+        <div className={styles.whyContent}>
           <h2>Why did we make this website?</h2>
           <p>Video games are powerful—and complex.</p>
           <p>
@@ -320,29 +366,42 @@ const Introduction = () => {
         </div>
       </section>
 
-      <section className="ranking-section">
+      <section className={`${styles.rankingSection} ${styles.section}`}>
         {dataLoaded ? (
           error ? (
-            <div className="error-message">{error}</div>
+            <div className={styles.errorMessage}>{error}</div>
           ) : (
-            <GameRanking
-              gameData={gameDataStore.gameList}
-              genres={gameDataStore.genres}
-              pegiRatings={gameDataStore.pegiRatings}
-              getGameSlug={gameDataStore.getGameSlug}
-            />
+            <>
+              <h2 className={styles.sectionTitle}>Game Ranking</h2>
+              <div className={styles.sectionDescription}>
+                <p>
+                  Explore the positive impacts and benefits that video games can
+                  bring. Discover how different types of games can enhance
+                  various skills and provide entertainment value. Click on the
+                  cards to learn more.
+                </p>
+              </div>
+              <GameRanking
+                gameData={gameDataStore.gameList}
+                genres={gameDataStore.genres}
+                pegiRatings={gameDataStore.pegiRatings}
+                getGameSlug={gameDataStore.getGameSlug}
+              />
+            </>
           )
         ) : (
-          <div className="loading">Loading data...</div>
+          <div className={styles.loading}>Loading data...</div>
         )}
       </section>
 
-      <section className="carousel-section positive-carousel">
-        <h2 className="section-title">
-          Understanding the <span className="benefit-text">Benefits</span> of
-          Video Games
+      <section
+        className={`${styles.carouselSection} ${styles.positiveCarousel} ${styles.section}`}
+      >
+        <h2 className={styles.sectionTitle}>
+          Understanding the <span className={styles.benefitText}>Benefits</span>{" "}
+          of Video Games
         </h2>
-        <div className="section-description">
+        <div className={styles.sectionDescription}>
           <p>
             Explore the positive impacts and benefits that video games can
             bring. Discover how different types of games can enhance various
@@ -353,12 +412,14 @@ const Introduction = () => {
         {carouselItems.length > 0 && <Carousel items={carouselItems} />}
       </section>
 
-      <section className="carousel-section negative-carousel">
-        <h2 className="section-title">
-          Understanding the <span className="concern-text">Concerns</span>{" "}
+      <section
+        className={`${styles.carouselSection} ${styles.negativeCarousel} ${styles.section}`}
+      >
+        <h2 className={styles.sectionTitle}>
+          Understanding the <span className={styles.concernText}>Concerns</span>{" "}
           Around Video Games
         </h2>
-        <div className="section-description">
+        <div className={styles.sectionDescription}>
           <p>
             Video games are often linked in the media to issues like violence,
             addiction, and social withdrawal. Reports raise valid concerns about
@@ -377,9 +438,11 @@ const Introduction = () => {
         )}
       </section>
 
-      <section className="analysis-section">
-        <h2 className="section-title">Gaming Hours and Aggression Analysis</h2>
-        <div className="section-description">
+      <section className={`${styles.analysisSection} ${styles.section}`}>
+        <h2 className={styles.sectionTitle}>
+          Gaming Hours and Aggression Analysis
+        </h2>
+        <div className={styles.sectionDescription}>
           <p>
             According to our research, longer gaming hours, especially violent
             games, do lead to a little bit more aggressive behaviors, but not
@@ -387,14 +450,17 @@ const Introduction = () => {
             more than 2 hours a day.
           </p>
         </div>
-        <GamingHoursAggressionAnalysis />
+        <GamingHoursAggressionAnalysis
+          onGameTypeChange={handleGameTypeChange}
+        />
+        <ChartExplanation explanations={aggressionExplanations} />
       </section>
 
-      <section className="analysis-section">
-        <h2 className="section-title">
+      <section className={`${styles.analysisSection} ${styles.section}`}>
+        <h2 className={styles.sectionTitle}>
           Gaming Hours and Mental Health Analysis
         </h2>
-        <div className="section-description">
+        <div className={styles.sectionDescription}>
           <p>
             There is no significant correlation between weekly gaming hours and
             anxiety, life satisfaction, or social phobia. The more time spent
@@ -402,12 +468,15 @@ const Introduction = () => {
             phobia, and it does not reduce life satisfaction.
           </p>
         </div>
-        <GamingHoursMentalHealthAnalysis />
+        <GamingHoursMentalHealthAnalysis onMetricChange={handleMetricChange} />
+        <ChartExplanation explanations={mentalHealthExplanations} />
       </section>
 
-      <section className="analysis-section">
-        <h2 className="section-title">Gaming Hours and Creativity Analysis</h2>
-        <div className="section-description">
+      <section className={`${styles.analysisSection} ${styles.section}`}>
+        <h2 className={styles.sectionTitle}>
+          Gaming Hours and Creativity Analysis
+        </h2>
+        <div className={styles.sectionDescription}>
           <p>
             Explore the relationship between daily gaming hours and creativity
             test (TTCT) scores. The analysis reveals interesting patterns in how
@@ -415,18 +484,20 @@ const Introduction = () => {
           </p>
         </div>
         <GamingHoursCreativityAnalysis />
+        <ChartExplanation explanations={creativityExplanations} />
       </section>
 
-      <section className="analysis-section">
-        <h2 className="section-title">Game Types Analysis</h2>
-        <div className="section-description">
+      <section className={`${styles.analysisSection} ${styles.section}`}>
+        <h2 className={styles.sectionTitle}>Game Types Analysis</h2>
+        <div className={styles.sectionDescription}>
           <p>
             Explore the relationship between different game types and creativity
             scores, physical activities, musical activities, and artistic
             activities.
           </p>
         </div>
-        <GameTypesAnalysis />
+        <GameTypesAnalysis onMetricChange={handleMetricChange} />
+        <ChartExplanation explanations={gameTypesExplanations} />
       </section>
     </div>
   );

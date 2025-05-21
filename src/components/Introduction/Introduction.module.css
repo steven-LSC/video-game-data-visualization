@@ -1,4 +1,4 @@
-.introduction-container {
+.introductionContainer {
   width: 100%;
   overflow-y: auto;
   margin: 0;
@@ -7,49 +7,49 @@
 }
 
 /* 統一所有section的基本樣式 */
-section {
-  padding: 50px 0;
+.section {
+  padding: 40px 0;
   width: 100%;
 }
 
 /* 確保所有section內的子元素受到相同控制 */
-section > * {
-  max-width: 1200px;
+.section > * {
+  max-width: 1500px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 2rem;
+  padding: 0 32px;
 }
 
 /* 各section背景色 */
-.hero-section {
+.heroSection {
   background-color: #f0f0f0;
   margin-bottom: 0;
 }
 
-.ranking-section {
+.rankingSection {
   background-color: white;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
-.carousel-section {
+.carouselSection {
   background-color: transparent;
   padding: 40px 0;
 }
 
-.analysis-section {
+.analysisSection {
   background-color: white;
-  margin-top: 2rem;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  margin-top: 0;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 /* Hero section元素樣式 */
-.product-title {
+.productTitle {
   text-align: center;
 }
 
-.hero-section h1 {
+.heroSection h1 {
   font-size: 4rem;
   margin-bottom: 10px;
   color: #333;
@@ -62,20 +62,20 @@ section > * {
 }
 
 /* 搜索欄樣式 */
-.search-container {
+.searchContainer {
   width: 100%;
   display: flex;
   margin-bottom: 30px;
 }
 
-.search-input-wrapper {
+.searchInputWrapper {
   position: relative;
   flex: 1;
   display: flex;
   z-index: 20;
 }
 
-.search-bar {
+.searchBar {
   flex: 1;
   padding: 12px 20px;
   padding-right: 40px;
@@ -86,11 +86,11 @@ section > * {
   transition: border-color 0.3s;
 }
 
-.search-bar:focus {
+.searchBar:focus {
   border-color: #4a90e2;
 }
 
-.clear-search {
+.clearSearch {
   position: absolute;
   right: 10px;
   top: 50%;
@@ -110,24 +110,24 @@ section > * {
   border-radius: 50%;
 }
 
-.clear-search:hover {
+.clearSearch:hover {
   color: #666;
   background-color: #f0f0f0;
 }
 
 /* Why content樣式 */
-.why-content {
+.whyContent {
   margin-top: 30px;
 }
 
-.why-content h2 {
+.whyContent h2 {
   color: #343a40;
   margin-bottom: 1.5rem;
   text-align: left;
-  font-size: 2.2rem;
+  font-size: 32px;
 }
 
-.why-content p {
+.whyContent p {
   color: #495057;
   line-height: 1.8;
   font-size: 1.1rem;
@@ -135,7 +135,7 @@ section > * {
 }
 
 /* 添加列點樣式 */
-.why-content ul {
+.whyContent ul {
   color: #495057;
   font-size: 1.1rem;
   line-height: 1.8;
@@ -144,30 +144,30 @@ section > * {
   text-align: left;
 }
 
-.why-content li {
+.whyContent li {
   margin-bottom: 0.5rem;
 }
 
 /* 巢狀列點樣式 */
-.why-content ul ul {
+.whyContent ul ul {
   margin-top: 0.5rem;
   margin-bottom: 0;
 }
 
 /* Section標題和描述 */
-.section-title {
+.sectionTitle {
   text-align: left;
-  font-size: 2rem;
+  font-size: 32px;
   color: #333;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.section-description {
+.sectionDescription {
   text-align: left;
   margin-bottom: 1.5rem;
 }
 
-.section-description p {
+.sectionDescription p {
   color: #555;
   line-height: 1.6;
   font-size: 1.1rem;
@@ -175,17 +175,17 @@ section > * {
 }
 
 /* 分析部分樣式 */
-.analysis-section .chart-container {
+.analysisSection .chartContainer {
   background-color: white;
   margin-top: 0;
 }
 
-.analysis-section h1 {
+.analysisSection h1 {
   display: none;
 }
 
 /* 搜索結果下拉列表 */
-.search-results {
+.searchResults {
   position: absolute;
   top: 100%;
   left: 0;
@@ -198,7 +198,7 @@ section > * {
   overflow-y: auto;
 }
 
-.search-result-item {
+.searchResultItem {
   display: flex;
   padding: 12px 15px;
   border-bottom: 1px solid #eee;
@@ -206,15 +206,15 @@ section > * {
   transition: background-color 0.2s;
 }
 
-.search-result-item:last-child {
+.searchResultItem:last-child {
   border-bottom: none;
 }
 
-.search-result-item:hover {
+.searchResultItem:hover {
   background-color: #f9f9f9;
 }
 
-.result-thumbnail {
+.resultThumbnail {
   width: 50px;
   height: 50px;
   object-fit: cover;
@@ -222,26 +222,26 @@ section > * {
   margin-right: 15px;
 }
 
-.result-info {
+.resultInfo {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.result-title {
+.resultTitle {
   font-weight: 500;
   color: #333;
   margin-bottom: 4px;
 }
 
-.result-genre {
+.resultGenre {
   font-size: 0.85rem;
   color: #666;
 }
 
 /* 載入和錯誤提示 */
-.error-message {
+.errorMessage {
   text-align: center;
   padding: 2rem;
   color: #dc3545;
@@ -259,24 +259,19 @@ section > * {
   font-size: 1.2rem;
 }
 
-/* 移除輪播區域背景色 */
-.carousel-section {
-  background-color: transparent;
-  padding: 40px 0;
-}
-
-.positive-carousel,
-.negative-carousel {
+/* 輪播相關樣式 */
+.positiveCarousel,
+.negativeCarousel {
   background-color: transparent;
 }
 
 /* 為"Benefits"和"Concerns"文字添加顏色 */
-.benefit-text {
+.benefitText {
   color: #4CAF50; /* 綠色 */
   font-weight: 600;
 }
 
-.concern-text {
+.concernText {
   color: #F44336; /* 紅色 */
   font-weight: 600;
 } 

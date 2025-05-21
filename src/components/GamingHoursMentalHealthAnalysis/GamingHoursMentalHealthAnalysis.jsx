@@ -3,7 +3,6 @@ import { Chart } from "chart.js/auto";
 import Papa from "papaparse";
 import styles from "./GamingHoursMentalHealthAnalysis.module.css";
 import TabSelector from "../common/TabSelector";
-import ChartExplanation from "../common/ChartExplanation";
 
 // 禁用 Chart.js 中的 datalabels 插件（如果已自動註冊）
 Chart.overrides.bubble.plugins = Chart.overrides.bubble.plugins || {};
@@ -11,7 +10,7 @@ Chart.overrides.bubble.plugins.datalabels =
   Chart.overrides.bubble.plugins.datalabels || {};
 Chart.overrides.bubble.plugins.datalabels.display = false;
 
-const AnxietyAnalysis = () => {
+const AnxietyAnalysis = ({ onMetricChange }) => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
   const [loading, setLoading] = useState(true);
@@ -84,6 +83,11 @@ const AnxietyAnalysis = () => {
   // 切換 Y 軸指標
   const changeYAxisMetric = (metric) => {
     setYAxisMetric(metric);
+
+    // 通知父組件當前選定的指標
+    if (onMetricChange) {
+      onMetricChange(metricNames[metric]);
+    }
   };
 
   const createBubbleChart = (data) => {
@@ -284,19 +288,9 @@ const AnxietyAnalysis = () => {
       ) : error ? (
         <div className={styles.error}>{error}</div>
       ) : (
-        <>
-          <div className={styles.chartContainer}>
-            <canvas ref={chartRef}></canvas>
-          </div>
-          <ChartExplanation
-            explanations={[
-              `This bubble chart shows the relationship between daily gaming hours and ${metricNames[yAxisMetric]} scores.`,
-              `Each bubble represents a group of participants with the same gaming hours and ${metricNames[yAxisMetric]} score. The size of the bubble indicates the number of participants in that group.`,
-              `The red line shows the average ${metricNames[yAxisMetric]} score for each gaming hour, calculated only for hours with at least 5 participants.`,
-              `You can switch between different mental health metrics using the tabs above.`,
-            ]}
-          />
-        </>
+        <div className={styles.chartContainer}>
+          <canvas ref={chartRef}></canvas>
+        </div>
       )}
     </div>
   );

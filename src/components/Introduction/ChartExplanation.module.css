@@ -1,0 +1,50 @@
+.chartExplanationWrapper {
+  width: 100%;
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+
+.chartExplanation {
+  background-color: #fff;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  width: 100%;
+  padding: 32px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.chartExplanation p {
+  margin: 12px 0;
+  padding: 0;
+  line-height: 1.5;
+  color: #555;
+  font-size: 1.1rem;
+}
+
+.chartExplanation p:first-child {
+  margin-top: 0;
+}
+
+.chartExplanation p:last-child {
+  margin-bottom: 0;
+}
+
+.chartExplanation strong {
+  font-weight: 600;
+  color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .chartExplanation {
+    padding: 0 20px;
+    font-size: 13px;
+  }
+} 

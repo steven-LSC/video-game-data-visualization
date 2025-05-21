@@ -3,7 +3,6 @@ import { Chart } from "chart.js/auto";
 import Papa from "papaparse";
 import styles from "./GameTypesAnalysis.module.css";
 import TabSelector from "../common/TabSelector";
-import ChartExplanation from "../common/ChartExplanation";
 
 // 禁用 Chart.js 中的 datalabels 插件
 Chart.overrides.scatter.plugins = Chart.overrides.scatter.plugins || {};
@@ -11,7 +10,7 @@ Chart.overrides.scatter.plugins.datalabels =
   Chart.overrides.scatter.plugins.datalabels || {};
 Chart.overrides.scatter.plugins.datalabels.display = false;
 
-const CreativityAnalysis = () => {
+const CreativityAnalysis = ({ onMetricChange }) => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
   const [loading, setLoading] = useState(true);
@@ -92,6 +91,11 @@ const CreativityAnalysis = () => {
   // 切換選項指標
   const changeMetric = (metric) => {
     setSelectedMetric(metric);
+
+    // 通知父組件當前選定的指標
+    if (onMetricChange) {
+      onMetricChange(metricNames[metric]);
+    }
   };
 
   const createBubbleChart = (data) => {
@@ -303,19 +307,9 @@ const CreativityAnalysis = () => {
       ) : error ? (
         <div className={styles.error}>{error}</div>
       ) : (
-        <>
-          <div className={styles.chartContainer}>
-            <canvas ref={chartRef}></canvas>
-          </div>
-          <ChartExplanation
-            explanations={[
-              `This bubble chart shows the relationship between different game types and ${metricNames[selectedMetric]}.`,
-              `Each bubble represents a combination of game type and play frequency. The size and color intensity of the bubble indicate the average ${metricNames[selectedMetric]} - larger and darker bubbles represent higher scores.`,
-              `The vertical axis (1-5) represents how frequently participants play each game type, with 5 being the most frequent.`,
-              `You can switch between different metrics using the tabs above to explore various relationships.`,
-            ]}
-          />
-        </>
+        <div className={styles.chartContainer}>
+          <canvas ref={chartRef}></canvas>
+        </div>
       )}
     </div>
   );

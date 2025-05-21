@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Chart } from "chart.js/auto";
 import Papa from "papaparse";
 import styles from "./GamingHoursCreativityAnalysis.module.css";
-import ChartExplanation from "../common/ChartExplanation";
 
 // 禁用 Chart.js 中的 datalabels 插件
 Chart.overrides.scatter.plugins = Chart.overrides.scatter.plugins || {};
@@ -260,19 +259,9 @@ const CreativityTimeAnalysis = () => {
       ) : error ? (
         <div className={styles.error}>{error}</div>
       ) : (
-        <>
-          <div className={styles.chartContainer}>
-            <canvas ref={chartRef}></canvas>
-          </div>
-          <ChartExplanation
-            explanations={[
-              `This chart shows the relationship between daily gaming hours and creativity scores (TTCT).`,
-              `Each blue dot represents an individual participant with their gaming time and creativity score. The size of the scattered points indicates the number of participants with the same values.`,
-              `The red line shows the average creativity score for each gaming time category, revealing trends in how gaming time might relate to creativity levels.`,
-              `Gaming time categories range from non-gamers to those who play more than 6 hours daily.`,
-            ]}
-          />
-        </>
+        <div className={styles.chartContainer}>
+          <canvas ref={chartRef}></canvas>
+        </div>
       )}
     </div>
   );

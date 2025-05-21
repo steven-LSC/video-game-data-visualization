@@ -1,16 +1,14 @@
 .anxietyAnalysisContainer {
-  padding: 20px;
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
-  width: 100%;
+  padding: 32px;
+  /* width: 100%; */
 }
 
 /* 所有容器內元素最大寬度與Introduction頁面保持一致 */
 .anxietyAnalysisContainer > * {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 20px;
+  max-width: 1500px;
+  padding: 0 32px;
 }
 
 .anxietyAnalysisContainer h1 {
@@ -70,7 +68,7 @@
 .chartContainer {
   width: 100%;
   height: 600px;
-  margin: 0 auto 20px;
+  margin-bottom: 20px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);

@@ -1,0 +1,470 @@
+.gameDetailContainer {
+  width: 100%;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+
+/* 統一所有section的基本樣式，與Introduction一致 */
+.section {
+  padding: 40px 0;
+  width: 100%;
+}
+
+/* 確保所有section內的子元素受到相同控制 */
+.section > * {
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 32px;
+}
+
+/* Section標題和描述樣式，與Introduction一致 */
+.sectionTitle {
+  text-align: left;
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 1rem;
+  padding: 0 32px;
+}
+
+.sectionDescription {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.sectionDescription p {
+  color: #555;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  margin: 0;
+  padding: 0 32px;
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #6c757d;
+}
+
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.gameHeader {
+  margin-bottom: 2rem;
+  padding: 0 32px;
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.headerMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.pegiRatingLarge {
+  background-color: #d0e3ff;
+  color: #004085;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: inline-block;
+}
+
+.publisherInfo {
+  color: #6c757d;
+  font-size: 0.95rem;
+}
+
+.backLink {
+  display: inline-block;
+  color: #6c757d;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.backLink:hover {
+  color: #007bff;
+}
+
+.gameHeader h1 {
+  margin: 0 0 1rem;
+  font-size: 2.5rem;
+  color: #212529;
+}
+
+.gameMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.metaLabel {
+  font-weight: 600;
+  color: #6c757d;
+}
+
+.metaValue {
+  color: #212529;
+}
+
+.pegiTag {
+  background-color: #d0e3ff;
+  color: #004085;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+/* 各section樣式統一 */
+.gameIntroduction {
+  background-color: white;
+  padding: 40px 32px;
+  margin-bottom: 0;
+}
+
+.gameIntroduction .container {
+  padding: 0 32px;
+  background-color: #fff;
+}
+
+.featuredImage {
+  width: 100%;
+  margin-bottom: 0;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featuredImage img {
+  width: 100%;
+  display: block;
+  max-width: 100%;
+  background-color: transparent;
+  object-fit: contain;
+  max-height: 100%;
+}
+
+.gameDetails {
+  height: 600px;
+  overflow-y: auto;
+  overflow-y: overlay;
+}
+
+.gameDetails h2 {
+  margin: 0 0 1rem;
+  color: #212529;
+  font-size: 32px;
+}
+
+.gameDescription {
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  color: #495057;
+}
+
+.tagsSection {
+  margin-bottom: 1.5rem;
+}
+
+.tagsSection h3 {
+  margin: 0 0 0.8rem;
+  font-size: 1.2rem;
+  color: #343a40;
+}
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.labelTag {
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  display: inline-block;
+}
+
+.genreTag {
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+.platformTag {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+}
+
+.otherTag {
+  background-color: #e2f0d9;
+  color: #2e7d32;
+}
+
+.gameScreenshots h2 {
+  margin: 0 0 1.5rem;
+  font-size: 1.8rem;
+  color: #212529;
+}
+
+.screenshotsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.screenshot {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.screenshot:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.screenshot img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.errorContainer {
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.errorContainer h2 {
+  margin: 0 0 1rem;
+  color: #dc3545;
+}
+
+.errorContainer p {
+  margin: 0 0 2rem;
+  color: #495057;
+}
+
+/* Game Impact Visualization Styles */
+.gameImpactVisualization {
+  background-color: white;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-bottom: 0;
+}
+
+.gameImpactVisualization .container {
+  padding: 0 32px;
+  background-color: #fff;
+}
+
+.impactTitle {
+  margin: 0 0 2rem;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #212529;
+}
+
+/* 相關遊戲部分樣式 */
+.relatedGames {
+  background-color: white;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-bottom: 0;
+}
+
+.relatedGames .container {
+  padding: 0 32px;
+  background-color: #fff;
+}
+
+/* 推薦遊戲部分樣式 */
+.recommendedGames {
+  background-color: white;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-bottom: 0;
+}
+
+.recommendedGames .container {
+  padding: 0 32px;
+  background-color: #fff;
+}
+
+/* Media Queries */
+@media (max-width: 767px) {
+  .headerTop {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .headerMeta {
+    align-items: flex-start;
+    margin-top: 0.5rem;
+  }
+
+  .section {
+    padding: 30px 0;
+  }
+
+  .gameIntroduction .container,
+  .gameImpactVisualization .container,
+  .relatedGames .container,
+  .recommendedGames .container {
+    padding: 0 20px;
+  }
+
+  .gameIntroduction .container {
+    display: flex;
+    flex-direction: column;
+    max-height: none;
+  }
+
+  .featuredImage {
+    height: 400px;
+    margin-bottom: 1.5rem;
+    overflow-y: auto;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* 手機版捲動條樣式 */
+  .featuredImage::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .featuredImage::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .featuredImage::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+  }
+  
+  .featuredImage::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+  }
+
+  .featuredImage img {
+    width: 100%;
+    max-width: 100%;
+    background-color: transparent;
+    object-fit: contain;
+    max-height: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .gameHeader h1 {
+    font-size: 3rem;
+  }
+  
+  .gameIntroduction .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    height: 600px;
+    overflow: hidden;
+  }
+  
+  .featuredImage {
+    margin-bottom: 0;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .featuredImage img {
+    width: 100%;
+    display: block;
+    max-width: 100%;
+    background-color: transparent;
+    object-fit: contain;
+    max-height: 100%;
+  }
+
+  /* 自定義圖片區域的捲動條樣式 */
+  .featuredImage::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .featuredImage::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .featuredImage::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+  }
+  
+  .featuredImage::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+  }
+  
+  .gameDetails {
+    /* padding-right: 10px; */
+    height: 100%;
+    overflow-y: auto;
+    overflow-y: overlay;
+  }
+  
+  /* 使滾動條只在滾動時顯示 */
+  .gameDetails:hover::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+  }
+  
+  /* 自定義詳情區域的捲動條樣式 */
+  .gameDetails::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .gameDetails::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .gameDetails::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 10px;
+    transition: background 0.3s;
+  }
+  
+  .gameDetails::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+  }
+} 

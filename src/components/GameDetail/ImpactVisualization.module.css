@@ -1,34 +1,37 @@
 /* Game Impact Visualization Styles */
-.game-impact-visualization {
-  margin-bottom: 3rem;
+.gameImpactVisualization {
+  margin-bottom: 0;
+  padding: 40px 0;
+  width: 100%;
 }
 
-.game-impact-visualization .container {
-  padding: 20px;
-  border-radius: 8px;
+.gameImpactVisualization .container {
+  padding: 0 32px;
   background-color: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.impact-title {
+.impactTitle {
   margin: 0 0 2rem;
   text-align: center;
   font-size: 1.8rem;
   color: #212529;
 }
 
-.impact-visualization-container {
+.impactVisualizationContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 2rem;
+  padding: 32px;
   position: relative;
   height: 500px;
 }
 
 /* D3 SVG 容器 */
-.impact-visualization-svg {
+.impactVisualizationSvg {
   width: 100%;
   height: 100%;
   max-width: 500px;
@@ -41,30 +44,30 @@
   stroke-width: 2px;
 }
 
-.positive-connector {
+.positiveConnector {
   stroke: rgba(21, 87, 36, 0.3);
 }
 
-.negative-connector {
+.negativeConnector {
   stroke: rgba(114, 28, 36, 0.3);
 }
 
 /* 節點樣式 */
-.center-circle {
+.centerCircle {
   fill: #007bff;
   stroke: #0056b3;
   stroke-width: 2px;
   filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.3));
 }
 
-.positive-circle {
+.positiveCircle {
   fill: #d4edda;
   stroke: #c3e6cb;
   stroke-width: 2px;
   filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.15));
 }
 
-.negative-circle {
+.negativeCircle {
   fill: #f8d7da;
   stroke: #f5c6cb;
   stroke-width: 2px;
@@ -72,7 +75,7 @@
 }
 
 /* 文字樣式 */
-.node-text {
+.nodeText {
   fill: white;
   user-select: none;
   pointer-events: none;
@@ -80,12 +83,12 @@
   letter-spacing: 0.2px;
 }
 
-.positive-node .node-text {
+.positiveNode .nodeText {
   fill: #155724;
   font-weight: 500;
 }
 
-.negative-node .node-text {
+.negativeNode .nodeText {
   fill: #721c24;
   font-weight: 500;
 }
@@ -96,49 +99,73 @@
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
 }
 
-.impact-legend {
+.impactLegend {
   display: flex;
   justify-content: center;
   gap: 2rem;
   margin-top: 1rem;
 }
 
-.legend-item {
+.legendItem {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.legend-color {
+.legendColor {
   width: 20px;
   height: 20px;
   border-radius: 50%;
   display: inline-block;
 }
 
-.legend-item.positive .legend-color {
+.legendItem.positive .legendColor {
   background-color: #d4edda;
   border: 2px solid #c3e6cb;
 }
 
-.legend-item.negative .legend-color {
+.legendItem.negative .legendColor {
   background-color: #f8d7da;
   border: 2px solid #f5c6cb;
 }
 
-.legend-text {
+.legendText {
   font-size: 0.9rem;
   color: #495057;
 }
 
 /* 媒體查詢 */
 @media (max-width: 767px) {
-  .impact-visualization-container {
+  .impactVisualizationContainer {
     height: 400px;
   }
   
-  .impact-visualization-svg {
+  .impactVisualizationSvg {
     max-width: 400px;
     max-height: 400px;
   }
+  
+  .gameImpactVisualization .container {
+    padding: 0 20px;
+  }
+}
+
+/* 添加正面和負面類型的樣式 */
+.positive {
+  color: #155724;
+}
+
+.negative {
+  color: #721c24;
+}
+
+/* 確保legend項樣式工作正常 */
+.legendItem.positive .legendColor {
+  background-color: #d4edda;
+  border: 2px solid #c3e6cb;
+}
+
+.legendItem.negative .legendColor {
+  background-color: #f8d7da;
+  border: 2px solid #f5c6cb;
 } 
