@@ -245,12 +245,6 @@
   font-weight: 600;
   font-size: 14px;
   margin-left: auto;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.ratingBox:hover {
-  background-color: #b8daff;
 }
 
 .labelContainer {
@@ -280,8 +274,7 @@
 .tableLabelTag {
   background-color: #e9ecef;
   white-space: nowrap;
-  cursor: pointer;
-  transition: background-color 0.2s;
+  transition: none;
   font-weight: 500;
   min-height: 32px;
   display: inline-flex;
@@ -290,9 +283,10 @@
   font-size: 14px;
   padding: 8px 12px;
   min-width: auto;
+  border-radius: 4px;
 }
 
-.labelTag:hover, .tableLabelTag:hover {
+.labelTag:hover {
   background-color: #dee2e6;
 }
 
@@ -473,4 +467,136 @@
   color: #6c757d;
   min-width: 50px;
   text-align: center;
+}
+
+/* 新的過濾器樣式 */
+.filterSection {
+  margin-bottom: 20px;
+}
+
+.filterSection h4 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #495057;
+}
+
+.filterOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.filterOption {
+  padding: 8px 16px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 60px;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filterOption:hover {
+  background-color: #e9ecef;
+}
+
+.filterOptionSelected {
+  background-color: #4a90e2;
+  color: white;
+  border-color: #4a90e2;
+}
+
+/* PEGI 按鈕顏色已移除，使用默認樣式 */
+
+/* PEGI 按鈕選中顏色 */
+.pegiOptions .filterOptionSelected[data-rating="3"],
+.pegiOptions .filterOptionSelected[data-rating="7"] {
+  background-color: #4CAF50;
+  color: white;
+  border-color: #4CAF50;
+}
+
+.pegiOptions .filterOptionSelected[data-rating="12"],
+.pegiOptions .filterOptionSelected[data-rating="16"] {
+  background-color: #FFC107;
+  color: #333;
+  border-color: #FFC107;
+}
+
+.pegiOptions .filterOptionSelected[data-rating="18"] {
+  background-color: #F44336;
+  color: white;
+  border-color: #F44336;
+}
+
+/* See More 按鈕樣式已移除 */
+
+.activeFiltersContainer {
+  margin-top: 15px;
+  border-top: 1px solid #e9ecef;
+  padding-top: 15px;
+}
+
+.activeFiltersContainer {
+  margin-top: 15px;
+  border-top: 1px solid #e9ecef;
+  padding-top: 15px;
+}
+
+/* 移動 tagContainer 樣式確保它與新介面兼容 */
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Genre 過濾器區域的樣式 */
+.genreOptions {
+  max-width: 100%;
+  justify-content: flex-start;
+}
+
+/* 確保 PEGI 按鈕的樣式正確 */
+.pegiOptions {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin-top: 10px;
+  justify-content: flex-start;
+}
+
+.pegiOptions .filterOption {
+  min-width: 85px; /* 增加寬度以適應更長的文本 */
+  padding: 8px 10px; /* 調整內邊距 */
+}
+
+/* 保留選中狀態的特定顏色 */
+.pegiOptions .filterOptionSelected[data-rating="3"],
+.pegiOptions .filterOptionSelected[data-rating="7"] {
+  background-color: #4CAF50;
+  color: white;
+  border-color: #4CAF50;
+}
+
+.pegiOptions .filterOptionSelected[data-rating="12"],
+.pegiOptions .filterOptionSelected[data-rating="16"] {
+  background-color: #FFC107;
+  color: #333;
+  border-color: #FFC107;
+}
+
+.pegiOptions .filterOptionSelected[data-rating="18"] {
+  background-color: #F44336;
+  color: white;
+  border-color: #F44336;
 } 

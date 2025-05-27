@@ -22,9 +22,9 @@ const AggressionAnalysis = ({ onGameTypeChange }) => {
   const gameHoursMap = {
     "less than 1 hour": 1,
     "more than 1 hour": 2,
-    "more than 2 hour": 3,
-    "more than 3 hour": 4,
-    "more than 5 hour": 5,
+    "more than 2 hours": 3,
+    "more than 3 hours": 4,
+    "more than 5 hours": 5,
   };
 
   // X 軸類型映射到 CSV 欄位名稱

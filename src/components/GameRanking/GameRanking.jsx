@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import styles from "./GameRanking.module.css";
-import FilterModal from "./FilterModal";
 
 const GameRanking = ({
   gameData,
@@ -11,145 +10,92 @@ const GameRanking = ({
   currentGameGenres = [],
   currentGamePegi = "",
 }) => {
-  // 是否顯示過濾器 Modal
-  const [showFilterModal, setShowFilterModal] = useState(false);
+  // 檢查是否來自 Game Detail 頁面（有傳入過濾器參數）
+  const isFromGameDetail = currentGameGenres.length > 0 || currentGamePegi;
 
   // 用來標記是否已經初始化
   const isInitialized = useRef(false);
 
   // 當前選中的 Genre 過濾標籤
-  const [activeGenreFilters, setActiveGenreFilters] = useState(
-    currentGameGenres.length > 0
-      ? [...currentGameGenres]
-      : ["Open World", "Sandbox"]
-  );
+  const [activeGenreFilters, setActiveGenreFilters] = useState(() => {
+    if (isFromGameDetail) {
+      // 如果來自 Game Detail，直接使用傳入的參數
+      return [...currentGameGenres];
+    } else {
+      // 如果是首頁，嘗試從 sessionStorage 讀取，否則使用預設值
+      try {
+        const saved = sessionStorage.getItem("gameRankingGenreFilters");
+        return saved ? JSON.parse(saved) : ["Open World", "Sandbox"];
+      } catch {
+        return ["Open World", "Sandbox"];
+      }
+    }
+  });
 
-  // Modal 內臨時存儲的 Genre 過濾標籤
-  const [tempGenreFilters, setTempGenreFilters] = useState([]);
-
-  // 當前選中的 PEGI 過濾標籤（預設選中傳入的PEGI或PEGI 7）
-  const [selectedPegiRating, setSelectedPegiRating] = useState(
-    currentGamePegi || "7"
-  );
-
-  // Modal 內臨時存儲的 PEGI 過濾標籤
-  const [tempPegiRating, setTempPegiRating] = useState("");
+  // 當前選中的 PEGI 過濾標籤
+  const [selectedPegiRating, setSelectedPegiRating] = useState(() => {
+    if (isFromGameDetail) {
+      // 如果來自 Game Detail，直接使用傳入的參數
+      return currentGamePegi || "7";
+    } else {
+      // 如果是首頁，嘗試從 sessionStorage 讀取，否則使用預設值
+      try {
+        const saved = sessionStorage.getItem("gameRankingPegiRating");
+        return saved !== null ? saved : "7";
+      } catch {
+        return "7";
+      }
+    }
+  });
 
   // 分頁相關狀態
   const [currentPage, setCurrentPage] = useState(1);
   const gamesPerPage = 5;
 
-  // 在組件載入時從 sessionStorage 中讀取過濾器設置，如果沒有傳入當前遊戲的過濾器
+  // 監聽 props 變化，當從 Game Detail 傳入新的過濾器時更新狀態
   useEffect(() => {
-    // 避免重覆初始化和無限循環
-    if (isInitialized.current) {
-      return;
+    if (isFromGameDetail) {
+      setActiveGenreFilters([...currentGameGenres]);
+      setSelectedPegiRating(currentGamePegi || "7");
+      setCurrentPage(1);
     }
+  }, [currentGameGenres, currentGamePegi, isFromGameDetail]);
 
-    // 如果傳入了當前遊戲的過濾器，則優先使用這些，且不再讀取 sessionStorage
-    if (currentGameGenres.length > 0 || currentGamePegi) {
-      isInitialized.current = true;
-      return;
-    }
-
-    try {
-      // 讀取 Genre 過濾器
-      const savedGenreFilters = sessionStorage.getItem(
-        "gameRankingGenreFilters"
-      );
-      if (savedGenreFilters) {
-        setActiveGenreFilters(JSON.parse(savedGenreFilters));
-      }
-
-      // 讀取 PEGI 過濾器
-      const savedPegiRating = sessionStorage.getItem("gameRankingPegiRating");
-      // 設置 PEGI 值，如果不存在則使用預設值 "7"
-      if (savedPegiRating !== null) {
-        setSelectedPegiRating(savedPegiRating);
-      }
-
-      isInitialized.current = true;
-    } catch (error) {
-      console.error("無法從 sessionStorage 中讀取過濾器設置:", error);
-      isInitialized.current = true;
-    }
-  }, []); // 移除依賴項，只在組件掛載時執行一次
-
-  // 保存過濾器設置到 sessionStorage
+  // 保存過濾器設置到 sessionStorage（只有首頁才儲存）
   const saveFiltersToSessionStorage = (genres, pegi) => {
-    try {
-      sessionStorage.setItem("gameRankingGenreFilters", JSON.stringify(genres));
-      // 總是保存 pegi 值，即使是空字串
-      sessionStorage.setItem("gameRankingPegiRating", pegi || "");
-    } catch (error) {
-      console.error("無法將過濾器設置保存到 sessionStorage:", error);
+    // 只有在首頁（非來自 Game Detail）時才儲存到 sessionStorage
+    if (!isFromGameDetail) {
+      try {
+        sessionStorage.setItem(
+          "gameRankingGenreFilters",
+          JSON.stringify(genres)
+        );
+        sessionStorage.setItem("gameRankingPegiRating", pegi || "");
+      } catch (error) {
+        console.error("無法將過濾器設置保存到 sessionStorage:", error);
+      }
     }
   };
 
-  // 打開 Modal 時初始化臨時過濾標籤
-  const openFilterModal = () => {
-    setTempGenreFilters([...activeGenreFilters]);
-    setTempPegiRating(selectedPegiRating);
-    setShowFilterModal(true);
-  };
-
-  // 應用過濾器設置並保存到 sessionStorage
-  const applyFilters = () => {
-    setActiveGenreFilters([...tempGenreFilters]);
-    setSelectedPegiRating(tempPegiRating);
-    saveFiltersToSessionStorage(tempGenreFilters, tempPegiRating);
-    setShowFilterModal(false);
-    setCurrentPage(1); // 重置到第一頁
-  };
-
-  // 關閉 Modal
-  const closeModal = () => {
-    setShowFilterModal(false);
-  };
-
-  // 移除 Genre 過濾標籤並更新 sessionStorage
-  const removeGenreFilter = (filter) => {
-    const newFilters = activeGenreFilters.filter((f) => f !== filter);
+  // 處理 Genre 過濾標籤的選擇
+  const toggleGenreFilter = (filter) => {
+    let newFilters;
+    if (activeGenreFilters.includes(filter)) {
+      newFilters = activeGenreFilters.filter((f) => f !== filter);
+    } else {
+      newFilters = [...activeGenreFilters, filter];
+    }
     setActiveGenreFilters(newFilters);
     saveFiltersToSessionStorage(newFilters, selectedPegiRating);
     setCurrentPage(1); // 重置到第一頁
   };
 
-  // 添加 Genre 過濾標籤並更新 sessionStorage
-  const addGenreFilter = (filter) => {
-    if (!activeGenreFilters.includes(filter)) {
-      const newFilters = [...activeGenreFilters, filter];
-      setActiveGenreFilters(newFilters);
-      saveFiltersToSessionStorage(newFilters, selectedPegiRating);
-      setCurrentPage(1); // 重置到第一頁
-    }
-  };
-
-  // 移除 PEGI 過濾標籤並更新 sessionStorage
-  const removePegiFilter = () => {
-    setSelectedPegiRating("");
-    // 保存空字串到 sessionStorage
-    saveFiltersToSessionStorage(activeGenreFilters, "");
+  // 處理 PEGI 過濾標籤的選擇
+  const togglePegiFilter = (rating) => {
+    const newRating = selectedPegiRating === rating ? "" : rating;
+    setSelectedPegiRating(newRating);
+    saveFiltersToSessionStorage(activeGenreFilters, newRating);
     setCurrentPage(1); // 重置到第一頁
-  };
-
-  // 移除 Genre 過濾標籤（Modal 內使用）
-  const toggleGenreFilter = (filter) => {
-    if (tempGenreFilters.includes(filter)) {
-      setTempGenreFilters(tempGenreFilters.filter((f) => f !== filter));
-    } else {
-      setTempGenreFilters([...tempGenreFilters, filter]);
-    }
-  };
-
-  // 設置 PEGI 分級過濾（Modal 內使用）
-  const setTempPegiFilter = (rating) => {
-    // 如果點擊的是當前已選中的評級，則取消選擇
-    if (tempPegiRating === rating) {
-      setTempPegiRating("");
-    } else {
-      setTempPegiRating(rating);
-    }
   };
 
   // 過濾遊戲資料
@@ -196,64 +142,84 @@ const GameRanking = ({
     setCurrentPage(pageNumber);
   };
 
-  // 計算每個流派在遊戲數據中出現的次數
-  const genreCounts = genres.reduce((acc, genre) => {
-    const count = gameData.filter((game) => game.genres.includes(genre)).length;
-    if (count > 0) {
-      acc[genre] = count;
-    }
-    return acc;
-  }, {});
+  // 計算每個流派在當前過濾結果中出現的次數
+  const getAvailableGenres = () => {
+    // 獲取基於 PEGI 過濾的遊戲（不考慮 Genre 過濾）
+    const pegiFilteredGames = gameData.filter((game) => {
+      const pegiMatch =
+        selectedPegiRating === "" ||
+        parseInt(game.pegiRating) <= parseInt(selectedPegiRating);
+      return pegiMatch;
+    });
+
+    // 如果沒有選擇任何 Genre，使用 PEGI 過濾後的遊戲
+    // 如果選擇了 Genre，使用完整的過濾結果
+    const baseGames =
+      activeGenreFilters.length === 0 ? pegiFilteredGames : filteredGames;
+
+    // 計算在當前過濾結果中每個 Genre 的出現次數
+    const genreCounts = {};
+
+    baseGames.forEach((game) => {
+      game.genres.forEach((genre) => {
+        if (genreCounts[genre]) {
+          genreCounts[genre]++;
+        } else {
+          genreCounts[genre] = 1;
+        }
+      });
+    });
+
+    // 只返回有遊戲的 Genre，並按字母順序排序
+    return Object.entries(genreCounts)
+      .filter(([genre, count]) => count > 0)
+      .sort(([a], [b]) => a.localeCompare(b));
+  };
+
+  // 準備顯示的 Genre 列表 - 基於當前過濾結果動態計算
+  const genreEntries = getAvailableGenres();
 
   return (
     <div className={styles.rankingContainer}>
       <div className={styles.filterContainer}>
-        <div className={styles.filterActions}>
-          <button className={styles.filterButton} onClick={openFilterModal}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-            </svg>
-            Filter
-          </button>
-          <div className={styles.tagContainer}>
-            {/* Genre 過濾標籤 */}
-            {activeGenreFilters.map((filter, index) => (
+        {/* PEGI 過濾區塊 */}
+        <div className={styles.filterSection}>
+          <h4>PEGI Rating</h4>
+          <div className={`${styles.filterOptions} ${styles.pegiOptions}`}>
+            {pegiRatings.map((rating) => (
               <div
-                key={`genre-${index}`}
-                className={`${styles.tag} ${styles.genreTag}`}
+                key={rating}
+                className={`${styles.filterOption} ${
+                  selectedPegiRating === rating
+                    ? styles.filterOptionSelected
+                    : ""
+                }`}
+                onClick={() => togglePegiFilter(rating)}
+                data-rating={rating}
               >
-                {filter}
-                <button
-                  className={styles.tagRemove}
-                  onClick={() => removeGenreFilter(filter)}
-                >
-                  ×
-                </button>
+                PEGI {rating}+
               </div>
             ))}
+          </div>
+        </div>
 
-            {/* PEGI 分級標籤 */}
-            {selectedPegiRating !== "" && (
+        {/* Genre 過濾區塊 */}
+        <div className={styles.filterSection}>
+          <h4>Genre</h4>
+          <div className={`${styles.filterOptions} ${styles.genreOptions}`}>
+            {genreEntries.map(([genre, count]) => (
               <div
-                className={`${styles.tag} ${styles.pegiTag}`}
-                data-rating={selectedPegiRating}
+                key={genre}
+                className={`${styles.filterOption} ${
+                  activeGenreFilters.includes(genre)
+                    ? styles.filterOptionSelected
+                    : ""
+                }`}
+                onClick={() => toggleGenreFilter(genre)}
               >
-                PEGI {selectedPegiRating}+
-                <button className={styles.tagRemove} onClick={removePegiFilter}>
-                  ×
-                </button>
+                {genre} ({count})
               </div>
-            )}
+            ))}
           </div>
         </div>
       </div>
@@ -292,14 +258,6 @@ const GameRanking = ({
                     className={`${styles.ratingBox} ${
                       styles[`pegi${game.pegiRating}`]
                     }`}
-                    onClick={() => {
-                      setSelectedPegiRating(game.pegiRating);
-                      saveFiltersToSessionStorage(
-                        activeGenreFilters,
-                        game.pegiRating
-                      );
-                      setCurrentPage(1);
-                    }}
                   >
                     {game.pegiRating}
                   </div>
@@ -307,11 +265,7 @@ const GameRanking = ({
                 <td>
                   <div className={styles.labelContainer}>
                     {game.genres.map((genre, index) => (
-                      <span
-                        key={index}
-                        className={styles.tableLabelTag}
-                        onClick={() => addGenreFilter(genre)}
-                      >
+                      <span key={index} className={styles.tableLabelTag}>
                         {genre}
                       </span>
                     ))}
@@ -354,19 +308,6 @@ const GameRanking = ({
           Next
         </button>
       </div>
-
-      {/* Filter Modal */}
-      <FilterModal
-        showModal={showFilterModal}
-        onClose={closeModal}
-        tempGenreFilters={tempGenreFilters}
-        toggleGenreFilter={toggleGenreFilter}
-        genreCounts={genreCounts}
-        tempPegiRating={tempPegiRating}
-        setTempPegiFilter={setTempPegiFilter}
-        allPegiRatings={pegiRatings}
-        applyFilters={applyFilters}
-      />
     </div>
   );
 };

@@ -16,11 +16,12 @@ const CreativityAnalysis = ({ onMetricChange }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [chartData, setChartData] = useState(null);
-  const [selectedMetric, setSelectedMetric] = useState("TTCT Test Score");
+  const [selectedMetric, setSelectedMetric] = useState(
+    "Physical exercise/sports"
+  );
 
   // 指標名稱映射
   const metricNames = {
-    "TTCT Test Score": "Creativity Test Score",
     "Physical exercise/sports": "Physical Activities",
     "Musical activities": "Musical Activities",
     "Artistic activities": "Artistic Activities",
@@ -28,7 +29,6 @@ const CreativityAnalysis = ({ onMetricChange }) => {
 
   // 指標選項配置
   const metricOptions = [
-    { id: "TTCT Test Score", label: "Creativity Test Score" },
     { id: "Physical exercise/sports", label: "Physical Activities" },
     { id: "Musical activities", label: "Musical Activities" },
     { id: "Artistic activities", label: "Artistic Activities" },

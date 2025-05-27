@@ -93,7 +93,7 @@ const Introduction = () => {
   ];
 
   const mentalHealthExplanations = [
-    `This bubble chart shows the relationship between daily gaming hours and ${currentMetric} scores.`,
+    `This bubble chart shows the relationship between weekly gaming hours and ${currentMetric} scores.`,
     `Each bubble represents a group of participants with the same gaming hours and ${currentMetric} score. The size of the bubble indicates the number of participants in that group.`,
     `The red line shows the average ${currentMetric} score for each gaming hour, calculated only for hours with at least 5 participants.`,
     `You can switch between different mental health metrics using the tabs above.`,
@@ -124,8 +124,30 @@ const Introduction = () => {
 
   // 搜索遊戲的函數
   const searchGames = (query) => {
-    if (!query.trim() || !gameDataStore.gameList.length) {
+    if (!gameDataStore.gameList.length) {
       setSearchResults([]);
+      return;
+    }
+
+    // 如果查詢為空或只有空格，顯示銷量排名前5的遊戲
+    if (!query.trim()) {
+      const topSalesGames = [...gameDataStore.gameList]
+        .sort((a, b) => {
+          // 如果 sales 是字符串，先轉換為數字
+          const salesA =
+            typeof a.sales === "string"
+              ? parseInt(a.sales.replace(/[^0-9]/g, ""))
+              : a.sales;
+          const salesB =
+            typeof b.sales === "string"
+              ? parseInt(b.sales.replace(/[^0-9]/g, ""))
+              : b.sales;
+
+          return salesB - salesA; // 降序排列
+        })
+        .slice(0, 5); // 取前5名
+
+      setSearchResults(topSalesGames);
       return;
     }
 
@@ -199,6 +221,14 @@ const Introduction = () => {
     const value = e.target.value;
     setSearchText(value);
     searchGames(value);
+    setShowResults(true);
+  };
+
+  // 當用戶點擊搜索欄時顯示推薦
+  const handleSearchFocus = () => {
+    if (!searchText.trim()) {
+      searchGames(""); // 顯示銷量前5的遊戲
+    }
     setShowResults(true);
   };
 
@@ -279,6 +309,7 @@ const Introduction = () => {
               placeholder="Enter a game name..."
               value={searchText}
               onChange={handleSearchChange}
+              onFocus={handleSearchFocus}
               onBlur={() => setTimeout(() => handleClickOutside(), 200)}
             />
             {searchText && (
@@ -286,7 +317,9 @@ const Introduction = () => {
                 className={styles.clearSearch}
                 onClick={() => {
                   setSearchText("");
-                  setSearchResults([]);
+                  // 清除後顯示推薦
+                  searchGames("");
+                  setShowResults(true);
                 }}
                 aria-label="Clear search"
               >
@@ -375,10 +408,8 @@ const Introduction = () => {
               <h2 className={styles.sectionTitle}>Game Ranking</h2>
               <div className={styles.sectionDescription}>
                 <p>
-                  Explore the positive impacts and benefits that video games can
-                  bring. Discover how different types of games can enhance
-                  various skills and provide entertainment value. Click on the
-                  cards to learn more.
+                  Discover the top-selling games worldwide. Use the filters to
+                  tailor recommendations to your preferences.
                 </p>
               </div>
               <GameRanking
@@ -444,10 +475,8 @@ const Introduction = () => {
         </h2>
         <div className={styles.sectionDescription}>
           <p>
-            According to our research, longer gaming hours, especially violent
-            games, do lead to a little bit more aggressive behaviors, but not
-            very obvious. Our Recommendation: Don't play games / video games
-            more than 2 hours a day.
+            Discover the top-selling games worldwide. Use the filters to tailor
+            recommendations to your preferences.
           </p>
         </div>
         <GamingHoursAggressionAnalysis
@@ -462,10 +491,7 @@ const Introduction = () => {
         </h2>
         <div className={styles.sectionDescription}>
           <p>
-            There is no significant correlation between weekly gaming hours and
-            anxiety, life satisfaction, or social phobia. The more time spent
-            playing games, the less likely it is to increase anxiety or social
-            phobia, and it does not reduce life satisfaction.
+            從圖中可以看到，不論是哪一個心理指標，其實都沒有和遊戲時間呈現明顯的正相關或負相關，反而是一種上下波動的狀態。因此我們可以推論出：單純的遊戲時間，並不是導致心理健康問題的直接原因。
           </p>
         </div>
         <GamingHoursMentalHealthAnalysis onMetricChange={handleMetricChange} />
