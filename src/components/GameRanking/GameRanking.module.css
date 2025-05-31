@@ -170,9 +170,9 @@
 }
 
 .rankingTable th {
-  background-color: #f8f9fa;
+  background-color: #333333;
   font-size: 16px;
-  color: #495057;
+  color: white;
   position: relative;
 }
 
@@ -506,19 +506,52 @@
   justify-content: center;
 }
 
-.filterOption:hover {
+.filterOption:hover:not(.filterOptionSelected) {
   background-color: #e9ecef;
 }
 
-.filterOptionSelected {
-  background-color: #4a90e2;
+/* Genre 選項的 hover 顏色 */
+.genreOptions .filterOption:hover:not(.filterOptionSelected) {
+  background-color: #f9dab1;
+  border-color: #CD8424;
+}
+
+/* 確保被選中的 Genre 按鈕沒有 hover 效果 */
+.genreOptions .filterOptionSelected:hover {
+  background-color: #FB9B1C;
+  border-color: #FB9B1C;
   color: white;
-  border-color: #4a90e2;
+}
+
+/* PEGI 選項的 hover 顏色 - 使用各自選中顏色的淺色版本 */
+.pegiOptions .filterOption[data-rating="ALL"]:hover:not(.filterOptionSelected),
+.pegiOptions .filterOption[data-rating="3"]:hover:not(.filterOptionSelected),
+.pegiOptions .filterOption[data-rating="7"]:hover:not(.filterOptionSelected) {
+  background-color: #C8E6C9; /* 淺綠色 */
+  border-color: #A5D6A7;
+}
+
+.pegiOptions .filterOption[data-rating="12"]:hover:not(.filterOptionSelected),
+.pegiOptions .filterOption[data-rating="16"]:hover:not(.filterOptionSelected) {
+  background-color: #FFF3C4; /* 淺黃色 */
+  border-color: #FFE082;
+}
+
+.pegiOptions .filterOption[data-rating="18"]:hover:not(.filterOptionSelected) {
+  background-color: #FFCDD2; /* 淺紅色 */
+  border-color: #EF9A9A;
+}
+
+.filterOptionSelected {
+  background-color: #FB9B1C;
+  color: white;
+  border-color: #FB9B1C;
 }
 
 /* PEGI 按鈕顏色已移除，使用默認樣式 */
 
 /* PEGI 按鈕選中顏色 */
+.pegiOptions .filterOptionSelected[data-rating="ALL"],
 .pegiOptions .filterOptionSelected[data-rating="3"],
 .pegiOptions .filterOptionSelected[data-rating="7"] {
   background-color: #4CAF50;

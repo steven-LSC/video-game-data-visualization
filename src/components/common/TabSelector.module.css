@@ -27,8 +27,8 @@
 }
 
 .tabButton:hover {
-  background-color: #f1f8ff;
-  border-color: #bfdcff;
+  background-color: #f9dab1;
+  border-color: #CD8424;
 }
 
 .tabButton:focus {
@@ -36,9 +36,9 @@
 }
 
 .tabButton.active {
-  background-color: #4a90e2;
+  background-color: #FB9B1C;
   color: white;
-  border-color: #3a7bc8;
+  border-color: #CD8424;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 

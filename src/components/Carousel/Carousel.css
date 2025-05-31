@@ -3,7 +3,7 @@
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0;
 }
 
 /* 為內容區域創建邊界 */
@@ -219,7 +219,7 @@
 }
 
 .dot.active {
-  background-color: #4CAF50;
+  background-color: #333333;
   transform: scale(1.2);
 }
 
@@ -314,7 +314,7 @@
 }
 
 .carousel-container .dot.active {
-  background-color: #4CAF50; /* 預設綠色指示點 (正面影響) */
+  background-color: #333333; /* 固定使用 #333333 顏色 */
 }
 
 /* 負面影響輪播樣式 */
@@ -327,7 +327,7 @@
 }
 
 .negative-carousel .dot.active {
-  background-color: #F44336; /* 紅色指示點 */
+  background-color: #333333; /* 固定使用 #333333 顏色 */
 }
 
 .negative-carousel .carousel-card.active:hover {

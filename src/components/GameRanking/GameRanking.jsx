@@ -10,6 +10,9 @@ const GameRanking = ({
   currentGameGenres = [],
   currentGamePegi = "",
 }) => {
+  // 固定的 PEGI 等級選項，包括 ALL
+  const fixedPegiRatings = ["ALL", "3", "7", "12", "16", "18"];
+
   // 檢查是否來自 Game Detail 頁面（有傳入過濾器參數）
   const isFromGameDetail = currentGameGenres.length > 0 || currentGamePegi;
 
@@ -36,14 +39,14 @@ const GameRanking = ({
   const [selectedPegiRating, setSelectedPegiRating] = useState(() => {
     if (isFromGameDetail) {
       // 如果來自 Game Detail，直接使用傳入的參數
-      return currentGamePegi || "7";
+      return currentGamePegi || "ALL";
     } else {
       // 如果是首頁，嘗試從 sessionStorage 讀取，否則使用預設值
       try {
         const saved = sessionStorage.getItem("gameRankingPegiRating");
-        return saved !== null ? saved : "7";
+        return saved !== null ? saved : "ALL";
       } catch {
-        return "7";
+        return "ALL";
       }
     }
   });
@@ -56,7 +59,7 @@ const GameRanking = ({
   useEffect(() => {
     if (isFromGameDetail) {
       setActiveGenreFilters([...currentGameGenres]);
-      setSelectedPegiRating(currentGamePegi || "7");
+      setSelectedPegiRating(currentGamePegi || "ALL");
       setCurrentPage(1);
     }
   }, [currentGameGenres, currentGamePegi, isFromGameDetail]);
@@ -92,7 +95,7 @@ const GameRanking = ({
 
   // 處理 PEGI 過濾標籤的選擇
   const togglePegiFilter = (rating) => {
-    const newRating = selectedPegiRating === rating ? "" : rating;
+    const newRating = selectedPegiRating === rating ? "ALL" : rating;
     setSelectedPegiRating(newRating);
     saveFiltersToSessionStorage(activeGenreFilters, newRating);
     setCurrentPage(1); // 重置到第一頁
@@ -105,9 +108,9 @@ const GameRanking = ({
       activeGenreFilters.length === 0 ||
       activeGenreFilters.every((filter) => game.genres.includes(filter));
 
-    // PEGI 過濾邏輯：遊戲的分級必須不超過所選分級，若無分級限制則顯示所有遊戲
+    // PEGI 過濾邏輯：如果選擇 ALL 則顯示所有遊戲，否則遊戲的分級必須不超過所選分級
     const pegiMatch =
-      selectedPegiRating === "" ||
+      selectedPegiRating === "ALL" ||
       parseInt(game.pegiRating) <= parseInt(selectedPegiRating);
 
     return genreMatch && pegiMatch;
@@ -147,7 +150,7 @@ const GameRanking = ({
     // 獲取基於 PEGI 過濾的遊戲（不考慮 Genre 過濾）
     const pegiFilteredGames = gameData.filter((game) => {
       const pegiMatch =
-        selectedPegiRating === "" ||
+        selectedPegiRating === "ALL" ||
         parseInt(game.pegiRating) <= parseInt(selectedPegiRating);
       return pegiMatch;
     });
@@ -186,7 +189,7 @@ const GameRanking = ({
         <div className={styles.filterSection}>
           <h4>PEGI Rating</h4>
           <div className={`${styles.filterOptions} ${styles.pegiOptions}`}>
-            {pegiRatings.map((rating) => (
+            {fixedPegiRatings.map((rating) => (
               <div
                 key={rating}
                 className={`${styles.filterOption} ${
@@ -197,7 +200,7 @@ const GameRanking = ({
                 onClick={() => togglePegiFilter(rating)}
                 data-rating={rating}
               >
-                PEGI {rating}+
+                {rating === "ALL" ? "ALL" : `PEGI ${rating}+`}
               </div>
             ))}
           </div>

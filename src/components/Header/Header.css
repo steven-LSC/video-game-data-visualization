@@ -26,60 +26,62 @@
 }
 
 .logo a {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: rgb(51, 51, 51);
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: opacity 0.3s ease;
   white-space: nowrap;
-  line-height: 1; /* 確保文字垂直居中 */
+  line-height: 1;
 }
 
 .logo a:hover {
-  color: #3a7bc8;
+  opacity: 0.8;
+}
+
+.logo-image {
+  height: 40px;
+  width: auto;
 }
 
 .search-container {
   flex-grow: 1;
-  /* 移除最大寬度限制 */
   display: flex;
   align-items: center;
-  height: 40px; /* 與logo高度一致 */
-  margin-bottom: 0; /* 明確設置margin-bottom為0 */
+  height: 40px;
+  margin-bottom: 0;
 }
 
 .search-input-wrapper {
   position: relative;
   width: 100%;
-  height: 100%; /* 填滿父容器高度 */
-  display: flex; /* 使輸入框垂直居中 */
+  height: 100%;
+  display: flex;
   align-items: center;
-  margin-bottom: 0; /* 明確設置margin-bottom為0 */
+  background-color: white;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  padding: 0 20px;
+  margin-bottom: 0;
+  transition: border-color 0.3s;
+}
+
+.search-input-wrapper:focus-within {
+  border-color: #FB9B1C;
 }
 
 .search-bar {
-  width: 100%;
-  height: 40px; /* 固定高度 */
-  padding: 0 16px; /* 調整垂直padding為0，保留水平padding */
-  padding-right: 40px;
+  flex: 1;
+  height: 36px;
+  padding: 0;
   font-size: 1rem;
-  border: 2px solid #ddd;
-  border-radius: 8px;
+  border: none;
   outline: none;
-  transition: border-color 0.3s;
-  box-sizing: border-box; /* 確保padding和border不會增加元素實際大小 */
-  margin-bottom: 0; /* 明確設置margin-bottom為0 */
-}
-
-.search-bar:focus {
-  border-color: #4a90e2;
+  background: transparent;
+  box-sizing: border-box;
+  margin-bottom: 0;
 }
 
 .clear-search {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
@@ -93,6 +95,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  margin-left: auto;
 }
 
 .clear-search:hover {

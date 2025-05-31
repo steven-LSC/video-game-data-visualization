@@ -78,6 +78,7 @@ const Introduction = () => {
   const [negativeCarouselItems, setNegativeCarouselItems] = useState([]);
   const [currentMetric, setCurrentMetric] = useState("Anxiety");
   const [currentGameType, setCurrentGameType] = useState("gameHours");
+  const [showWhyDropdown, setShowWhyDropdown] = useState(false);
 
   // 圖表說明內容
   const aggressionExplanations = [
@@ -297,16 +298,33 @@ const Introduction = () => {
   return (
     <div className={styles.introductionContainer}>
       <section className={`${styles.heroSection} ${styles.section}`}>
+        <img
+          src="/images/switch.png"
+          alt="Nintendo Switch"
+          className={styles.switchImage}
+        />
+        <img
+          src="/images/ps5.png"
+          alt="PlayStation 5"
+          className={styles.ps5Image}
+        />
+
         <div className={styles.productTitle}>
-          <h1>Game Guardian</h1>
-          <p className={styles.subtitle}>Search a Video Game to Learn More!</p>
+          <img
+            src="/images/logo.png"
+            alt="Game Guardian"
+            className={styles.logo}
+          />
+          <p className={`${styles.subtitle} ${styles.largeSubtitle}`}>
+            Search a Video Game to Learn About It!
+          </p>
         </div>
         <div className={styles.searchContainer}>
           <div className={styles.searchInputWrapper}>
             <input
               type="text"
               className={styles.searchBar}
-              placeholder="Enter a game name..."
+              placeholder="Enter the name of a video game"
               value={searchText}
               onChange={handleSearchChange}
               onFocus={handleSearchFocus}
@@ -353,59 +371,76 @@ const Introduction = () => {
         </div>
 
         <div className={styles.whyContent}>
-          <h2>Why did we make this website?</h2>
-          <p>Video games are powerful—and complex.</p>
-          <p>
-            They can support learning, focus, and social connection, but they
-            also raise valid concerns like addiction, excessive screen time, and
-            behavioral risks. We believe users deserve a space to explore both
-            sides, grounded in real data—not assumptions. That's why we built
-            this website.
-          </p>
-          <p>Here, you can:</p>
-          <ul>
-            <li>
-              Dive into research-backed sections on both the concerns and
-              benefits of video games
-            </li>
-            <li>
-              Search individual titles to see their key features and potential
-              impacts
-            </li>
-            <li>
-              Use checkbox filters to find or avoid games with similar traits
-            </li>
-            <li>
-              Browse our Editor's Picks, featuring:
+          <div
+            className={styles.whyHeader}
+            onClick={() => setShowWhyDropdown(!showWhyDropdown)}
+          >
+            <h2>Why did we make this website?</h2>
+            <span className={styles.dropdownIcon}>
+              {showWhyDropdown ? "▲" : "▼"}
+            </span>
+          </div>
+
+          {showWhyDropdown && (
+            <div className={styles.whyDropdown}>
+              <p>Video games are powerful—and complex.</p>
+              <p>
+                They can support learning, focus, and social connection, but
+                they also raise valid concerns like addiction, excessive screen
+                time, and behavioral risks. We believe users deserve a space to
+                explore both sides, grounded in real data—not assumptions.
+                That's why we built this website.
+              </p>
+              <p>Here, you can:</p>
               <ul>
                 <li>
-                  🎮 Accessibility – games well-suited for younger or
-                  inexperienced players
+                  Dive into research-backed sections on both the concerns and
+                  benefits of video games
                 </li>
                 <li>
-                  🏆 Artistry – award-winning or critically acclaimed titles
+                  Search individual titles to see their key features and
+                  potential impacts
                 </li>
                 <li>
-                  🔥 Popularity – games selected by community votes and cultural
-                  buzz
+                  Use checkbox filters to find or avoid games with similar
+                  traits
+                </li>
+                <li>
+                  Browse our Editor's Picks, featuring:
+                  <ul>
+                    <li>
+                      🎮 Accessibility – games well-suited for younger or
+                      inexperienced players
+                    </li>
+                    <li>
+                      🏆 Artistry – award-winning or critically acclaimed titles
+                    </li>
+                    <li>
+                      🔥 Popularity – games selected by community votes and
+                      cultural buzz
+                    </li>
+                  </ul>
                 </li>
               </ul>
-            </li>
-          </ul>
-          <p>
-            Our goal is simple: to offer a comprehensive, balanced perspective
-            on games—whether you're a parent, educator, or gamer yourself.
-          </p>
+              <p>
+                Our goal is simple: to offer a comprehensive, balanced
+                perspective on games—whether you're a parent, educator, or gamer
+                yourself.
+              </p>
+            </div>
+          )}
         </div>
-      </section>
 
-      <section className={`${styles.rankingSection} ${styles.section}`}>
         {dataLoaded ? (
           error ? (
             <div className={styles.errorMessage}>{error}</div>
           ) : (
             <>
-              <h2 className={styles.sectionTitle}>Game Ranking</h2>
+              <h2
+                className={`${styles.sectionTitle} ${styles.largeSectionTitle}`}
+              >
+                <span className={styles.orangeText}>GAME</span> SALES RANKING
+              </h2>
               <div className={styles.sectionDescription}>
                 <p>
                   Discover the top-selling games worldwide. Use the filters to
@@ -426,29 +461,61 @@ const Introduction = () => {
       </section>
 
       <section
-        className={`${styles.carouselSection} ${styles.positiveCarousel} ${styles.section}`}
+        className={`${styles.carouselSection} ${styles.positiveCarousel} ${styles.section} ${styles.fullHeightSection} ${styles.benefitBackground}`}
       >
-        <h2 className={styles.sectionTitle}>
-          Understanding the <span className={styles.benefitText}>Benefits</span>{" "}
-          of Video Games
-        </h2>
-        <div className={styles.sectionDescription}>
-          <p>
-            Explore the positive impacts and benefits that video games can
-            bring. Discover how different types of games can enhance various
-            skills and provide entertainment value. Click on the cards to learn
-            more.
-          </p>
+        <div className={styles.sectionContentWrapper}>
+          <h2 className={`${styles.sectionTitle} ${styles.largeSectionTitle}`}>
+            Understanding the{" "}
+            <span className={styles.benefitText}>Benefits</span> of Video Games
+          </h2>
+          <div className={styles.sectionDescription}>
+            <p>
+              Explore the positive impacts and benefits that video games can
+              bring.
+            </p>
+            <p>
+              {" "}
+              Discover how different types of games can enhance various skills
+              and provide entertainment value. Click on the cards to learn more.
+            </p>
+          </div>
+          {carouselItems.length > 0 && <Carousel items={carouselItems} />}
         </div>
-        {carouselItems.length > 0 && <Carousel items={carouselItems} />}
       </section>
 
       <section
-        className={`${styles.carouselSection} ${styles.negativeCarousel} ${styles.section}`}
+        className={`${styles.carouselSection} ${styles.negativeCarousel} ${styles.section} ${styles.fullHeightSection} ${styles.concernBackground}`}
       >
-        <h2 className={styles.sectionTitle}>
-          Understanding the <span className={styles.concernText}>Concerns</span>{" "}
-          Around Video Games
+        <div className={styles.sectionContentWrapper}>
+          <h2 className={`${styles.sectionTitle} ${styles.largeSectionTitle}`}>
+            Understanding the{" "}
+            <span className={styles.concernText}>Concerns</span> Around Video
+            Games
+          </h2>
+          <div className={styles.sectionDescription}>
+            <p>
+              Video games are often linked in the media to issues like violence,
+              addiction, and social withdrawal. Reports raise valid concerns
+              about their potential impact on mental health and behavior,
+              especially in young users. However, these narratives often
+              overlook context, such as individual differences or broader
+              societal factors. It's important to critically assess these claims
+              and seek a balanced understanding.
+            </p>
+          </div>
+          {negativeCarouselItems && negativeCarouselItems.length > 0 && (
+            <Carousel
+              items={negativeCarouselItems}
+              className="negative-carousel"
+            />
+          )}
+        </div>
+      </section>
+
+      <section className={`${styles.researchSection} ${styles.section}`}>
+        <h2 className={`${styles.sectionTitle} ${styles.largeSectionTitle}`}>
+          Understanding the <span className={styles.orangeText}>RESEARCH</span>{" "}
+          About Video Games
         </h2>
         <div className={styles.sectionDescription}>
           <p>
@@ -461,12 +528,6 @@ const Introduction = () => {
             understanding.
           </p>
         </div>
-        {negativeCarouselItems && negativeCarouselItems.length > 0 && (
-          <Carousel
-            items={negativeCarouselItems}
-            className="negative-carousel"
-          />
-        )}
       </section>
 
       <section className={`${styles.analysisSection} ${styles.section}`}>

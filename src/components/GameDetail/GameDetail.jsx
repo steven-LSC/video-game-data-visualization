@@ -124,7 +124,11 @@ const GameDetail = () => {
             </div>
             <div className={styles.metaItem}>
               <span className={styles.metaLabel}>PEGI:</span>
-              <span className={styles.metaValue + " " + styles.pegiTag}>
+              <span
+                className={`${styles.metaValue} ${styles.pegiTag} ${
+                  styles[`pegi${game.pegiRating}`]
+                }`}
+              >
                 PEGI {game.pegiRating}
               </span>
             </div>

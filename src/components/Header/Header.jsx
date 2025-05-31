@@ -30,8 +30,30 @@ const Header = () => {
 
   // 搜索遊戲的函數
   const searchGames = (query) => {
-    if (!query.trim() || !gameDataStore.gameList.length) {
+    if (!gameDataStore.gameList.length) {
       setSearchResults([]);
+      return;
+    }
+
+    // 如果查詢為空或只有空格，顯示銷量排名前5的遊戲
+    if (!query.trim()) {
+      const topSalesGames = [...gameDataStore.gameList]
+        .sort((a, b) => {
+          // 如果 sales 是字符串，先轉換為數字
+          const salesA =
+            typeof a.sales === "string"
+              ? parseInt(a.sales.replace(/[^0-9]/g, ""))
+              : a.sales;
+          const salesB =
+            typeof b.sales === "string"
+              ? parseInt(b.sales.replace(/[^0-9]/g, ""))
+              : b.sales;
+
+          return salesB - salesA; // 降序排列
+        })
+        .slice(0, 5); // 取前5名
+
+      setSearchResults(topSalesGames);
       return;
     }
 
@@ -108,6 +130,14 @@ const Header = () => {
     setShowResults(true);
   };
 
+  // 當用戶點擊搜索欄時顯示推薦
+  const handleSearchFocus = () => {
+    if (!searchText.trim()) {
+      searchGames(""); // 顯示銷量前5的遊戲
+    }
+    setShowResults(true);
+  };
+
   // 選擇搜索結果
   const handleSelectResult = (game) => {
     setSearchText(game.title);
@@ -131,7 +161,13 @@ const Header = () => {
       <div className="header-container">
         <div className="header-flex">
           <div className="logo">
-            <Link to="/">Game Guardian</Link>
+            <Link to="/">
+              <img
+                src="/images/logo.png"
+                alt="Game Guardian"
+                className="logo-image"
+              />
+            </Link>
           </div>
 
           <div className="search-container">
@@ -142,6 +178,7 @@ const Header = () => {
                 placeholder="Enter a game name..."
                 value={searchText}
                 onChange={handleSearchChange}
+                onFocus={handleSearchFocus}
                 onBlur={() => setTimeout(() => handleClickOutside(), 200)}
               />
               {searchText && (
@@ -149,7 +186,9 @@ const Header = () => {
                   className="clear-search"
                   onClick={() => {
                     setSearchText("");
-                    setSearchResults([]);
+                    // 清除後顯示推薦
+                    searchGames("");
+                    setShowResults(true);
                   }}
                   aria-label="Clear search"
                 >
