@@ -140,7 +140,12 @@ const CreativityTimeAnalysis = () => {
             borderColor: "rgba(75, 192, 192, 1)",
             borderWidth: 1,
             pointRadius: 5,
-            pointHoverRadius: 7,
+            pointHoverRadius: 12,
+            pointBackgroundColor: "rgba(75, 192, 192, 0.8)",
+            pointBorderColor: "rgba(75, 192, 192, 1)",
+            pointHoverBackgroundColor: "rgba(75, 192, 192, 1)",
+            pointHoverBorderColor: "#fff",
+            pointHoverBorderWidth: 2,
             order: 2,
           },
           {
@@ -156,7 +161,7 @@ const CreativityTimeAnalysis = () => {
             pointBackgroundColor: "rgba(255, 99, 132, 1)",
             pointBorderColor: "#fff",
             pointBorderWidth: 2,
-            pointHoverRadius: 8,
+            pointHoverRadius: 12,
             pointHoverBackgroundColor: "rgba(255, 99, 132, 1)",
             pointHoverBorderColor: "#fff",
             order: 1,
@@ -167,8 +172,9 @@ const CreativityTimeAnalysis = () => {
         responsive: true,
         maintainAspectRatio: false,
         interaction: {
-          mode: "index",
-          intersect: false,
+          mode: "nearest",
+          intersect: true,
+          axis: "xy",
         },
         plugins: {
           title: {
@@ -184,19 +190,27 @@ const CreativityTimeAnalysis = () => {
           },
           tooltip: {
             callbacks: {
+              title: function () {
+                // 移除tooltip的標題
+                return "";
+              },
               label: function (context) {
                 const datasetLabel = context.dataset.label || "";
 
-                if (context.dataset.type === "scatter") {
-                  return `${datasetLabel}: Gaming Time: ${Object.keys(
-                    gameHoursMap
-                  ).find(
+                if (context.datasetIndex === 0) {
+                  // 對於散點圖數據（Individual Data Points）
+                  const originalHours = Object.keys(gameHoursMap).find(
                     (key) => gameHoursMap[key] === context.parsed.x
-                  )}, Creativity Score: ${context.parsed.y}`;
+                  );
+                  return `${datasetLabel}: Gaming Time: ${originalHours}, Creativity Score: ${context.parsed.y}`;
                 } else {
-                  return `${datasetLabel}: ${Object.keys(gameHoursMap).find(
+                  // 對於平均值線（Average Creativity Score）
+                  const hourText = Object.keys(gameHoursMap).find(
                     (key) => gameHoursMap[key] === context.parsed.x
-                  )}, Score: ${context.parsed.y.toFixed(2)}`;
+                  );
+                  return `${datasetLabel}: ${hourText}, Average Score: ${context.parsed.y.toFixed(
+                    2
+                  )}`;
                 }
               },
             },
@@ -224,6 +238,9 @@ const CreativityTimeAnalysis = () => {
             title: {
               display: true,
               text: "Daily Gaming Hours",
+              padding: {
+                top: 15,
+              },
             },
             ticks: {
               callback: function (value) {
@@ -241,6 +258,9 @@ const CreativityTimeAnalysis = () => {
             title: {
               display: true,
               text: "Creativity Score (TTCT)",
+              padding: {
+                bottom: 15,
+              },
             },
             suggestedMin: 50,
             suggestedMax: 150,

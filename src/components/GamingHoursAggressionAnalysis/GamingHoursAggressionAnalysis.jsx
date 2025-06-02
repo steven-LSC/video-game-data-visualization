@@ -198,7 +198,7 @@ const AggressionAnalysis = ({ onGameTypeChange }) => {
             pointBackgroundColor: "rgba(255, 99, 132, 1)",
             pointBorderColor: "#fff",
             pointBorderWidth: 2,
-            pointHoverRadius: 8,
+            pointHoverRadius: 12,
             pointHoverBackgroundColor: "rgba(255, 99, 132, 1)",
             pointHoverBorderColor: "#fff",
             order: 1,
@@ -210,7 +210,12 @@ const AggressionAnalysis = ({ onGameTypeChange }) => {
             borderColor: "rgba(75, 192, 192, 1)",
             borderWidth: 1,
             pointRadius: 5,
-            pointHoverRadius: 7,
+            pointHoverRadius: 12,
+            pointBackgroundColor: "rgba(75, 192, 192, 0.8)",
+            pointBorderColor: "rgba(75, 192, 192, 1)",
+            pointHoverBackgroundColor: "rgba(75, 192, 192, 1)",
+            pointHoverBorderColor: "#fff",
+            pointHoverBorderWidth: 2,
             order: 2,
           },
         ],
@@ -219,8 +224,9 @@ const AggressionAnalysis = ({ onGameTypeChange }) => {
         responsive: true,
         maintainAspectRatio: false,
         interaction: {
-          mode: "index",
-          intersect: false,
+          mode: "nearest",
+          intersect: true,
+          axis: "xy",
         },
         plugins: {
           datalabels: {
@@ -238,26 +244,32 @@ const AggressionAnalysis = ({ onGameTypeChange }) => {
             },
           },
           tooltip: {
+            filter: function (tooltipItem) {
+              // 只顯示被hover的那個數據點的tooltip
+              return true;
+            },
             callbacks: {
+              title: function () {
+                // 移除tooltip的標題
+                return "";
+              },
               label: function (context) {
                 const datasetLabel = context.dataset.label || "";
 
-                if (context.dataset.type === "scatter") {
-                  // 對於散點圖數據，直接使用保存的原始時間文字
+                if (context.datasetIndex === 1) {
+                  // 對於散點圖數據（Individual Data Points）
                   const originalHours =
                     context.raw.originalHours ||
                     Object.keys(gameHoursMap).find(
                       (key) => gameHoursMap[key] === context.parsed.x
                     );
-                  return `${datasetLabel}: ${xAxisTitle}: ${originalHours}, Aggression Score: ${context.parsed.y.toFixed(
-                    2
-                  )}`;
+                  return `${datasetLabel}: ${xAxisTitle}: ${originalHours}, Aggression Score: ${context.parsed.y}`;
                 } else {
-                  // 對於平均值線，查找對應的時間文字
+                  // 對於平均值線（Average Aggression Score）
                   const hourText = Object.keys(gameHoursMap).find(
                     (key) => gameHoursMap[key] === context.parsed.x
                   );
-                  return `${datasetLabel}: ${hourText}, Value: ${context.parsed.y.toFixed(
+                  return `${datasetLabel}: ${hourText}, Average Score: ${context.parsed.y.toFixed(
                     2
                   )}`;
                 }
@@ -287,6 +299,9 @@ const AggressionAnalysis = ({ onGameTypeChange }) => {
             title: {
               display: true,
               text: xAxisTitle,
+              padding: {
+                top: 15,
+              },
             },
             ticks: {
               callback: function (value) {
@@ -307,6 +322,9 @@ const AggressionAnalysis = ({ onGameTypeChange }) => {
             title: {
               display: true,
               text: "Aggression Score",
+              padding: {
+                bottom: 15,
+              },
             },
             suggestedMin: 30,
             suggestedMax: 150,

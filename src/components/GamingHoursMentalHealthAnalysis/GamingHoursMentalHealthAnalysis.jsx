@@ -185,6 +185,9 @@ const AnxietyAnalysis = ({ onMetricChange }) => {
       backgroundColor: "rgba(75, 192, 192, 0.6)",
       borderColor: "rgba(75, 192, 192, 1)",
       borderWidth: 1,
+      hoverBackgroundColor: "rgba(75, 192, 192, 0.8)",
+      hoverBorderColor: "rgba(75, 192, 192, 1)",
+      hoverBorderWidth: 2,
     };
 
     // 創建平均值折線數據集 - 新增
@@ -201,7 +204,7 @@ const AnxietyAnalysis = ({ onMetricChange }) => {
       pointBackgroundColor: "rgba(255, 99, 132, 1)",
       pointBorderColor: "#fff",
       pointBorderWidth: 1,
-      pointHoverRadius: 5,
+      pointHoverRadius: 12,
     };
 
     chartInstance.current = new Chart(ctx, {
@@ -212,6 +215,15 @@ const AnxietyAnalysis = ({ onMetricChange }) => {
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        elements: {
+          point: {
+            hoverRadius: function (context) {
+              // 讓每個氣泡在hover時放大1.5倍
+              const originalRadius = context.raw ? context.raw.r : 5; // 如果無法獲取原始半徑，使用預設值5
+              return originalRadius + 5;
+            },
+          },
+        },
         plugins: {
           title: {
             display: true,
@@ -226,17 +238,20 @@ const AnxietyAnalysis = ({ onMetricChange }) => {
           },
           tooltip: {
             callbacks: {
+              title: function () {
+                // 移除tooltip的標題
+                return "";
+              },
               label: function (context) {
                 if (context.datasetIndex === 0) {
-                  // 氣泡數據
-                  const point = context.raw;
-                  const count = Math.round((point.r / 3) ** 2); // 反向計算數量
-                  return `Hours: ${point.x}, ${metricNames[yAxisMetric]}: ${point.y}, Count: ${count}`;
-                } else {
                   // 平均值折線
                   return `Hours: ${context.parsed.x}, Average ${
                     metricNames[yAxisMetric]
                   }: ${context.parsed.y.toFixed(2)}`;
+                } else {
+                  // 氣泡數據
+                  const point = context.raw;
+                  return `Hours: ${point.x}, ${metricNames[yAxisMetric]}: ${point.y}`;
                 }
               },
             },
@@ -251,6 +266,9 @@ const AnxietyAnalysis = ({ onMetricChange }) => {
             title: {
               display: true,
               text: "Gaming Hours per Week",
+              padding: {
+                top: 15,
+              },
             },
             suggestedMin: Math.max(0, minHours - 2),
             suggestedMax: maxHours + 2,
@@ -262,6 +280,9 @@ const AnxietyAnalysis = ({ onMetricChange }) => {
             title: {
               display: true,
               text: metricNames[yAxisMetric],
+              padding: {
+                bottom: 15,
+              },
             },
             suggestedMin: Math.max(0, minMetric - 2),
             suggestedMax: maxMetric + 2,

@@ -471,11 +471,11 @@
 
 /* 新的過濾器樣式 */
 .filterSection {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .filterSection h4 {
-  margin: 0 0 12px 0;
+  margin: 0 0 0 0;
   font-size: 16px;
   font-weight: 600;
   color: #495057;
@@ -485,7 +485,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .filterOption {
@@ -604,7 +604,7 @@
   display: flex;
   flex-wrap: nowrap;
   gap: 8px;
-  margin-top: 10px;
+  margin-top: 5px;
   justify-content: flex-start;
 }
 

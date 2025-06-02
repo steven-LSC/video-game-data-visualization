@@ -82,36 +82,19 @@ const Introduction = () => {
 
   // 圖表說明內容
   const aggressionExplanations = [
-    `This chart shows the relationship between ${
-      currentGameType === "gameHours"
-        ? "general gaming hours"
-        : "violent gaming hours"
-    } and aggression scores.`,
-    `Each dot represents a participant with the specified ${
-      currentGameType === "gameHours" ? "gaming hours" : "violent gaming hours"
-    } and aggression score. The red line shows the average aggression score for each time category.`,
-    `You can switch between general gaming hours and violent gaming hours using the tabs above.`,
+    `This chart shows the relationship between general/violent game hours and aggression scores. Each dot represents a participant with the specified game hours and aggression score. The red line shows the average aggression score for each time category.`,
   ];
 
   const mentalHealthExplanations = [
-    `This bubble chart shows the relationship between weekly gaming hours and ${currentMetric} scores.`,
-    `Each bubble represents a group of participants with the same gaming hours and ${currentMetric} score. The size of the bubble indicates the number of participants in that group.`,
-    `The red line shows the average ${currentMetric} score for each gaming hour, calculated only for hours with at least 5 participants.`,
-    `You can switch between different mental health metrics using the tabs above.`,
+    `This bubble chart shows the relationship between weekly gaming hours and mental health indicator scores. Each bubble represents a group of participants with the same gaming hours and mental health indicator score. The size of the bubble indicates the number of participants in that group. The red line shows the average mental health indicator score for each gaming hour, calculated only for hours with at least 5 participants. You can switch between different mental health metrics using the tabs above.`,
   ];
 
   const creativityExplanations = [
-    `This chart shows the relationship between daily gaming hours and creativity scores (TTCT).`,
-    `Each blue dot represents an individual participant with their gaming time and creativity score. The size of the scattered points indicates the number of participants with the same values.`,
-    `The red line shows the average creativity score for each gaming time category, revealing trends in how gaming time might relate to creativity levels.`,
-    `Gaming time categories range from non-gamers to those who play more than 6 hours daily.`,
+    `This chart shows the relationship between daily gaming hours and creativity scores (TTCT). Each blue dot represents an individual participant with their gaming time and creativity score. The red line shows the average creativity score for each gaming time category, revealing trends in how gaming time might relate to creativity levels.`,
   ];
 
   const gameTypesExplanations = [
-    `This bubble chart shows the relationship between different game types and creativity scores.`,
-    `Each bubble represents a combination of game type and play frequency. The size and color intensity of the bubble indicate the average creativity score - larger and darker bubbles represent higher scores.`,
-    `The vertical axis (1-5) represents how frequently participants play each game type, with 5 being the most frequent.`,
-    `You can switch between different metrics using the tabs above to explore various relationships.`,
+    `This bubble chart illustrates the relationship between different game types, play frequency, and creative activities. Each bubble represents a combination of game type and play frequency. The size and color intensity of the bubble indicate the relationship with the creative activity — larger bubbles represent a greater number of participants in that combination, while darker bubbles indicate a higher frequency of participation in the creative activity. The vertical axis (1 to 5) represents how frequently participants play each game type, with 5 being the most frequent. You can switch between different creative activities using the tabs above to explore various relationships.`,
   ];
 
   // 接收來自子組件的指標更新
@@ -423,9 +406,11 @@ const Introduction = () => {
                 </li>
               </ul>
               <p>
-                Our goal is simple: to offer a comprehensive, balanced
-                perspective on games—whether you're a parent, educator, or gamer
-                yourself.
+                <strong>
+                  Our goal is simple: to offer a comprehensive, balanced
+                  perspective on games—whether you're a parent, educator, or
+                  gamer yourself.
+                </strong>
               </p>
             </div>
           )}
@@ -536,9 +521,41 @@ const Introduction = () => {
         </h2>
         <div className={styles.sectionDescription}>
           <p>
-            Discover the top-selling games worldwide. Use the filters to tailor
-            recommendations to your preferences.
+            Based on the public dataset from Kaggle,{" "}
+            <a
+              href="https://www.kaggle.com/datasets/muhammadshamoeel/effects-of-video-games-on-aggression-msdos-csv"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#FB9B1C", textDecoration: "underline" }}
+            >
+              Online Gaming Anxiety Data
+            </a>
+            , the first visualization reveals that:
           </p>
+          <ul>
+            <li>
+              When daily gaming time is kept within two hours, players'
+              aggression scores decrease.
+            </li>
+            <li>
+              A significant increase in aggression only occurs when daily gaming
+              time exceeds two hours.
+            </li>
+          </ul>
+          <p>Furthermore, when switching the X-axis to Violent Game Hours:</p>
+          <ul>
+            <li>
+              Aggression scores rise as time spent on violent games increases,
+              echoing common concerns about the effects of violent video games.
+            </li>
+            <li>
+              However, it is crucial to note that this trend applies only to
+              violent games and should not be generalized to all video games.
+            </li>
+            <li>
+              This visualization aims to clarify such common misconceptions.
+            </li>
+          </ul>
         </div>
         <GamingHoursAggressionAnalysis
           onGameTypeChange={handleGameTypeChange}
@@ -552,7 +569,31 @@ const Introduction = () => {
         </h2>
         <div className={styles.sectionDescription}>
           <p>
-            從圖中可以看到，不論是哪一個心理指標，其實都沒有和遊戲時間呈現明顯的正相關或負相關，反而是一種上下波動的狀態。因此我們可以推論出：單純的遊戲時間，並不是導致心理健康問題的直接原因。
+            Based on the public dataset from Kaggle,{" "}
+            <a
+              href="https://www.kaggle.com/datasets/divyansh22/online-gaming-anxiety-data"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#FB9B1C", textDecoration: "underline" }}
+            >
+              Effects of Video Games on Aggression
+            </a>
+            , the second visualization shows:
+          </p>
+          <ul>
+            <li>
+              There is no significant positive or negative correlation between
+              weekly average gaming time and major mental health indicators,
+              including Anxiety, Life Satisfaction, and Social Anxiety.
+            </li>
+            <li>
+              Instead, the data shows natural fluctuations without clear trends.
+            </li>
+          </ul>
+          <p>
+            <strong>Conclusion:</strong> Gaming time alone is not a direct cause
+            of mental health problems. Other factors such as game content and
+            context must be considered.
           </p>
         </div>
         <GamingHoursMentalHealthAnalysis onMetricChange={handleMetricChange} />
@@ -565,9 +606,33 @@ const Introduction = () => {
         </h2>
         <div className={styles.sectionDescription}>
           <p>
-            Explore the relationship between daily gaming hours and creativity
-            test (TTCT) scores. The analysis reveals interesting patterns in how
-            gaming time might influence creative thinking abilities.
+            Based on the public dataset from the study,{" "}
+            <a
+              href="https://files.eric.ed.gov/fulltext/EJ1461928.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#FB9B1C", textDecoration: "underline" }}
+            >
+              Impact of Video Game Use on Fostering Creativity in Waldorf School
+              Students
+            </a>
+            , the third visualization shows:
+          </p>
+          <ul>
+            <li>
+              Students who play games for less than two hours or two to four
+              hours daily score higher in creativity tests (TTCT) compared to
+              non-gamers.
+            </li>
+            <li>
+              Students who play for more than four hours a day have lower
+              creativity scores than non-gamers.
+            </li>
+          </ul>
+          <p>
+            <strong>Conclusion:</strong> Moderate gaming, specifically 2–4 hours
+            per day, can enhance creativity, while excessive gaming has a
+            detrimental effect.
           </p>
         </div>
         <GamingHoursCreativityAnalysis />
@@ -578,9 +643,43 @@ const Introduction = () => {
         <h2 className={styles.sectionTitle}>Game Types Analysis</h2>
         <div className={styles.sectionDescription}>
           <p>
-            Explore the relationship between different game types and creativity
-            scores, physical activities, musical activities, and artistic
-            activities.
+            Also based on the public dataset from the same study,{" "}
+            <a
+              href="https://files.eric.ed.gov/fulltext/EJ1461928.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#FB9B1C", textDecoration: "underline" }}
+            >
+              Impact of Video Game Use on Fostering Creativity in Waldorf School
+              Students
+            </a>
+            , the fourth visualization indicates:
+          </p>
+          <ul>
+            <li>
+              Physical activities: Students who frequently (5/5 frequency) play
+              Sports, Shooting, and Fantasy/Role-playing games show greater
+              willingness to exercise.
+            </li>
+            <li>
+              Musical activities: Students who occasionally (3/5 frequency) play
+              Fantasy/Role-playing and Fighting games, and those who frequently
+              play Sports and Puzzle games, are more likely to engage in musical
+              activities.
+            </li>
+            <li>
+              Artistic activities: Students who occasionally (3/5 frequency)
+              play Fighting games are most engaged in artistic activities.
+            </li>
+          </ul>
+          <p>
+            <strong>Summary:</strong> It can be observed that regardless of the
+            game type, overall, the higher the play frequency (moving upward on
+            the chart), the more frequently students engage in creative
+            activities (such as sports, music, and art). Therefore, if the goal
+            is to encourage students to participate in creative activities,
+            moderate and mindful gaming can effectively motivate their
+            engagement, rather than being merely a waste of time.
           </p>
         </div>
         <GameTypesAnalysis onMetricChange={handleMetricChange} />

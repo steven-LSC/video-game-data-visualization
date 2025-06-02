@@ -145,25 +145,12 @@ const GameRanking = ({
     setCurrentPage(pageNumber);
   };
 
-  // 計算每個流派在當前過濾結果中出現的次數
-  const getAvailableGenres = () => {
-    // 獲取基於 PEGI 過濾的遊戲（不考慮 Genre 過濾）
-    const pegiFilteredGames = gameData.filter((game) => {
-      const pegiMatch =
-        selectedPegiRating === "ALL" ||
-        parseInt(game.pegiRating) <= parseInt(selectedPegiRating);
-      return pegiMatch;
-    });
-
-    // 如果沒有選擇任何 Genre，使用 PEGI 過濾後的遊戲
-    // 如果選擇了 Genre，使用完整的過濾結果
-    const baseGames =
-      activeGenreFilters.length === 0 ? pegiFilteredGames : filteredGames;
-
-    // 計算在當前過濾結果中每個 Genre 的出現次數
+  // 計算每個流派在整個數據集中出現的次數（靜態顯示所有流派）
+  const getAllGenres = () => {
+    // 計算在整個遊戲數據中每個 Genre 的出現次數
     const genreCounts = {};
 
-    baseGames.forEach((game) => {
+    gameData.forEach((game) => {
       game.genres.forEach((genre) => {
         if (genreCounts[genre]) {
           genreCounts[genre]++;
@@ -173,14 +160,14 @@ const GameRanking = ({
       });
     });
 
-    // 只返回有遊戲的 Genre，並按字母順序排序
+    // 返回所有 Genre，並按字母順序排序
     return Object.entries(genreCounts)
       .filter(([genre, count]) => count > 0)
       .sort(([a], [b]) => a.localeCompare(b));
   };
 
-  // 準備顯示的 Genre 列表 - 基於當前過濾結果動態計算
-  const genreEntries = getAvailableGenres();
+  // 準備顯示的 Genre 列表 - 顯示所有可用的流派
+  const genreEntries = getAllGenres();
 
   return (
     <div className={styles.rankingContainer}>
@@ -220,7 +207,7 @@ const GameRanking = ({
                 }`}
                 onClick={() => toggleGenreFilter(genre)}
               >
-                {genre} ({count})
+                {genre}
               </div>
             ))}
           </div>
