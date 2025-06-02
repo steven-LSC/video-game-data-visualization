@@ -65,8 +65,10 @@
 }
 
 .logo {
-  max-height: 120px;
-  width: auto;
+  /* max-height: 120px;
+  width: auto; */
+  width: 45%;
+  height: auto;
   margin-bottom: 10px;
   display: block;
   margin-left: auto;
@@ -76,19 +78,19 @@
 .subtitle {
   font-size: 1.5rem;
   color: #666;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 .largeSubtitle {
-  font-size: 45px;
+  font-size: 38px;
 }
 
 /* 搜索欄樣式 */
 .searchContainer {
-  width: 100%;
+  width: 800px;
   display: flex;
   margin-bottom: 30px;
-  max-width: 1200px;
+  margin-bottom: 60px
 }
 
 .searchInputWrapper {
@@ -97,15 +99,11 @@
   display: flex;
   align-items: center;
   background-color: white;
-  border: 2px solid #ddd;
+  border: 2px solid #FB9B1C;
   border-radius: 12px;
   padding: 0 20px;
   z-index: 20;
   transition: border-color 0.3s;
-}
-
-.searchInputWrapper:focus-within {
-  border-color: #FB9B1C;
 }
 
 .searchBar {
@@ -137,6 +135,18 @@
 .clearSearch:hover {
   color: #666;
   background-color: #f0f0f0;
+}
+
+.searchIcon {
+  width: 24px;
+  height: 24px;
+  margin-left: auto;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.searchIcon:hover {
+  opacity: 1;
 }
 
 /* Why content樣式 */
@@ -404,6 +414,27 @@
   z-index: 10;
   opacity: 0.8;
   padding: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.switchImage:hover {
+  transform: scale(1.05);
+}
+
+.switchFadeOut {
+  animation: switchExitAnimation 1.5s ease-out forwards;
+}
+
+@keyframes switchExitAnimation {
+  0% {
+    transform: translateX(0) translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(-200px) translateY(-200px) scale(0.3);
+    opacity: 0;
+  }
 }
 
 .ps5Image {
@@ -415,4 +446,25 @@
   z-index: 10;
   opacity: 0.8;
   padding: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.ps5Image:hover {
+  transform: scale(1.05);
+}
+
+.ps5FadeOut {
+  animation: ps5ExitAnimation 1.5s ease-out forwards;
+}
+
+@keyframes ps5ExitAnimation {
+  0% {
+    transform: translateX(0) translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(200px) translateY(-200px) scale(0.3);
+    opacity: 0;
+  }
 } 

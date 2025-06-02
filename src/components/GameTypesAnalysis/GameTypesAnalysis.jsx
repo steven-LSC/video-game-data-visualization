@@ -236,6 +236,12 @@ const CreativityAnalysis = ({ onMetricChange }) => {
               bottom: 20, // 統一使用 20px 的間距
             },
           },
+          legend: {
+            labels: {
+              usePointStyle: true, // 使用圓形樣式而不是正方形
+              pointStyle: "circle", // 明確指定為圓形
+            },
+          },
           tooltip: {
             callbacks: {
               title: function () {

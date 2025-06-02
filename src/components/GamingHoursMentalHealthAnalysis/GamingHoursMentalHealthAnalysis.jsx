@@ -257,8 +257,10 @@ const AnxietyAnalysis = ({ onMetricChange }) => {
             },
           },
           legend: {
-            display: true, // 顯示圖例，區分氣泡和平均值線
-            position: "top",
+            labels: {
+              usePointStyle: true, // 使用圓形樣式而不是正方形
+              pointStyle: "circle", // 明確指定為圓形
+            },
           },
         },
         scales: {

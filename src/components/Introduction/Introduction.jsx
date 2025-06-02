@@ -79,23 +79,8 @@ const Introduction = () => {
   const [currentMetric, setCurrentMetric] = useState("Anxiety");
   const [currentGameType, setCurrentGameType] = useState("gameHours");
   const [showWhyDropdown, setShowWhyDropdown] = useState(false);
-
-  // 圖表說明內容
-  const aggressionExplanations = [
-    `This chart shows the relationship between general/violent game hours and aggression scores. Each dot represents a participant with the specified game hours and aggression score. The red line shows the average aggression score for each time category.`,
-  ];
-
-  const mentalHealthExplanations = [
-    `This bubble chart shows the relationship between weekly gaming hours and mental health indicator scores. Each bubble represents a group of participants with the same gaming hours and mental health indicator score. The size of the bubble indicates the number of participants in that group. The red line shows the average mental health indicator score for each gaming hour, calculated only for hours with at least 5 participants. You can switch between different mental health metrics using the tabs above.`,
-  ];
-
-  const creativityExplanations = [
-    `This chart shows the relationship between daily gaming hours and creativity scores (TTCT). Each blue dot represents an individual participant with their gaming time and creativity score. The red line shows the average creativity score for each gaming time category, revealing trends in how gaming time might relate to creativity levels.`,
-  ];
-
-  const gameTypesExplanations = [
-    `This bubble chart illustrates the relationship between different game types, play frequency, and creative activities. Each bubble represents a combination of game type and play frequency. The size and color intensity of the bubble indicate the relationship with the creative activity — larger bubbles represent a greater number of participants in that combination, while darker bubbles indicate a higher frequency of participation in the creative activity. The vertical axis (1 to 5) represents how frequently participants play each game type, with 5 being the most frequent. You can switch between different creative activities using the tabs above to explore various relationships.`,
-  ];
+  const [switchAnimated, setSwitchAnimated] = useState(false);
+  const [ps5Animated, setPs5Animated] = useState(false);
 
   // 接收來自子組件的指標更新
   const handleMetricChange = (metric) => {
@@ -229,6 +214,15 @@ const Introduction = () => {
     setShowResults(false);
   };
 
+  // 處理遊戲機圖片點擊動畫
+  const handleSwitchClick = () => {
+    setSwitchAnimated(true);
+  };
+
+  const handlePs5Click = () => {
+    setPs5Animated(true);
+  };
+
   // 在組件載入時讀取數據
   useEffect(() => {
     const loadData = async () => {
@@ -284,12 +278,18 @@ const Introduction = () => {
         <img
           src="/images/switch.png"
           alt="Nintendo Switch"
-          className={styles.switchImage}
+          className={`${styles.switchImage} ${
+            switchAnimated ? styles.switchFadeOut : ""
+          }`}
+          onClick={handleSwitchClick}
         />
         <img
           src="/images/ps5.png"
           alt="PlayStation 5"
-          className={styles.ps5Image}
+          className={`${styles.ps5Image} ${
+            ps5Animated ? styles.ps5FadeOut : ""
+          }`}
+          onClick={handlePs5Click}
         />
 
         <div className={styles.productTitle}>
@@ -313,7 +313,7 @@ const Introduction = () => {
               onFocus={handleSearchFocus}
               onBlur={() => setTimeout(() => handleClickOutside(), 200)}
             />
-            {searchText && (
+            {searchText ? (
               <button
                 className={styles.clearSearch}
                 onClick={() => {
@@ -326,6 +326,12 @@ const Introduction = () => {
               >
                 ×
               </button>
+            ) : (
+              <img
+                src="/icons/search-icon.svg"
+                alt="Search"
+                className={styles.searchIcon}
+              />
             )}
             {showResults && searchResults.length > 0 && (
               <div className={styles.searchResults}>
@@ -560,7 +566,22 @@ const Introduction = () => {
         <GamingHoursAggressionAnalysis
           onGameTypeChange={handleGameTypeChange}
         />
-        <ChartExplanation explanations={aggressionExplanations} />
+        <ChartExplanation>
+          <p>
+            This chart shows the relationship between general/violent game hours
+            and aggression scores.
+          </p>
+          <ul>
+            <li>
+              Each dot represents a participant with the specified game hours
+              and aggression score.
+            </li>
+            <li>
+              The red line shows the average aggression score for each time
+              category.
+            </li>
+          </ul>
+        </ChartExplanation>
       </section>
 
       <section className={`${styles.analysisSection} ${styles.section}`}>
@@ -597,7 +618,31 @@ const Introduction = () => {
           </p>
         </div>
         <GamingHoursMentalHealthAnalysis onMetricChange={handleMetricChange} />
-        <ChartExplanation explanations={mentalHealthExplanations} />
+        <ChartExplanation>
+          <p>
+            This bubble chart shows the relationship between weekly gaming hours
+            and mental health indicator scores.
+          </p>
+          <ul>
+            <li>
+              Each bubble represents a group of participants with the same
+              gaming hours and mental health indicator score.
+            </li>
+            <li>
+              The size of the bubble indicates the number of participants in
+              that group.
+            </li>
+            <li>
+              The red line shows the average mental health indicator score for
+              each gaming hour, calculated only for hours with at least 5
+              participants.
+            </li>
+          </ul>
+          <p>
+            You can switch between different mental health metrics using the
+            tabs above.
+          </p>
+        </ChartExplanation>
       </section>
 
       <section className={`${styles.analysisSection} ${styles.section}`}>
@@ -636,7 +681,23 @@ const Introduction = () => {
           </p>
         </div>
         <GamingHoursCreativityAnalysis />
-        <ChartExplanation explanations={creativityExplanations} />
+        <ChartExplanation>
+          <p>
+            This chart shows the relationship between daily gaming hours and
+            creativity scores (TTCT).
+          </p>
+          <ul>
+            <li>
+              Each blue dot represents an individual participant with their
+              gaming time and creativity score.
+            </li>
+            <li>
+              The red line shows the average creativity score for each gaming
+              time category, revealing trends in how gaming time might relate to
+              creativity levels.
+            </li>
+          </ul>
+        </ChartExplanation>
       </section>
 
       <section className={`${styles.analysisSection} ${styles.section}`}>
@@ -683,7 +744,30 @@ const Introduction = () => {
           </p>
         </div>
         <GameTypesAnalysis onMetricChange={handleMetricChange} />
-        <ChartExplanation explanations={gameTypesExplanations} />
+        <ChartExplanation>
+          <p>
+            This bubble chart illustrates the relationship between different
+            game types, play frequency, and creative activities.
+          </p>
+          <ul>
+            <li>
+              Each bubble represents a combination of game type and play
+              frequency. - The size and color intensity of the bubble indicate
+              the relationship with the creative activity — larger bubbles
+              represent a greater number of participants in that combination,
+              while darker bubbles indicate a higher frequency of participation
+              in the creative activity.
+            </li>
+            <li>
+              The vertical axis (1 to 5) represents how frequently participants
+              play each game type, with 5 being the most frequent.
+            </li>
+          </ul>
+          <p>
+            You can switch between different creative activities using the tabs
+            above to explore various relationships.
+          </p>
+        </ChartExplanation>
       </section>
     </div>
   );
