@@ -181,7 +181,7 @@ const Header = () => {
                 onFocus={handleSearchFocus}
                 onBlur={() => setTimeout(() => handleClickOutside(), 200)}
               />
-              {searchText && (
+              {searchText ? (
                 <button
                   className="clear-search"
                   onClick={() => {
@@ -194,6 +194,12 @@ const Header = () => {
                 >
                   ×
                 </button>
+              ) : (
+                <img
+                  src="/icons/search-icon.svg"
+                  alt="Search"
+                  className="search-icon"
+                />
               )}
               {showResults && searchResults.length > 0 && (
                 <div className="search-results">

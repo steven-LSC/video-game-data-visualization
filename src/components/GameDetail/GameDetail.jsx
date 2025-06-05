@@ -110,32 +110,26 @@ const GameDetail = () => {
   return (
     <div className={styles.gameDetailContainer}>
       <div className={styles.gameHeader}>
-        <div className={styles.container}>
-          <div className={styles.headerTop}>{/* 移除返回連結 */}</div>
-          <h1>{game.title}</h1>
-          <div className={styles.gameMeta}>
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>Platform:</span>
-              <span className={styles.metaValue}>{game.platform}</span>
-            </div>
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>Sales:</span>
-              <span className={styles.metaValue}>{game.sales}</span>
-            </div>
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>PEGI:</span>
-              <span
-                className={`${styles.metaValue} ${styles.pegiTag} ${
-                  styles[`pegi${game.pegiRating}`]
-                }`}
-              >
-                PEGI {game.pegiRating}
-              </span>
-            </div>
-            <div className={styles.metaItem}>
-              <span className={styles.metaLabel}>Publisher:</span>
-              <span className={styles.metaValue}>{game.publisher}</span>
-            </div>
+        <div className={styles.headerTop}>{/* 移除返回連結 */}</div>
+        <h1>{game.title}</h1>
+        <div className={styles.gameMeta}>
+          <div className={styles.metaItem}>
+            <span className={styles.metaLabel}>Platform:</span>
+            <span className={styles.metaValue}>{game.platform}</span>
+          </div>
+          <div className={styles.metaItem}>
+            <span className={styles.metaLabel}>Sales:</span>
+            <span className={styles.metaValue}>{game.sales}</span>
+          </div>
+          <div className={styles.metaItem}>
+            <span className={styles.metaLabel}>Developer:</span>
+            <span className={styles.metaValue}>
+              {game.developer || game.publisher}
+            </span>
+          </div>
+          <div className={styles.metaItem}>
+            <span className={styles.metaLabel}>Publisher:</span>
+            <span className={styles.metaValue}>{game.publisher}</span>
           </div>
         </div>
       </div>
@@ -154,6 +148,19 @@ const GameDetail = () => {
             <p className={styles.gameDescription}>{game.description}</p>
 
             <div className={styles.tagsSection}>
+              <h3>PEGI Rating</h3>
+              <div className={styles.tagsContainer}>
+                <span
+                  className={`${styles.labelTag} ${styles.pegiTag} ${
+                    styles[`pegi${game.pegiRating}`]
+                  }`}
+                >
+                  PEGI {game.pegiRating}
+                </span>
+              </div>
+            </div>
+
+            <div className={styles.tagsSection}>
               <h3>Genres</h3>
               <div className={styles.tagsContainer}>
                 {game.genres.map((genre, index) => (
@@ -162,20 +169,6 @@ const GameDetail = () => {
                     className={styles.labelTag + " " + styles.genreTag}
                   >
                     {genre}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className={styles.tagsSection}>
-              <h3>Other</h3>
-              <div className={styles.tagsContainer}>
-                {game.otherLabels.map((tag, index) => (
-                  <span
-                    key={index}
-                    className={styles.labelTag + " " + styles.otherTag}
-                  >
-                    {tag}
                   </span>
                 ))}
               </div>
@@ -212,31 +205,35 @@ const GameDetail = () => {
               's characteristics.
             </p>
           </div>
-          <GameRanking
-            gameData={gameDataStore.gameList}
-            genres={uniqueGenres}
-            pegiRatings={uniquePegiRatings}
-            getGameSlug={getGameSlug}
-            currentGameGenres={game.genres}
-            currentGamePegi={game.pegiRating}
-          />
         </div>
+        <GameRanking
+          gameData={gameDataStore.gameList}
+          genres={uniqueGenres}
+          pegiRatings={uniquePegiRatings}
+          getGameSlug={getGameSlug}
+          currentGameGenres={game.genres}
+          currentGamePegi={game.pegiRating}
+        />
       </section>
 
-      {/* 添加遊戲推薦部分 */}
-      <section className={styles.recommendedGames + " " + styles.section}>
-        <div className={styles.container}>
-          <h2 className={styles.sectionTitle}>Recommended Games For You</h2>
-          <div className={styles.sectionDescription}>
-            <p>
-              Based on your interest in {game.title}, you might also enjoy these
-              games available on other platforms. Click any game to visit its
-              official website.
-            </p>
-          </div>
-          <GameRecommendations />
-        </div>
-      </section>
+      {/* 添加遊戲推薦部分 - 只有當有推薦遊戲資料時才顯示 */}
+      {game.recommendedGames &&
+        game.recommendedGames.length > 0 &&
+        game.recommendedGames[0].reason && (
+          <section className={styles.recommendedGames + " " + styles.section}>
+            <div className={styles.container}>
+              <h2 className={styles.sectionTitle}>Recommended Games For You</h2>
+              <div className={styles.sectionDescription}>
+                <p>
+                  Based on your interest in {game.title}, you might also enjoy
+                  these games available on other platforms. Click any game to
+                  visit its official website.
+                </p>
+              </div>
+            </div>
+            <GameRecommendations game={game} />
+          </section>
+        )}
     </div>
   );
 };

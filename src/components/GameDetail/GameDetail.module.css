@@ -3,12 +3,12 @@
   overflow-y: auto;
   margin: 0;
   padding: 0;
-  background-color: white;
+  background-color: #f8f9fa;
 }
 
 /* 統一所有section的基本樣式，與Introduction一致 */
 .section {
-  padding: 40px 0;
+  padding: 0 0 40px 0;
   width: 100%;
 }
 
@@ -25,13 +25,13 @@
   text-align: left;
   font-size: 32px;
   color: #333;
-  margin-bottom: 1rem;
-  padding: 0 32px;
+  margin-bottom: 0.2rem;
+  /* padding: 0 32px; */
 }
 
 .sectionDescription {
   text-align: left;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .sectionDescription p {
@@ -39,7 +39,7 @@
   line-height: 1.6;
   font-size: 1.1rem;
   margin: 0;
-  padding: 0 32px;
+  /* padding: 0 32px; */
 }
 
 .loadingContainer {
@@ -61,6 +61,8 @@
 .gameHeader {
   margin-bottom: 2rem;
   padding: 0 32px;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
 .headerTop {
@@ -160,14 +162,14 @@
 
 /* 各section樣式統一 */
 .gameIntroduction {
-  background-color: white;
-  padding: 40px 32px;
+  background-color: #f8f9fa;
+  /* padding: 40px 32px; */
   margin-bottom: 0;
 }
 
 .gameIntroduction .container {
-  padding: 0 32px;
-  background-color: #fff;
+  /* padding: 0 32px; */
+  background-color: #f8f9fa;
 }
 
 .featuredImage {
@@ -214,7 +216,7 @@
 }
 
 .tagsSection h3 {
-  margin: 0 0 0.8rem;
+  margin: 0 0 0.2rem;
   font-size: 1.2rem;
   color: #343a40;
 }
@@ -294,7 +296,7 @@
 
 /* Game Impact Visualization Styles */
 .gameImpactVisualization {
-  background-color: white;
+  background-color: #f8f9fa;
   padding-top: 40px;
   padding-bottom: 40px;
   margin-bottom: 0;
@@ -302,7 +304,7 @@
 
 .gameImpactVisualization .container {
   padding: 0 32px;
-  background-color: #fff;
+  background-color: #f8f9fa;
 }
 
 .impactTitle {
@@ -314,7 +316,7 @@
 
 /* 相關遊戲部分樣式 */
 .relatedGames {
-  background-color: white;
+  background-color: #f8f9fa;
   padding-top: 40px;
   padding-bottom: 40px;
   margin-bottom: 0;
@@ -322,12 +324,12 @@
 
 .relatedGames .container {
   padding: 0 32px;
-  background-color: #fff;
+  background-color: #f8f9fa;
 }
 
 /* 推薦遊戲部分樣式 */
 .recommendedGames {
-  background-color: white;
+  background-color: #f8f9fa;
   padding-top: 40px;
   padding-bottom: 40px;
   margin-bottom: 0;
@@ -335,7 +337,7 @@
 
 .recommendedGames .container {
   padding: 0 32px;
-  background-color: #fff;
+  background-color: #f8f9fa;
 }
 
 /* Media Queries */
@@ -413,28 +415,29 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    height: 600px;
-    overflow: hidden;
+    min-height: 400px; /* 最小高度，但可以根據圖片自適應 */
+    overflow: visible; /* 讓內容自然顯示 */
   }
   
   .featuredImage {
     margin-bottom: 0;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
+    width: 100%; /* 固定寬度 */
+    height: auto; /* 高度自適應 */
+    overflow: visible; /* 移除捲動條 */
     background-color: transparent;
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* 與h2標題頂部對齊 */
     justify-content: center;
+    padding-top: 0; /* 與右側內容對齊 */
   }
   
   .featuredImage img {
     width: 100%;
+    height: auto; /* 保持原始寬高比 */
     display: block;
     max-width: 100%;
     background-color: transparent;
     object-fit: contain;
-    max-height: 100%;
   }
 
   /* 自定義圖片區域的捲動條樣式 */

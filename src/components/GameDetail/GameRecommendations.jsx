@@ -1,13 +1,30 @@
 import React, { useState, useEffect } from "react";
 import styles from "./GameRecommendations.module.css";
 
-const GameRecommendations = () => {
+const GameRecommendations = ({ game }) => {
   const [recommendedGames, setRecommendedGames] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchRecommendedGames = async () => {
       try {
+        // 如果當前遊戲有推薦遊戲資料，優先使用
+        if (game && game.recommendedGames && game.recommendedGames.length > 0) {
+          const gameRecommendations = game.recommendedGames.map((rec) => ({
+            title: rec.title,
+            image: rec.image,
+            url: "#", // 暫時設為空，因為新資料沒有 URL
+            genres: rec.genres || [],
+            description:
+              rec.reason || "Recommended based on similar gameplay elements.",
+          }));
+
+          setRecommendedGames(gameRecommendations);
+          setLoading(false);
+          return;
+        }
+
+        // 如果沒有推薦遊戲資料，回退到原本的 recommended-games.json
         const response = await fetch("/recommended-games.json");
         if (!response.ok) {
           throw new Error("Failed to fetch recommended games");
@@ -27,7 +44,7 @@ const GameRecommendations = () => {
     };
 
     fetchRecommendedGames();
-  }, []);
+  }, [game]);
 
   if (loading) {
     return <div className={styles.loading}>Loading recommendations...</div>;
@@ -38,12 +55,7 @@ const GameRecommendations = () => {
       <div className={styles.gameCardsGrid}>
         {recommendedGames.map((game, index) => (
           <div key={index} className={styles.gameCard}>
-            <a
-              href={game.url}
-              className={styles.gameCardLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <div className={styles.gameCardLink}>
               <img
                 src={game.image}
                 alt={game.title}
@@ -63,7 +75,7 @@ const GameRecommendations = () => {
                 </div>
                 <p className={styles.gameDescription}>{game.description}</p>
               </div>
-            </a>
+            </div>
           </div>
         ))}
       </div>

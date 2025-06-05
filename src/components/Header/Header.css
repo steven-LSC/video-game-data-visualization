@@ -103,6 +103,20 @@
   background-color: #f0f0f0;
 }
 
+.search-icon {
+  width: 20px;
+  height: 20px;
+  margin-left: auto;
+  transition: filter 0.3s;
+  /* 使用filter將圖標變成與邊框相同的灰色 #ddd */
+  filter: invert(87%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(87%) contrast(87%);
+}
+
+.search-input-wrapper:focus-within .search-icon {
+  /* 聚焦時變成橘色 #FB9B1C */
+  filter: invert(71%) sepia(96%) saturate(359%) hue-rotate(6deg) brightness(103%) contrast(96%);
+}
+
 /* 搜索結果下拉列表 */
 .search-results {
   position: absolute;

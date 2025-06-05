@@ -10,8 +10,8 @@ const GameRanking = ({
   currentGameGenres = [],
   currentGamePegi = "",
 }) => {
-  // 固定的 PEGI 等級選項，包括 ALL
-  const fixedPegiRatings = ["ALL", "3", "7", "12", "16", "18"];
+  // 固定的 PEGI 等級選項
+  const fixedPegiRatings = ["3", "7", "12", "16", "18"];
 
   // 檢查是否來自 Game Detail 頁面（有傳入過濾器參數）
   const isFromGameDetail = currentGameGenres.length > 0 || currentGamePegi;
@@ -35,18 +35,18 @@ const GameRanking = ({
     }
   });
 
-  // 當前選中的 PEGI 過濾標籤
+  // 當前選中的 PEGI 過濾標籤（null 表示未選擇任何PEGI過濾）
   const [selectedPegiRating, setSelectedPegiRating] = useState(() => {
     if (isFromGameDetail) {
       // 如果來自 Game Detail，直接使用傳入的參數
-      return currentGamePegi || "ALL";
+      return currentGamePegi || null;
     } else {
       // 如果是首頁，嘗試從 sessionStorage 讀取，否則使用預設值
       try {
         const saved = sessionStorage.getItem("gameRankingPegiRating");
-        return saved !== null ? saved : "ALL";
+        return saved !== null && saved !== "" ? saved : null;
       } catch {
-        return "ALL";
+        return null;
       }
     }
   });
@@ -59,7 +59,7 @@ const GameRanking = ({
   useEffect(() => {
     if (isFromGameDetail) {
       setActiveGenreFilters([...currentGameGenres]);
-      setSelectedPegiRating(currentGamePegi || "ALL");
+      setSelectedPegiRating(currentGamePegi || null);
       setCurrentPage(1);
     }
   }, [currentGameGenres, currentGamePegi, isFromGameDetail]);
@@ -95,7 +95,8 @@ const GameRanking = ({
 
   // 處理 PEGI 過濾標籤的選擇
   const togglePegiFilter = (rating) => {
-    const newRating = selectedPegiRating === rating ? "ALL" : rating;
+    // 如果點擊已選中的選項，則取消選擇；否則選擇該選項
+    const newRating = selectedPegiRating === rating ? null : rating;
     setSelectedPegiRating(newRating);
     saveFiltersToSessionStorage(activeGenreFilters, newRating);
     setCurrentPage(1); // 重置到第一頁
@@ -108,10 +109,10 @@ const GameRanking = ({
       activeGenreFilters.length === 0 ||
       activeGenreFilters.every((filter) => game.genres.includes(filter));
 
-    // PEGI 過濾邏輯：如果選擇 ALL 則顯示所有遊戲，否則遊戲的分級必須不超過所選分級
+    // PEGI 過濾邏輯：如果未選擇 PEGI 過濾則顯示所有遊戲，否則遊戲的分級必須完全符合所選分級
     const pegiMatch =
-      selectedPegiRating === "ALL" ||
-      parseInt(game.pegiRating) <= parseInt(selectedPegiRating);
+      selectedPegiRating === null ||
+      parseInt(game.pegiRating) === parseInt(selectedPegiRating);
 
     return genreMatch && pegiMatch;
   });
@@ -187,7 +188,7 @@ const GameRanking = ({
                 onClick={() => togglePegiFilter(rating)}
                 data-rating={rating}
               >
-                {rating === "ALL" ? "ALL" : `PEGI ${rating}+`}
+                {`PEGI ${rating}+`}
               </div>
             ))}
           </div>

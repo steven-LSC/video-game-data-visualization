@@ -43,18 +43,94 @@ export const gameDataStore = {
     try {
       console.log("開始讀取遊戲數據...");
 
-      // 同時加載遊戲資料和流派資料
-      const [gamesResponse, genresResponse] = await Promise.all([
-        fetch("/games.json"),
-        fetch("/genres.json"),
-      ]);
+      // 載入 pc-console-data.json
+      const gamesResponse = await fetch("/pc-console-data.json");
 
-      if (!gamesResponse.ok || !genresResponse.ok) {
-        throw new Error("無法讀取遊戲數據或流派數據");
+      if (!gamesResponse.ok) {
+        throw new Error("無法讀取遊戲數據");
       }
 
-      const games = await gamesResponse.json();
-      const genres = await genresResponse.json();
+      const rawGames = await gamesResponse.json();
+
+      // 轉換資料格式以符合現有功能
+      const games = rawGames.map((game) => ({
+        title: game.name,
+        sales: game.sales.toLocaleString(),
+        pegiRating: game.pegi.toString(),
+        genres: game.genre || [],
+        publisher: game.publisher,
+        platform: "PC/Console", // 預設平台
+        otherLabels: game.editorPick ? [game.editorPick] : [],
+        description: game.description,
+        positiveKeywords: Array.isArray(game.positiveKeywords)
+          ? game.positiveKeywords
+          : game.positiveKeywords
+          ? [game.positiveKeywords]
+          : [],
+        positiveKeywordsReferences:
+          typeof game.positiveKeywordsReferences === "string"
+            ? game.positiveKeywordsReferences
+                .split("\n")
+                .filter((ref) => ref.trim())
+            : Array.isArray(game.positiveKeywordsReferences)
+            ? game.positiveKeywordsReferences
+            : [],
+        sexNudity: game.sexNudity,
+        violenceGore: game.violenceGore,
+        profanity: game.profanity,
+        alcoholDrugsSmoking: game.alcoholDrugsSmoking,
+        frighteningIntenseScenes: game.frighteningIntenseScenes,
+        negativeKeywordsReferences: game.negativeKeywordsReferences,
+        featuredImage: game.featureImage,
+        ranking: game.ranking,
+        developer: Array.isArray(game.developer)
+          ? game.developer.join(", ")
+          : game.developer,
+        // 推薦遊戲相關資料
+        recommendedGames: [
+          game.recommendedGame1
+            ? {
+                title: game.recommendedGame1,
+                genres: game.recommendedGame1Genre || [],
+                reason: game.recommendedGame1Reason,
+                image: game.recommendedGame1FeatureImage,
+              }
+            : null,
+          game.recommendedGame2
+            ? {
+                title: game.recommendedGame2,
+                genres: game.recommendedGame2Genre || [],
+                reason: game.recommendedGame2Reason,
+                image: game.recommendedGame2FeatureImage,
+              }
+            : null,
+          game.recommendedGame3
+            ? {
+                title: game.recommendedGame3,
+                genres: game.recommendedGame3Genre || [],
+                reason: game.recommendedGame3Reason,
+                image: game.recommendedGame3FeatureImage,
+              }
+            : null,
+          game.recommendedGame4
+            ? {
+                title: game.recommendedGame4,
+                genres: game.recommendedGame4Genre || [],
+                reason: game.recommendedGame4Reason,
+                image: game.recommendedGame4FeatureImage,
+              }
+            : null,
+        ].filter(Boolean),
+      }));
+
+      // 從遊戲中提取所有獨特的流派
+      const genresSet = new Set();
+      games.forEach((game) => {
+        if (game.genres) {
+          game.genres.forEach((genre) => genresSet.add(genre));
+        }
+      });
+      const genres = Array.from(genresSet).sort();
 
       // 更新遊戲列表和流派列表
       gameDataStore.gameList = games;
