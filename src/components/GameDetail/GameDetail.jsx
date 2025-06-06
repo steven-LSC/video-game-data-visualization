@@ -185,9 +185,8 @@ const GameDetail = () => {
           <h2 className={styles.sectionTitle}>Game Impact Analysis</h2>
           <div className={styles.sectionDescription}>
             <p>
-              Explore the potential impacts of this game on players, including
-              both positive and negative effects. This analysis is based on
-              research data and player feedback.
+              Explore the potential impacts of this game on players. This
+              analysis is based on our research data and feedback from players.
             </p>
           </div>
           <ImpactVisualization game={game} />
@@ -200,10 +199,12 @@ const GameDetail = () => {
           <h2 className={styles.sectionTitle}>Similar Games</h2>
           <div className={styles.sectionDescription}>
             <p>
-              Discover games that share similar genres, age ratings, or gameplay
-              elements. These recommendations are tailored based on {game.title}
-              's characteristics.
+              Discover games with similar genres and age ratings. You can refine
+              your search by clicking on genres or age ratings to filter out
+              elements you're not interested in or adjust the maturity level to
+              better match your preferences.
             </p>
+            <br />
           </div>
         </div>
         <GameRanking
@@ -222,13 +223,16 @@ const GameDetail = () => {
         game.recommendedGames[0].reason && (
           <section className={styles.recommendedGames + " " + styles.section}>
             <div className={styles.container}>
-              <h2 className={styles.sectionTitle}>Recommended Games For You</h2>
+              <h2 className={styles.sectionTitle}>
+                Not Quite Ready for {game.title}? Try These Instead!
+              </h2>
               <div className={styles.sectionDescription}>
                 <p>
-                  Based on your interest in {game.title}, you might also enjoy
-                  these games available on other platforms. Click any game to
-                  visit its official website.
+                  These carefully curated recommendations share genres and
+                  age-appropriate content with {game.title}, but may offer a
+                  alternative experience.
                 </p>
+                <br />
               </div>
             </div>
             <GameRecommendations game={game} />

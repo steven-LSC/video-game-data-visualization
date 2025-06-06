@@ -7,6 +7,7 @@ import GameTypesAnalysis from "../GameTypesAnalysis/GameTypesAnalysis";
 import GamingHoursCreativityAnalysis from "../GamingHoursCreativityAnalysis/GamingHoursCreativityAnalysis";
 import Carousel from "../Carousel/Carousel";
 import ChartExplanation from "./ChartExplanation";
+import LinkPreview from "../common/LinkPreview";
 
 // 應用程式的全局遊戲資料存儲
 export const gameDataStore = {
@@ -604,14 +605,20 @@ const Introduction = () => {
         <div className={styles.sectionDescription}>
           <p>
             Based on the public dataset from Kaggle,{" "}
-            <a
-              href="https://www.kaggle.com/datasets/muhammadshamoeel/effects-of-video-games-on-aggression-msdos-csv"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "#FB9B1C", textDecoration: "underline" }}
+            <LinkPreview
+              content="https://www.kaggle.com/datasets/muhammadshamoeel/effects-of-video-games-on-aggression-msdos-csv"
+              title="Kaggle Dataset Reference"
             >
-              Online Gaming Anxiety Data
-            </a>
+              <span
+                style={{
+                  color: "#FB9B1C",
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+              >
+                Online Gaming Anxiety Data
+              </span>
+            </LinkPreview>
             , the first visualization reveals that:
           </p>
           <ul>
@@ -667,14 +674,20 @@ const Introduction = () => {
         <div className={styles.sectionDescription}>
           <p>
             Based on the public dataset from Kaggle,{" "}
-            <a
-              href="https://www.kaggle.com/datasets/divyansh22/online-gaming-anxiety-data"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "#FB9B1C", textDecoration: "underline" }}
+            <LinkPreview
+              content="https://www.kaggle.com/datasets/divyansh22/online-gaming-anxiety-data"
+              title="Kaggle Dataset Reference"
             >
-              Effects of Video Games on Aggression
-            </a>
+              <span
+                style={{
+                  color: "#FB9B1C",
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+              >
+                Effects of Video Games on Aggression
+              </span>
+            </LinkPreview>
             , the second visualization shows:
           </p>
           <ul>
@@ -728,15 +741,21 @@ const Introduction = () => {
         <div className={styles.sectionDescription}>
           <p>
             Based on the public dataset from the study,{" "}
-            <a
-              href="https://files.eric.ed.gov/fulltext/EJ1461928.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "#FB9B1C", textDecoration: "underline" }}
+            <LinkPreview
+              content="https://files.eric.ed.gov/fulltext/EJ1461928.pdf"
+              title="Research Paper Reference"
             >
-              Impact of Video Game Use on Fostering Creativity in Waldorf School
-              Students
-            </a>
+              <span
+                style={{
+                  color: "#FB9B1C",
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+              >
+                Impact of Video Game Use on Fostering Creativity in Waldorf
+                School Students
+              </span>
+            </LinkPreview>
             , the third visualization shows:
           </p>
           <ul>
@@ -781,15 +800,21 @@ const Introduction = () => {
         <div className={styles.sectionDescription}>
           <p>
             Also based on the public dataset from the same study,{" "}
-            <a
-              href="https://files.eric.ed.gov/fulltext/EJ1461928.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "#FB9B1C", textDecoration: "underline" }}
+            <LinkPreview
+              content="https://files.eric.ed.gov/fulltext/EJ1461928.pdf"
+              title="Research Paper Reference"
             >
-              Impact of Video Game Use on Fostering Creativity in Waldorf School
-              Students
-            </a>
+              <span
+                style={{
+                  color: "#FB9B1C",
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+              >
+                Impact of Video Game Use on Fostering Creativity in Waldorf
+                School Students
+              </span>
+            </LinkPreview>
             , the fourth visualization indicates:
           </p>
           <ul>

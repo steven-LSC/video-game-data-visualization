@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Carousel.css";
+import LinkPreview from "../common/LinkPreview";
 
 const Carousel = ({ items, className = "" }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -53,21 +54,22 @@ const Carousel = ({ items, className = "" }) => {
               position === 0 ? "active" : ""
             } position-${position}`}
           >
-            <a
-              href={item.link}
-              className="card-link"
-              target="_blank"
-              rel="noopener noreferrer"
+            <LinkPreview
+              content={item.link}
+              title="External Reference"
+              onlyShowOnHover={true}
             >
-              <div className="image-container">
-                <img src={item.image} alt={item.title} />
-                {isYouTube && <div className="youtube-icon"></div>}
+              <div className="card-link">
+                <div className="image-container">
+                  <img src={item.image} alt={item.title} />
+                  {isYouTube && <div className="youtube-icon"></div>}
+                </div>
+                <div className="card-content">
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </div>
               </div>
-              <div className="card-content">
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </div>
-            </a>
+            </LinkPreview>
           </div>
         ))}
 
