@@ -71,6 +71,12 @@ const GameDetail = () => {
       setLoading(false);
     };
 
+    // 當 gameId 改變時滑到頁面最上面
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
     loadGameData();
   }, [gameId, navigate]);
 

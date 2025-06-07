@@ -1,6 +1,5 @@
 .gameDetailContainer {
   width: 100%;
-  overflow-y: auto;
   margin: 0;
   padding: 0;
   background-color: #f8f9fa;
@@ -176,8 +175,6 @@
   width: 100%;
   margin-bottom: 0;
   height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
   background-color: transparent;
   display: flex;
   align-items: center;
@@ -196,7 +193,6 @@
 .gameDetails {
   height: 600px;
   overflow-y: auto;
-  overflow-y: overlay;
 }
 
 .gameDetails h2 {
@@ -462,7 +458,6 @@
     /* padding-right: 10px; */
     height: 100%;
     overflow-y: auto;
-    overflow-y: overlay;
   }
   
   /* 使滾動條只在滾動時顯示 */

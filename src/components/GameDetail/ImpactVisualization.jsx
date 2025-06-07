@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
+import LinkPreview from "../common/LinkPreview";
 import styles from "./ImpactVisualization.module.css";
 
 const ImpactVisualization = ({ game }) => {
   const svgRef = useRef(null);
   const containerRef = useRef(null);
+  const [negativeCirclePositions, setNegativeCirclePositions] = useState([]);
 
   useEffect(() => {
     if (!game) return;
@@ -139,60 +141,6 @@ const ImpactVisualization = ({ game }) => {
     // 檢查數據狀態
     const hasNegativeData = game.negativeKeywordsReferences !== "no data";
     const hasPositiveData = displayedPositiveKeywords.length > 0;
-
-    // 創建popup元素（僅用於負面圓圈）
-    const createNegativePopup = () => {
-      // 移除現有的popup
-      d3.select("body").select("#negative-circle-popup").remove();
-
-      return d3
-        .select("body")
-        .append("div")
-        .attr("id", "negative-circle-popup")
-        .style("position", "absolute")
-        .style("background", "rgba(0, 0, 0, 0.9)")
-        .style("color", "white")
-        .style("padding", "12px 16px")
-        .style("border-radius", "8px")
-        .style("font-size", "14px")
-        .style("box-shadow", "0 4px 12px rgba(0, 0, 0, 0.3)")
-        .style("z-index", "1000")
-        .style("pointer-events", "none")
-        .style("opacity", "0")
-        .style("transition", "opacity 0.2s ease");
-    };
-
-    // 顯示popup（僅用於負面圓圈）
-    const showNegativePopup = (content, mouseEvent, isUrl = false) => {
-      const popup = d3.select("#negative-circle-popup");
-      if (popup.empty()) return;
-
-      if (isUrl) {
-        popup
-          .style("max-width", "400px")
-          .style("width", "400px")
-          .style("max-height", "300px");
-      } else {
-        popup
-          .style("max-width", "300px")
-          .style("width", "auto")
-          .style("max-height", "none");
-      }
-
-      popup
-        .html(content)
-        .style("left", mouseEvent.pageX + 10 + "px")
-        .style("top", mouseEvent.pageY - 10 + "px")
-        .style("opacity", "1");
-    };
-
-    // 隱藏popup（僅用於負面圓圈）
-    const hideNegativePopup = () => {
-      d3.select("#negative-circle-popup").style("opacity", "0");
-    };
-
-    // 初始化popup（僅用於負面圓圈）
-    const negativePopup = createNegativePopup();
 
     // 過濾出有效的內容評級（排除No Data）
     const validContentRatings = contentRatings.filter(
@@ -372,6 +320,15 @@ const ImpactVisualization = ({ game }) => {
         .attr("opacity", 0.6);
     });
 
+    // 保存負面圓圈位置數據用於 LinkPreview
+    const negativePositions = allCirclePositions
+      .filter((position) => position.type === "negative")
+      .map((position) => ({
+        ...position,
+        radius: getSeverityRadius(position.data.value),
+      }));
+    setNegativeCirclePositions(negativePositions);
+
     // === 步驟7: 繪製所有圓圈 ===
     // 圖片映射
     const getBackgroundImage = (key) => {
@@ -494,98 +451,7 @@ const ImpactVisualization = ({ game }) => {
           .style("white-space", "normal")
           .text(rating.value);
 
-        // 添加交互圓圈（僅用於負面圓圈且有negativeKeywordsReferences數據）
-        if (
-          game.negativeKeywordsReferences &&
-          game.negativeKeywordsReferences !== "no data"
-        ) {
-          circleGroup
-            .append("circle")
-            .attr("cx", x)
-            .attr("cy", y)
-            .attr("r", radius)
-            .attr("fill", "transparent")
-            .attr("stroke", "none")
-            .style("cursor", "pointer")
-            .on("mouseenter", function (event) {
-              const isUrl = game.negativeKeywordsReferences.startsWith("http");
-
-              let previewContent;
-              if (isUrl) {
-                // 如果是URL，顯示網頁連結卡片預覽
-                let domain;
-                try {
-                  domain = new URL(game.negativeKeywordsReferences).hostname;
-                } catch (e) {
-                  domain = "External Link";
-                }
-                previewContent = `
-                  <div style="font-weight: bold; margin-bottom: 8px;">Negative Keywords Reference</div>
-                  <div style="border: 1px solid #444; border-radius: 6px; overflow: hidden; background: #f8f9fa;">
-                    <div style="padding: 12px; background: white;">
-                      <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                        <div style="width: 16px; height: 16px; background: #007bff; border-radius: 3px; margin-right: 8px; display: flex; align-items: center; justify-content: center;">
-                          <span style="color: white; font-size: 10px; font-weight: bold;">🔗</span>
-                        </div>
-                        <span style="font-size: 14px; font-weight: bold; color: #333;">${domain}</span>
-                      </div>
-                      <div style="font-size: 13px; color: #666; line-height: 1.4; margin-bottom: 8px;">
-                        External Reference Link
-                      </div>
-                      <div style="font-size: 11px; color: #888; word-break: break-all; background: #f1f3f4; padding: 6px; border-radius: 3px;">
-                        ${game.negativeKeywordsReferences}
-                      </div>
-                    </div>
-                  </div>
-                  <div style="font-size: 12px; color: #ccc; margin-top: 6px; text-align: center;">
-                    🖱️ Click to open in new tab
-                  </div>
-                `;
-              } else {
-                // 如果是文字內容
-                previewContent = `
-                  <div style="font-weight: bold; margin-bottom: 8px;">Negative Keywords Reference</div>
-                  <div style="font-size: 13px; line-height: 1.4;">
-                    ${
-                      game.negativeKeywordsReferences.length > 200
-                        ? game.negativeKeywordsReferences.substring(0, 200) +
-                          "..."
-                        : game.negativeKeywordsReferences
-                    }
-                  </div>
-                  <div style="font-size: 12px; color: #ccc; margin-top: 8px;">Click to open full reference</div>
-                `;
-              }
-
-              showNegativePopup(previewContent, event, isUrl);
-            })
-            .on("mouseleave", function () {
-              hideNegativePopup();
-            })
-            .on("click", function () {
-              // 點擊開啟連結
-              const isUrl = game.negativeKeywordsReferences.startsWith("http");
-
-              if (isUrl) {
-                window.open(game.negativeKeywordsReferences, "_blank");
-              } else {
-                // 如果是文字內容，在新視窗顯示
-                const newWindow = window.open("", "_blank");
-                if (newWindow) {
-                  newWindow.document.write(`
-                    <html>
-                      <head><title>Negative Keywords Reference</title></head>
-                      <body style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.6;">
-                        <h2>Negative Keywords Reference</h2>
-                        <p style="white-space: pre-wrap;">${game.negativeKeywordsReferences}</p>
-                      </body>
-                    </html>
-                  `);
-                  newWindow.document.close();
-                }
-              }
-            });
-        }
+        // 移除交互圓圈，由 LinkPreview 覆蓋層處理
 
         // 調整文字位置
         setTimeout(() => {
@@ -692,13 +558,43 @@ const ImpactVisualization = ({ game }) => {
 
     // 清理函數
     return () => {
-      d3.select("body").select("#negative-circle-popup").remove();
+      // 清理代碼已移除，由 LinkPreview 組件自行管理
     };
   }, [game]);
 
   return (
-    <div ref={containerRef} style={{ width: "1200px", margin: "0 auto" }}>
+    <div
+      ref={containerRef}
+      style={{ width: "1200px", margin: "0 auto", position: "relative" }}
+    >
       <svg ref={svgRef}></svg>
+      {/* 為每個負面圓圈創建對應的 LinkPreview 覆蓋層 */}
+      {game &&
+        game.negativeKeywordsReferences &&
+        game.negativeKeywordsReferences !== "no data" &&
+        negativeCirclePositions.map((position, index) => (
+          <LinkPreview
+            key={`negative-link-${index}`}
+            content={game.negativeKeywordsReferences}
+            title="Negative Keywords Reference"
+            onlyShowOnHover={true}
+          >
+            <div
+              style={{
+                position: "absolute",
+                left: position.x - position.radius,
+                top: position.y - position.radius,
+                width: position.radius * 2,
+                height: position.radius * 2,
+                borderRadius: "50%",
+                cursor: "pointer",
+                pointerEvents: "auto",
+                // 可選：添加半透明背景來幫助調試定位
+                // backgroundColor: "rgba(255, 0, 0, 0.1)"
+              }}
+            />
+          </LinkPreview>
+        ))}
     </div>
   );
 };
