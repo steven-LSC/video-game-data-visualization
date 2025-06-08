@@ -205,10 +205,8 @@ const GameDetail = () => {
           <h2 className={styles.sectionTitle}>Similar Games</h2>
           <div className={styles.sectionDescription}>
             <p>
-              Discover games with similar genres and age ratings. You can refine
-              your search by clicking on genres or age ratings to filter out
-              elements you're not interested in or adjust the maturity level to
-              better match your preferences.
+              Use this filtering system to search for games that are similar or
+              different, all according to your preferances!
             </p>
             <br />
           </div>
@@ -234,9 +232,9 @@ const GameDetail = () => {
               </h2>
               <div className={styles.sectionDescription}>
                 <p>
-                  These carefully curated recommendations share genres and
-                  age-appropriate content with {game.title}, but may offer a
-                  alternative experience.
+                  These carefully curated recommendations share genres with{" "}
+                  {game.title}, but offer a less intense experience that may be
+                  more age-appropriate!
                 </p>
                 <br />
               </div>

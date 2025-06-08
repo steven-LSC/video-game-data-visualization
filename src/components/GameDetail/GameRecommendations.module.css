@@ -45,24 +45,7 @@
   text-overflow: ellipsis;
 }
 
-.genreContainer {
-  margin-bottom: 8px;
-  display: flex;
-  flex-direction: column;
-}
 
-.genreLabel {
-  font-weight: 600;
-  color: #666;
-  font-size: 14px;
-  margin: 0 0 4px 0;
-}
-
-.genreTags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-}
 
 .genreTag {
   background-color: rgb(233, 236, 239);
@@ -72,6 +55,44 @@
   border-radius: 4px;
   display: inline-block;
   margin: 0;
+}
+
+/* 統一標籤容器 */
+.tagsContainer {
+  margin-bottom: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.pegiTag {
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* PEGI 評級顏色 */
+.pegi3, .pegi7 {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pegi12, .pegi16 {
+  background-color: #FFC107;
+  color: #333;
+}
+
+.pegi18 {
+  background-color: #F44336;
+  color: white;
+}
+
+.pegiUnknown {
+  background-color: #D9D9D9;
+  color: #666;
 }
 
 .gameDescription {
