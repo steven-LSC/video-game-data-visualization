@@ -260,6 +260,9 @@
   flex-wrap: wrap;
   gap: 6px;
   justify-content: flex-start;
+  align-items: center;
+  height: 80px; /* 容納兩行標籤的高度 (32px 標籤高度 + 6px gap + 32px 第二行 + padding) */
+  align-content: center; /* 垂直置中內容 */
 }
 
 /* 過濾器中的標籤樣式 */
