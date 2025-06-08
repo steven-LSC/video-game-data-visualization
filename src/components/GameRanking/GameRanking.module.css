@@ -222,7 +222,7 @@
 }
 
 .rankingTable tbody tr.emptyRow {
-  height: 72px;
+  height: 105px; /* 與一般行保持相同高度，加上 padding 總共約 96px */
 }
 
 /* 空白行也要保持黑白交替 */
