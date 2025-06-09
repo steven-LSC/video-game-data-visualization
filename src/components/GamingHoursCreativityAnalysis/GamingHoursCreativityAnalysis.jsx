@@ -83,11 +83,20 @@ const CreativityTimeAnalysis = () => {
       return;
     }
 
-    // 處理數據為散點圖格式
-    const scatterData = data.map((item) => ({
-      x: gameHoursMap[item["Daily game time"]],
-      y: parseInt(item["TTCT Test Score"]),
-    }));
+    // 處理數據為散點圖格式，加上 jitter 算法避免數據點重疊
+    const scatterData = data.map((item) => {
+      const baseX = gameHoursMap[item["Daily game time"]];
+      // 添加 jitter：在 x 軸方向加上小的隨機偏移 (-0.3 到 +0.3)
+      const jitterX = baseX + (Math.random() - 0.5) * 0.6;
+
+      return {
+        x: jitterX,
+        y: parseInt(item["TTCT Test Score"]),
+        // 保存原始數據，方便顯示
+        originalHours: item["Daily game time"],
+        originalX: baseX, // 保存原始的 x 值
+      };
+    });
 
     // 計算每個遊戲時間類別的平均創意度得分
     const creativityScoresByGameHours = {};
@@ -140,7 +149,7 @@ const CreativityTimeAnalysis = () => {
             borderColor: "rgba(75, 192, 192, 1)",
             borderWidth: 1,
             pointRadius: 5,
-            pointHoverRadius: 12,
+            pointHoverRadius: 20,
             pointBackgroundColor: "rgba(75, 192, 192, 0.8)",
             pointBorderColor: "rgba(75, 192, 192, 1)",
             pointHoverBackgroundColor: "rgba(75, 192, 192, 1)",
@@ -157,11 +166,11 @@ const CreativityTimeAnalysis = () => {
             borderColor: "rgba(255, 99, 132, 1)",
             borderWidth: 3,
             tension: 0.4,
-            pointRadius: 6,
+            pointRadius: 8,
             pointBackgroundColor: "rgba(255, 99, 132, 1)",
             pointBorderColor: "#fff",
             pointBorderWidth: 2,
-            pointHoverRadius: 12,
+            pointHoverRadius: 20,
             pointHoverBackgroundColor: "rgba(255, 99, 132, 1)",
             pointHoverBorderColor: "#fff",
             order: 1,
@@ -199,9 +208,7 @@ const CreativityTimeAnalysis = () => {
 
                 if (context.datasetIndex === 0) {
                   // 對於散點圖數據（Individual Data Points）
-                  const originalHours = Object.keys(gameHoursMap).find(
-                    (key) => gameHoursMap[key] === context.parsed.x
-                  );
+                  const originalHours = context.raw.originalHours;
                   return `${datasetLabel}: Gaming Time: ${originalHours}, Creativity Score: ${context.parsed.y}`;
                 } else {
                   // 對於平均值線（Average Creativity Score）
@@ -223,7 +230,6 @@ const CreativityTimeAnalysis = () => {
                 size: 12,
               },
               usePointStyle: true,
-              // padding: 20,
             },
           },
         },
@@ -231,6 +237,8 @@ const CreativityTimeAnalysis = () => {
           x: {
             type: "linear",
             position: "bottom",
+            min: 0,
+            max: 4,
             offset: true,
             grid: {
               offset: true,

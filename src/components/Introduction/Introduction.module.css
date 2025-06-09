@@ -108,7 +108,9 @@
   width: 800px;
   display: flex;
   margin-bottom: 30px;
-  margin-bottom: 60px
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 300;
 }
 
 .searchInputWrapper {
@@ -120,7 +122,7 @@
   border: 2px solid #FB9B1C;
   border-radius: 12px;
   padding: 0 20px;
-  z-index: 20;
+  z-index: 301;
   transition: border-color 0.3s;
 }
 
@@ -173,7 +175,7 @@
   margin-bottom: 80px;
   position: relative;
   max-width: 1200px;
-  z-index: 1000;
+  z-index: 100;
 }
 
 .whyHeader {
@@ -217,7 +219,7 @@
   margin-right: 32px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   animation: slideDown 0.3s ease-out;
-  z-index: 9999;
+  z-index: 200;
 }
 
 @keyframes slideDown {
@@ -309,7 +311,7 @@
   background-color: white;
   border-radius: 0 0 12px 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 10;
+  z-index: 302;
   max-height: 350px;
   overflow-y: auto;
 }
@@ -411,17 +413,26 @@
 
 /* 為"Benefits"和"Concerns"文字添加顏色 */
 .benefitText {
-  color: #4CAF50; /* 綠色 */
+  color: white; /* 白色文字 */
   font-weight: 600;
+  background-color: #4CAF50; /* 綠色背景 */
+  border-radius: 8px;
+  padding: 4px 8px;
 }
 
 .concernText {
-  color: #F44336; /* 紅色 */
+  color: white; /* 白色文字 */
   font-weight: 600;
+  background-color: #F44336; /* 紅色背景 */
+  border-radius: 8px;
+  padding: 4px 8px;
 }
 
 .orangeText {
-  color: #FB9B1C;
+  color: white; /* 白色文字 */
+  background-color: #FB9B1C; /* 橙色背景 */
+  border-radius: 8px;
+  padding: 4px 8px;
 }
 
  

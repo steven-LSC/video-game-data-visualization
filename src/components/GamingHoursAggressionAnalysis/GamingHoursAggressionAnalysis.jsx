@@ -20,11 +20,11 @@ const AggressionAnalysis = ({ onGameTypeChange }) => {
 
   // 遊戲時間映射
   const gameHoursMap = {
-    "less than 1 hour": 1,
-    "more than 1 hour": 2,
-    "more than 2 hours": 3,
-    "more than 3 hours": 4,
-    "more than 5 hours": 5,
+    "less than 1 hour": 0,
+    "more than 1 hour": 1,
+    "more than 2 hours": 2,
+    "more than 3 hours": 3,
+    "more than 5 hours": 4,
   };
 
   // X 軸類型映射到 CSV 欄位名稱
@@ -119,19 +119,26 @@ const AggressionAnalysis = ({ onGameTypeChange }) => {
     // 獲取當前 X 軸對應的數據欄位名稱
     const xAxisField = xAxisMetrics[xAxisType];
 
-    // 處理數據為散點圖格式
+    // 處理數據為散點圖格式，加上 jitter 算法避免數據點重疊
     const scatterData = data
       .filter((item) => {
         const hours = gameHoursMap[item[xAxisField]];
         const score = parseInt(item["Buss-Perry Aggression Score"]);
-        return !isNaN(hours) && !isNaN(score) && hours > 0;
+        return !isNaN(hours) && !isNaN(score) && hours >= 0;
       })
-      .map((item) => ({
-        x: gameHoursMap[item[xAxisField]],
-        y: parseInt(item["Buss-Perry Aggression Score"]),
-        // 保存原始時間文字，方便顯示
-        originalHours: item[xAxisField],
-      }));
+      .map((item) => {
+        const baseX = gameHoursMap[item[xAxisField]];
+        // 添加 jitter：在 x 軸方向加上小的隨機偏移 (-0.3 到 +0.3)
+        const jitterX = baseX + (Math.random() - 0.5) * 0.6;
+
+        return {
+          x: jitterX,
+          y: parseInt(item["Buss-Perry Aggression Score"]),
+          // 保存原始數據，方便顯示和計算
+          originalHours: item[xAxisField],
+          originalX: baseX, // 保存原始的 x 值
+        };
+      });
 
     // 計算每個遊戲時間類別的平均攻擊性得分
     const aggScoresByGameHours = {};
@@ -194,11 +201,11 @@ const AggressionAnalysis = ({ onGameTypeChange }) => {
             borderColor: "rgba(255, 99, 132, 1)",
             borderWidth: 3,
             tension: 0.4,
-            pointRadius: 6,
+            pointRadius: 8,
             pointBackgroundColor: "rgba(255, 99, 132, 1)",
             pointBorderColor: "#fff",
             pointBorderWidth: 2,
-            pointHoverRadius: 12,
+            pointHoverRadius: 20,
             pointHoverBackgroundColor: "rgba(255, 99, 132, 1)",
             pointHoverBorderColor: "#fff",
             order: 1,
@@ -210,7 +217,7 @@ const AggressionAnalysis = ({ onGameTypeChange }) => {
             borderColor: "rgba(75, 192, 192, 1)",
             borderWidth: 1,
             pointRadius: 5,
-            pointHoverRadius: 12,
+            pointHoverRadius: 20,
             pointBackgroundColor: "rgba(75, 192, 192, 0.8)",
             pointBorderColor: "rgba(75, 192, 192, 1)",
             pointHoverBackgroundColor: "rgba(75, 192, 192, 1)",
@@ -284,7 +291,6 @@ const AggressionAnalysis = ({ onGameTypeChange }) => {
                 size: 12,
               },
               usePointStyle: true,
-              // padding: 20,
             },
           },
         },
@@ -292,6 +298,8 @@ const AggressionAnalysis = ({ onGameTypeChange }) => {
           x: {
             type: "linear",
             position: "bottom",
+            min: 0,
+            max: 4,
             offset: true,
             grid: {
               offset: true,
@@ -306,7 +314,7 @@ const AggressionAnalysis = ({ onGameTypeChange }) => {
             ticks: {
               callback: function (value) {
                 // 將標籤的第一個字母改為大寫
-                const label = xLabels[value - 1] || "";
+                const label = xLabels[value] || "";
                 if (label.length > 0) {
                   return label.charAt(0).toUpperCase() + label.slice(1);
                 }

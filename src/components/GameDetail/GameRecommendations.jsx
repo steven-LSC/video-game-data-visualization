@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./GameRecommendations.module.css";
+import LinkPreview from "../common/LinkPreview";
 
 const GameRecommendations = ({ game }) => {
   const [recommendedGames, setRecommendedGames] = useState([]);
@@ -32,7 +33,7 @@ const GameRecommendations = ({ game }) => {
               return {
                 title: rec.title,
                 image: rec.image,
-                url: "#", // 暫時設為空，因為新資料沒有 URL
+                link: rec.link || "#", // 保持 link 欄位名稱一致
                 genres: rec.genres || [],
                 pegiRating: pegiRating,
                 description:
@@ -78,31 +79,42 @@ const GameRecommendations = ({ game }) => {
       <div className={styles.gameCardsGrid}>
         {recommendedGames.map((game, index) => (
           <div key={index} className={styles.gameCard}>
-            <div className={styles.gameCardLink}>
-              <img
-                src={game.image}
-                alt={game.title}
-                className={styles.gameImage}
-              />
-              <div className={styles.gameCardContent}>
-                <h3 className={styles.gameTitle}>{game.title}</h3>
-                <div className={styles.tagsContainer}>
-                  <p
-                    className={`${styles.pegiTag} ${
-                      styles[`pegi${game.pegiRating}`]
-                    }`}
-                  >
-                    PEGI {game.pegiRating}
-                  </p>
-                  {game.genres.slice(0, 4).map((genre, idx) => (
-                    <p key={idx} className={styles.genreTag}>
-                      {genre}
+            <LinkPreview
+              content={game.link}
+              title="Recommended Game"
+              onlyShowOnHover={true}
+            >
+              <a
+                href={game.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.gameCardLink}
+              >
+                <img
+                  src={game.image}
+                  alt={game.title}
+                  className={styles.gameImage}
+                />
+                <div className={styles.gameCardContent}>
+                  <h3 className={styles.gameTitle}>{game.title}</h3>
+                  <div className={styles.tagsContainer}>
+                    <p
+                      className={`${styles.pegiTag} ${
+                        styles[`pegi${game.pegiRating}`]
+                      }`}
+                    >
+                      PEGI {game.pegiRating}
                     </p>
-                  ))}
+                    {game.genres.slice(0, 4).map((genre, idx) => (
+                      <p key={idx} className={styles.genreTag}>
+                        {genre}
+                      </p>
+                    ))}
+                  </div>
+                  <p className={styles.gameDescription}>{game.description}</p>
                 </div>
-                <p className={styles.gameDescription}>{game.description}</p>
-              </div>
-            </div>
+              </a>
+            </LinkPreview>
           </div>
         ))}
       </div>

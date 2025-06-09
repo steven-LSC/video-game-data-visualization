@@ -95,6 +95,7 @@ export const gameDataStore = {
                 genres: game.recommendedGame1Genre || [],
                 reason: game.recommendedGame1Reason,
                 image: game.recommendedGame1FeatureImage,
+                link: game.recommendedGame1Link,
               }
             : null,
           game.recommendedGame2
@@ -103,6 +104,7 @@ export const gameDataStore = {
                 genres: game.recommendedGame2Genre || [],
                 reason: game.recommendedGame2Reason,
                 image: game.recommendedGame2FeatureImage,
+                link: game.recommendedGame2Link,
               }
             : null,
           game.recommendedGame3
@@ -111,6 +113,7 @@ export const gameDataStore = {
                 genres: game.recommendedGame3Genre || [],
                 reason: game.recommendedGame3Reason,
                 image: game.recommendedGame3FeatureImage,
+                link: game.recommendedGame3Link,
               }
             : null,
           game.recommendedGame4
@@ -119,6 +122,7 @@ export const gameDataStore = {
                 genres: game.recommendedGame4Genre || [],
                 reason: game.recommendedGame4Reason,
                 image: game.recommendedGame4FeatureImage,
+                link: game.recommendedGame4Link,
               }
             : null,
         ].filter(Boolean),
@@ -681,17 +685,17 @@ const Introduction = () => {
         <GamingHoursMentalHealthAnalysis onMetricChange={handleMetricChange} />
         <ChartExplanation>
           <p>
-            This bubble chart shows the relationship between weekly gaming hours
-            and mental health indicator scores.
+            This chart shows the relationship between weekly gaming hours and
+            mental health indicator scores.
           </p>
           <ul>
             <li>
-              Each bubble represents a group of participants with the same
-              gaming hours and mental health indicator score.
+              Each box plot represents the distribution of mental health scores
+              for participants with the same gaming hours.
             </li>
             <li>
-              The size of the bubble indicates the number of participants in
-              that group.
+              The box shows the median, quartiles (Q1, Q3), and range (min, max)
+              of scores for each gaming hour group.
             </li>
             <li>
               The red line shows the average mental health indicator score for
@@ -819,8 +823,8 @@ const Introduction = () => {
         <GameTypesAnalysis onMetricChange={handleMetricChange} />
         <ChartExplanation>
           <p>
-            This bubble chart illustrates the relationship between different
-            game types, play frequency, and creative activities.
+            This chart illustrates the relationship between different game
+            types, play frequency, and creative activities.
           </p>
           <ul>
             <li>

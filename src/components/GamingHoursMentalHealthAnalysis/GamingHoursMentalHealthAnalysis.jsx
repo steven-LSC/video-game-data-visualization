@@ -1,8 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Chart } from "chart.js/auto";
+import {
+  BoxPlotController,
+  BoxAndWiskers,
+} from "@sgratzl/chartjs-chart-boxplot";
 import Papa from "papaparse";
 import styles from "./GamingHoursMentalHealthAnalysis.module.css";
 import TabSelector from "../common/TabSelector";
+
+// 註冊 box plot 組件
+Chart.register(BoxPlotController, BoxAndWiskers);
 
 // 禁用 Chart.js 中的 datalabels 插件（如果已自動註冊）
 Chart.overrides.bubble.plugins = Chart.overrides.bubble.plugins || {};
@@ -70,7 +77,7 @@ const AnxietyAnalysis = ({ onMetricChange }) => {
   useEffect(() => {
     // 確保 chartData 存在且圖表 refs 不為 null
     if (chartData && chartRef.current) {
-      createBubbleChart(chartData);
+      createBoxPlotChart(chartData);
     }
 
     return () => {
@@ -90,7 +97,7 @@ const AnxietyAnalysis = ({ onMetricChange }) => {
     }
   };
 
-  const createBubbleChart = (data) => {
+  const createBoxPlotChart = (data) => {
     if (chartInstance.current) {
       chartInstance.current.destroy();
     }
@@ -114,120 +121,104 @@ const AnxietyAnalysis = ({ onMetricChange }) => {
       return !isNaN(hours) && !isNaN(metricValue) && hours >= 0;
     });
 
-    // 計算每個小時和指標值組合的數量
-    const bubbleData = {};
+    // 按每個具體的遊戲小時數分組數據
+    const hoursGrouped = {};
 
     validData.forEach((item) => {
       const hours = parseInt(item.Hours);
       const metricValue = parseInt(item[yAxisMetric]);
 
-      // 創建唯一鍵，用於計數
-      const key = `${hours}-${metricValue}`;
+      // 按具體小時數分組
+      const hourGroup = `${hours}h`;
 
-      if (!bubbleData[key]) {
-        bubbleData[key] = {
-          x: hours,
-          y: metricValue,
-          count: 0,
-        };
+      if (!hoursGrouped[hourGroup]) {
+        hoursGrouped[hourGroup] = [];
       }
 
-      bubbleData[key].count++;
+      hoursGrouped[hourGroup].push(metricValue);
     });
 
-    // 將數據轉換為氣泡圖格式
-    const bubbles = Object.values(bubbleData).map((item) => ({
-      x: item.x,
-      y: item.y,
-      r: Math.sqrt(item.count) * 3, // 半徑根據數量的平方根進行縮放，讓視覺效果更合理
+    // 過濾掉樣本數少於 5 的小時數，確保統計意義，然後按小時數排序
+    const filteredGroups = Object.entries(hoursGrouped)
+      .filter(([group, values]) => values.length >= 5)
+      .sort((a, b) => {
+        // 按數字大小排序
+        const hourA = parseInt(a[0].replace("h", ""));
+        const hourB = parseInt(b[0].replace("h", ""));
+        return hourA - hourB;
+      });
+
+    // 創建 box plot 數據
+    const boxplotData = filteredGroups.map(([group, values]) => ({
+      label: group,
+      data: values,
     }));
 
-    // 計算最大值和最小值，用於自動調整軸的範圍
-    const hours = validData.map((item) => parseInt(item.Hours));
-    const metricValues = validData.map((item) => parseInt(item[yAxisMetric]));
-
-    const maxHours = Math.max(...hours);
-    const minHours = Math.min(...hours);
-    const maxMetric = Math.max(...metricValues);
-    const minMetric = Math.min(...metricValues);
-
-    // 計算每個遊戲時間的平均指標值 - 新增
-    const hourToMetricValues = {};
-
-    validData.forEach((item) => {
-      const hour = parseInt(item.Hours);
-      const value = parseInt(item[yAxisMetric]);
-
-      if (!hourToMetricValues[hour]) {
-        hourToMetricValues[hour] = {
-          sum: 0,
-          count: 0,
+    // 計算每個小時的平均值，用於繪製平均線
+    const averageLineData = filteredGroups
+      .map(([group, values]) => {
+        const hourValue = parseInt(group.replace("h", ""));
+        const average =
+          values.reduce((sum, val) => sum + val, 0) / values.length;
+        return {
+          x: hourValue,
+          y: average,
         };
-      }
-
-      hourToMetricValues[hour].sum += value;
-      hourToMetricValues[hour].count++;
-    });
-
-    // 計算平均值並按小時排序，只包含至少有5個樣本的遊戲時間
-    const averageLineData = Object.entries(hourToMetricValues)
-      .filter(([hour, data]) => data.count >= 5) // 過濾少於5個參與者的遊戲時間
-      .map(([hour, data]) => ({
-        x: parseInt(hour),
-        y: data.sum / data.count,
-      }))
+      })
       .sort((a, b) => a.x - b.x);
 
-    // 創建單一數據集
-    const dataset = {
-      label: `Gaming Hours vs ${metricNames[yAxisMetric]}`,
-      data: bubbles,
-      backgroundColor: "rgba(75, 192, 192, 0.6)",
-      borderColor: "rgba(75, 192, 192, 1)",
-      borderWidth: 1,
-      hoverBackgroundColor: "rgba(75, 192, 192, 0.8)",
-      hoverBorderColor: "rgba(75, 192, 192, 1)",
-      hoverBorderWidth: 2,
-    };
-
-    // 創建平均值折線數據集 - 新增
-    const averageLineDataset = {
-      type: "line",
-      label: `Average ${metricNames[yAxisMetric]}`,
-      data: averageLineData,
-      fill: false,
-      borderColor: "rgba(255, 99, 132, 1)",
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-      borderWidth: 2,
-      tension: 0.3,
-      pointRadius: 3,
-      pointBackgroundColor: "rgba(255, 99, 132, 1)",
-      pointBorderColor: "#fff",
-      pointBorderWidth: 1,
-      pointHoverRadius: 12,
-    };
+    // 計算統計範圍
+    const allValues = Object.values(hoursGrouped).flat();
+    const maxMetric = Math.max(...allValues);
+    const minMetric = Math.min(...allValues);
 
     chartInstance.current = new Chart(ctx, {
-      type: "bubble",
+      type: "boxplot",
       data: {
-        datasets: [averageLineDataset, dataset], // 先畫折線圖，後畫氣泡圖，這樣折線圖會在上層
+        labels: boxplotData.map((item) => item.label),
+        datasets: [
+          {
+            label: metricNames[yAxisMetric],
+            data: boxplotData.map((item) => item.data),
+            backgroundColor: "rgba(75, 192, 192, 0.6)",
+            borderColor: "rgba(75, 192, 192, 1)",
+            borderWidth: 1,
+            outlierColor: "transparent", // 隱藏異常值點
+            outlierRadius: 0, // 設為0隱藏異常值
+            itemRadius: 0, // 隱藏個別數據點，只顯示箱型圖
+            order: 2, // 箱型圖在下層
+            // Hover 效果
+            hoverBackgroundColor: "rgba(75, 192, 192, 0.8)",
+            hoverBorderColor: "rgba(75, 192, 192, 1)",
+            hoverBorderWidth: 3,
+          },
+          {
+            type: "line",
+            label: `Average ${metricNames[yAxisMetric]}`,
+            data: averageLineData,
+            fill: false,
+            borderColor: "rgba(255, 99, 132, 1)",
+            backgroundColor: "rgba(255, 99, 132, 1)",
+            borderWidth: 3,
+            tension: 0.4,
+            pointRadius: 5,
+            pointBackgroundColor: "rgba(255, 99, 132, 1)",
+            pointBorderColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 20,
+            pointHoverBackgroundColor: "rgba(255, 99, 132, 1)",
+            pointHoverBorderColor: "#fff",
+            order: 1, // 平均線在上層
+          },
+        ],
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        elements: {
-          point: {
-            hoverRadius: function (context) {
-              // 讓每個氣泡在hover時放大1.5倍
-              const originalRadius = context.raw ? context.raw.r : 5; // 如果無法獲取原始半徑，使用預設值5
-              return originalRadius + 5;
-            },
-          },
-        },
         plugins: {
           title: {
             display: true,
-            text: `Relationship Between Gaming Hours and ${metricNames[yAxisMetric]}`,
+            text: `Distribution of ${metricNames[yAxisMetric]} by Gaming Hours`,
             font: {
               size: 16,
               weight: "bold",
@@ -238,28 +229,40 @@ const AnxietyAnalysis = ({ onMetricChange }) => {
           },
           tooltip: {
             callbacks: {
-              title: function () {
-                // 移除tooltip的標題
-                return "";
+              title: function (context) {
+                return `Gaming Hours: ${context[0].label}`;
               },
               label: function (context) {
-                if (context.datasetIndex === 0) {
-                  // 平均值折線
-                  return `Hours: ${context.parsed.x}, Average ${
+                if (context.datasetIndex === 1) {
+                  // 平均值線的 tooltip
+                  return `Average ${
                     metricNames[yAxisMetric]
                   }: ${context.parsed.y.toFixed(2)}`;
                 } else {
-                  // 氣泡數據
-                  const point = context.raw;
-                  return `Hours: ${point.x}, ${metricNames[yAxisMetric]}: ${point.y}`;
+                  // Box plot 的 tooltip
+                  const stats = context.parsed;
+                  return [
+                    `Min: ${stats.min.toFixed(1)}`,
+                    `Q1: ${stats.q1.toFixed(1)}`,
+                    `Median: ${stats.median.toFixed(1)}`,
+                    `Q3: ${stats.q3.toFixed(1)}`,
+                    `Max: ${stats.max.toFixed(1)}`,
+                    `Sample size: ${
+                      context.dataset.data[context.dataIndex].length
+                    }`,
+                  ];
                 }
               },
             },
           },
           legend: {
+            display: true,
+            position: "top",
             labels: {
-              usePointStyle: true, // 使用圓形樣式而不是正方形
-              pointStyle: "circle", // 明確指定為圓形
+              font: {
+                size: 12,
+              },
+              usePointStyle: true,
             },
           },
         },
@@ -271,11 +274,6 @@ const AnxietyAnalysis = ({ onMetricChange }) => {
               padding: {
                 top: 15,
               },
-            },
-            suggestedMin: Math.max(0, minHours - 2),
-            suggestedMax: maxHours + 2,
-            ticks: {
-              stepSize: 5,
             },
           },
           y: {

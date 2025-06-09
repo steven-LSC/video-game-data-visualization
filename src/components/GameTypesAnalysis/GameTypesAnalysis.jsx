@@ -140,8 +140,8 @@ const CreativityAnalysis = ({ onMetricChange }) => {
     if (maxSampleSize === minSampleSize) maxSampleSize = minSampleSize + 5;
 
     // 計算氣泡大小的範圍，根據樣本數量
-    const minBubbleSize = 8;
-    const maxBubbleSize = 35;
+    const minBubbleSize = 1;
+    const maxBubbleSize = 42;
 
     // 為每個遊戲類型和頻率組合創建氣泡數據
     gameTypes.forEach((gameType, gameIndex) => {
@@ -167,7 +167,7 @@ const CreativityAnalysis = ({ onMetricChange }) => {
             const avgScore = totalScore / validScores;
             const sampleSize = filteredData.length;
 
-            // 根據樣本數量計算氣泡大小
+            // 使用線性縮放根據樣本數量計算氣泡大小
             const normalizedSampleSize =
               (sampleSize - minSampleSize) / (maxSampleSize - minSampleSize);
             const bubbleSize =
@@ -190,6 +190,12 @@ const CreativityAnalysis = ({ onMetricChange }) => {
 
     const bubbles = Object.values(bubbleData);
 
+    // 計算該圖表中所有數據點的 avgScore 最大值和最小值
+    const avgScores = bubbles.map((bubble) => bubble.avgScore);
+    const minAvgScore = Math.min(...avgScores);
+    const maxAvgScore = Math.max(...avgScores);
+    console.log(minAvgScore, maxAvgScore);
+
     chartInstance.current = new Chart(ctx, {
       type: "bubble",
       data: {
@@ -199,11 +205,11 @@ const CreativityAnalysis = ({ onMetricChange }) => {
             data: bubbles,
             backgroundColor: (context) => {
               const point = context.raw;
-              // 根據頻率計算顏色強度，增加對比度
-              const normalizedFrequency = (point.frequency - 1) / 4; // 將1-5映射到0-1
-              // 使用指數函數增強對比度，並降低最小透明度
-              const enhancedFrequency = Math.pow(normalizedFrequency, 0.7); // 讓低頻率更淺，高頻率更深
-              return `rgba(75, 192, 192, ${0.05 + enhancedFrequency * 0.95})`;
+              // 線性映射到 0-1，然後用指數函數放大高值差異
+              const normalizedScore =
+                (point.avgScore - minAvgScore) / (maxAvgScore - minAvgScore);
+              console.log(normalizedScore);
+              return `rgba(75, 192, 192, ${normalizedScore})`;
             },
             borderColor: "rgba(75, 192, 192, 1)",
             borderWidth: 1,
@@ -218,9 +224,16 @@ const CreativityAnalysis = ({ onMetricChange }) => {
         elements: {
           point: {
             hoverRadius: function (context) {
-              // hover時氣泡大小增加10px
+              // hover時氣泡縮放邏輯：設置最大最小值，其他情況放大2倍
               const originalRadius = context.raw ? context.raw.r : 10;
-              return originalRadius + 5;
+              const scaledRadius = originalRadius * 2;
+              const minHoverSize = 20;
+              const maxHoverSize = 50;
+
+              return Math.min(
+                Math.max(scaledRadius, minHoverSize),
+                maxHoverSize
+              );
             },
           },
         },

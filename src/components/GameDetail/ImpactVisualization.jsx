@@ -426,6 +426,11 @@ const ImpactVisualization = ({ game }) => {
               color: "#000000",
               fontWeight: "normal",
             };
+          } else if (lowerSeverity === "severe") {
+            return {
+              color: "#FFBDB7",
+              fontWeight: "bold",
+            };
           } else {
             return {
               color: "#740008",
@@ -449,6 +454,12 @@ const ImpactVisualization = ({ game }) => {
           .style("max-width", textMaxWidth + "px")
           .style("line-height", "1.1")
           .style("white-space", "normal")
+          .style(
+            "text-shadow",
+            rating.value.toLowerCase() === "severe"
+              ? "1px 1px 3px rgba(0, 0, 0, 0.6)"
+              : "none"
+          )
           .text(rating.value);
 
         // 移除交互圓圈，由 LinkPreview 覆蓋層處理
@@ -539,6 +550,7 @@ const ImpactVisualization = ({ game }) => {
           .style("max-width", textMaxWidth + "px")
           .style("line-height", "1.2")
           .style("white-space", "normal")
+          .style("text-shadow", "2px 2px 4px rgba(0, 0, 0, 0.8)")
           .text(keyword);
 
         // 調整文字位置到圓圈中心

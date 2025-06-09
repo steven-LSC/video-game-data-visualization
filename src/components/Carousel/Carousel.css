@@ -6,95 +6,44 @@
   padding: 0;
 }
 
-/* 為內容區域創建邊界 */
-.carousel-track {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* 滑動視窗 */
+.carousel-viewport {
   position: relative;
   width: 100%;
   height: 450px;
-  margin: 0 auto;
-  padding: 20px 0;
+  overflow: hidden;
   border-radius: 16px;
-  overflow: hidden; /* 在內容區域邊界處切掉卡片 */
+  padding: 40px 0;
+}
+
+/* 滑動軌道 */
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  height: 100%;
+  padding: 0 20px;
+  transition: transform 0.3s ease;
 }
 
 /* 卡片基本樣式 */
 .carousel-card {
-  position: absolute;
-  width: 280px;
+  flex: 0 0 280px;
   height: 380px;
   background-color: white;
   border: 2px solid #4CAF50;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s ease;
-}
-
-/* 活動卡片樣式 - 移除大小差異，僅保留z-index */
-.carousel-card.active {
-  z-index: 10;
+  transition: all 0.3s ease;
 }
 
 /* 卡片 hover 效果 */
-.carousel-card.active:hover {
-  transform: translateX(-50%) translateY(-10px);
+.carousel-card:hover {
+  transform: translateY(-10px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* 卡片位置 - 均勻分佈 */
-.carousel-card.position-0 {
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
-}
 
-.carousel-card.position--1 {
-  left: 50%;
-  transform: translateX(calc(-50% - 300px)); /* 固定間距300px */
-  z-index: 4;
-}
-
-.carousel-card.position--2 {
-  left: 50%;
-  transform: translateX(calc(-50% - 600px)); /* 固定間距600px，部分被切掉 */
-  z-index: 3;
-}
-
-.carousel-card.position-1 {
-  left: 50%;
-  transform: translateX(calc(-50% + 300px)); /* 固定間距300px */
-  z-index: 4;
-}
-
-.carousel-card.position-2 {
-  left: 50%;
-  transform: translateX(calc(-50% + 600px)); /* 固定間距600px，部分被切掉 */
-  z-index: 3;
-}
-
-/* 為所有位置的卡片添加 hover 效果 */
-.carousel-card.position--1:hover {
-  transform: translateX(calc(-50% - 300px)) translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.carousel-card.position--2:hover {
-  transform: translateX(calc(-50% - 600px)) translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.carousel-card.position-1:hover {
-  transform: translateX(calc(-50% + 300px)) translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.carousel-card.position-2:hover {
-  transform: translateX(calc(-50% + 600px)) translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
 
 /* 卡片整體連結樣式 */
 .card-link {
@@ -153,17 +102,17 @@
   transform: translateY(-50%);
   width: 50px;
   height: 50px;
-  background-color: rgba(76, 175, 80, 0.7); /* 預設綠色，帶透明度 */
+  background-color: rgba(76, 175, 80, 0.7);
   border-radius: 50%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border: none;
-  outline: none; /* 移除點擊時的藍色外框 */
+  outline: none;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 24px;
   cursor: pointer;
-  z-index: 20;
+  z-index: 30; /* 提高 z-index 確保浮在上方 */
   transition: all 0.2s ease;
   padding: 0;
   line-height: 1;
@@ -189,8 +138,14 @@
 }
 
 .carousel-arrow:hover {
-  background-color: rgba(76, 175, 80, 0.9); /* 懸停時提高不透明度 */
+  background-color: rgba(76, 175, 80, 0.9);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-arrow:disabled {
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .carousel-arrow.prev {
@@ -201,106 +156,20 @@
   right: 15px;
 }
 
-/* 指示器點 */
-.carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 20px;
-}
 
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #ddd;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.dot.active {
-  background-color: #333333;
-  transform: scale(1.2);
-}
 
 /* 響應式調整 */
 @media (max-width: 992px) {
   .carousel-card {
-    width: 240px;
+    flex: 0 0 240px;
     height: 350px;
-  }
-  
-  .carousel-card.position--1 {
-    transform: translateX(calc(-50% - 260px)); /* 較小的間距 */
-  }
-  
-  .carousel-card.position--2 {
-    transform: translateX(calc(-50% - 520px)); /* 較小的間距 */
-  }
-  
-  .carousel-card.position-1 {
-    transform: translateX(calc(-50% + 260px)); /* 較小的間距 */
-  }
-  
-  .carousel-card.position-2 {
-    transform: translateX(calc(-50% + 520px)); /* 較小的間距 */
-  }
-  
-  /* 平板的 hover 效果 */
-  .carousel-card.position--1:hover {
-    transform: translateX(calc(-50% - 260px)) translateY(-10px);
-  }
-  
-  .carousel-card.position--2:hover {
-    transform: translateX(calc(-50% - 520px)) translateY(-10px);
-  }
-  
-  .carousel-card.position-1:hover {
-    transform: translateX(calc(-50% + 260px)) translateY(-10px);
-  }
-  
-  .carousel-card.position-2:hover {
-    transform: translateX(calc(-50% + 520px)) translateY(-10px);
   }
 }
 
 @media (max-width: 768px) {
   .carousel-card {
-    width: 200px;
+    flex: 0 0 200px;
     height: 320px;
-  }
-  
-  .carousel-card.position--1 {
-    transform: translateX(calc(-50% - 220px)); /* 適合手機的間距 */
-  }
-  
-  .carousel-card.position--2 {
-    transform: translateX(calc(-50% - 440px)); /* 適合手機的間距 */
-  }
-  
-  .carousel-card.position-1 {
-    transform: translateX(calc(-50% + 220px)); /* 適合手機的間距 */
-  }
-  
-  .carousel-card.position-2 {
-    transform: translateX(calc(-50% + 440px)); /* 適合手機的間距 */
-  }
-  
-  /* 手機的 hover 效果 */
-  .carousel-card.position--1:hover {
-    transform: translateX(calc(-50% - 220px)) translateY(-10px);
-  }
-  
-  .carousel-card.position--2:hover {
-    transform: translateX(calc(-50% - 440px)) translateY(-10px);
-  }
-  
-  .carousel-card.position-1:hover {
-    transform: translateX(calc(-50% + 220px)) translateY(-10px);
-  }
-  
-  .carousel-card.position-2:hover {
-    transform: translateX(calc(-50% + 440px)) translateY(-10px);
   }
 }
 
