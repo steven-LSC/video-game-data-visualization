@@ -160,6 +160,8 @@ const Introduction = () => {
   const [currentMetric, setCurrentMetric] = useState("Anxiety");
   const [currentGameType, setCurrentGameType] = useState("gameHours");
   const [showWhyDropdown, setShowWhyDropdown] = useState(false);
+  const [switchAnimated, setSwitchAnimated] = useState(false);
+  const [ps5Animated, setPs5Animated] = useState(false);
 
   // 接收來自子組件的指標更新
   const handleMetricChange = (metric) => {
@@ -168,6 +170,15 @@ const Introduction = () => {
 
   const handleGameTypeChange = (type) => {
     setCurrentGameType(type);
+  };
+
+  // 處理遊戲機圖片點擊動畫
+  const handleSwitchClick = () => {
+    setSwitchAnimated(true);
+  };
+
+  const handlePs5Click = () => {
+    setPs5Animated(true);
   };
 
   // 搜索遊戲的函數
@@ -345,6 +356,22 @@ const Introduction = () => {
   return (
     <div className={styles.introductionContainer}>
       <section className={`${styles.heroSection} ${styles.section}`}>
+        <img
+          src="/images/switch.png"
+          alt="Nintendo Switch"
+          className={`${styles.switchImage} ${
+            switchAnimated ? styles.switchFadeOut : ""
+          }`}
+          onClick={handleSwitchClick}
+        />
+        <img
+          src="/images/ps5.png"
+          alt="PlayStation 5"
+          className={`${styles.ps5Image} ${
+            ps5Animated ? styles.ps5FadeOut : ""
+          }`}
+          onClick={handlePs5Click}
+        />
         <div className={styles.productTitle}>
           <img
             src="/images/logo.png"
@@ -510,7 +537,7 @@ const Introduction = () => {
         <div className={styles.sectionContentWrapper}>
           <h2 className={`${styles.sectionTitle} ${styles.largeSectionTitle}`}>
             Understanding the{" "}
-            <span className={styles.benefitText}>Benefits</span> of Video Games
+            <span className={styles.benefitText}>BENEFITS</span> of Video Games
           </h2>
           <div className={styles.sectionDescription}>
             <p>
@@ -533,7 +560,7 @@ const Introduction = () => {
         <div className={styles.sectionContentWrapper}>
           <h2 className={`${styles.sectionTitle} ${styles.largeSectionTitle}`}>
             Understanding the{" "}
-            <span className={styles.concernText}>Concerns</span> Around Video
+            <span className={styles.concernText}>CONCERNS</span> Around Video
             Games
           </h2>
           <div className={styles.sectionDescription}>

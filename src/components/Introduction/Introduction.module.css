@@ -21,29 +21,9 @@
 
 /* 各section背景色 */
 .heroSection {
-  background-color: #CFCFD0;
+  background-image: linear-gradient(to top right, rgba(97, 102, 104, 0.4) 0%, rgba(178, 176, 176, 0.4) 100%);
   margin-bottom: 0;
   position: relative;
-}
-
-.heroSection::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('/images/hero background.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.3;
-  z-index: 1;
-}
-
-.heroSection > * {
-  position: relative;
-  z-index: 2;
 }
 
 .rankingSection {
@@ -433,6 +413,71 @@
   background-color: #FB9B1C; /* 橙色背景 */
   border-radius: 8px;
   padding: 4px 8px;
+}
+
+/* 遊戲機圖片樣式 */
+.switchImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20%;
+  height: auto;
+  z-index: 10;
+  opacity: 0.8;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.switchImage:hover {
+  transform: scale(1.05);
+}
+
+.switchFadeOut {
+  animation: switchExitAnimation 1.5s ease-out forwards;
+}
+
+@keyframes switchExitAnimation {
+  0% {
+    transform: translateX(0) translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(-200px) translateY(-200px) scale(0.3);
+    opacity: 0;
+  }
+}
+
+.ps5Image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25%;
+  height: auto;
+  z-index: 10;
+  opacity: 0.8;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.ps5Image:hover {
+  transform: scale(1.05);
+}
+
+.ps5FadeOut {
+  animation: ps5ExitAnimation 1.5s ease-out forwards;
+}
+
+@keyframes ps5ExitAnimation {
+  0% {
+    transform: translateX(0) translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(200px) translateY(-200px) scale(0.3);
+    opacity: 0;
+  }
 }
 
  
