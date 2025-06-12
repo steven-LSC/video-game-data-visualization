@@ -8,6 +8,7 @@ const LinkPreview = ({
   title = "Reference",
   onlyShowOnHover = true,
   disabled = false,
+  blockDisplay = false,
 }) => {
   const elementRef = useRef(null);
 
@@ -167,7 +168,12 @@ const LinkPreview = ({
   }, [content, title, onlyShowOnHover, disabled]);
 
   return (
-    <span ref={elementRef} className={styles.wrapper}>
+    <span
+      ref={elementRef}
+      className={`${styles.wrapper} ${
+        blockDisplay ? styles.blockWrapper : styles.inlineWrapper
+      }`}
+    >
       {children}
     </span>
   );

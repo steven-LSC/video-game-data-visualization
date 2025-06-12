@@ -121,7 +121,14 @@
 }
 
 .wrapper {
-  display: block;
   cursor: pointer;
+}
+
+.blockWrapper {
+  display: block;
   width: 100%;
+}
+
+.inlineWrapper {
+  display: inline;
 } 

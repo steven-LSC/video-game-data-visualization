@@ -83,6 +83,7 @@ const GameRecommendations = ({ game }) => {
               content={game.link}
               title="Recommended Game"
               onlyShowOnHover={true}
+              blockDisplay={true}
             >
               <a
                 href={game.link}
