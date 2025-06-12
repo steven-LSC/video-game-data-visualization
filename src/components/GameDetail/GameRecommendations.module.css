@@ -28,6 +28,7 @@
   color: inherit;
   display: block;
   height: 100%;
+  width: 100%;
 }
 
 .gameImage {
@@ -39,6 +40,8 @@
 
 .gameCardContent {
   padding: 16px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .gameTitle {
@@ -49,6 +52,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 100%;
 }
 
 
@@ -69,6 +73,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
+  width: 100%;
 }
 
 .pegiTag {
@@ -111,6 +116,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   height: 5.6em;
+  width: 100%;
 }
 
 .loading {

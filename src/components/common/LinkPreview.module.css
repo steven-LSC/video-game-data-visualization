@@ -121,6 +121,7 @@
 }
 
 .wrapper {
-  display: inline-block;
+  display: block;
   cursor: pointer;
+  width: 100%;
 } 
