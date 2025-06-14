@@ -838,13 +838,10 @@ const Introduction = () => {
             </li>
           </ul>
           <p>
-            <strong>Summary:</strong> It can be observed that regardless of the
-            game type, overall, the higher the play frequency (moving upward on
-            the chart), the more frequently students engage in creative
-            activities (such as sports, music, and art). Therefore, if the goal
-            is to encourage students to participate in creative activities,
-            moderate and mindful gaming can effectively motivate their
-            engagement, rather than being merely a waste of time.
+            <strong>Summary:</strong>If the goal is to encourage students to
+            participate in creative activities, then choosing the right type of
+            game and engaging in gaming in moderation can effectively enhance
+            their level of engagement—rather than simply being a waste of time.
           </p>
         </div>
         <GameTypesAnalysis onMetricChange={handleMetricChange} />
