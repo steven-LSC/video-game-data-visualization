@@ -222,7 +222,7 @@ const GameRanking = ({
               <th className={styles.gameTitle}>Game Title</th>
               <th className={styles.sales}>Sales</th>
               <th className={styles.pegiRating}>PEGI</th>
-              <th className={styles.label}>Labels</th>
+              <th className={styles.label}>Genres</th>
             </tr>
           </thead>
           <tbody>
