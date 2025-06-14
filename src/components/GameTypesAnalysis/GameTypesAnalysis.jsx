@@ -117,32 +117,6 @@ const CreativityAnalysis = ({ onMetricChange }) => {
     // 計算每個遊戲類型和頻率組合的平均分數
     const bubbleData = {};
 
-    // 找出所有樣本數量的最大值和最小值，用於縮放氣泡大小
-    let maxSampleSize = -Infinity;
-    let minSampleSize = Infinity;
-
-    gameTypes.forEach((gameType) => {
-      for (let frequency = 1; frequency <= 5; frequency++) {
-        const filteredData = data.filter(
-          (item) => parseInt(item[gameType]) === frequency
-        );
-
-        if (filteredData.length > 0) {
-          maxSampleSize = Math.max(maxSampleSize, filteredData.length);
-          minSampleSize = Math.min(minSampleSize, filteredData.length);
-        }
-      }
-    });
-
-    // 確保樣本數量範圍有效
-    if (minSampleSize === Infinity) minSampleSize = 1;
-    if (maxSampleSize === -Infinity) maxSampleSize = 10;
-    if (maxSampleSize === minSampleSize) maxSampleSize = minSampleSize + 5;
-
-    // 計算氣泡大小的範圍，根據樣本數量
-    const minBubbleSize = 1;
-    const maxBubbleSize = 42;
-
     // 為每個遊戲類型和頻率組合創建氣泡數據
     gameTypes.forEach((gameType, gameIndex) => {
       for (let frequency = 1; frequency <= 5; frequency++) {
@@ -167,21 +141,14 @@ const CreativityAnalysis = ({ onMetricChange }) => {
             const avgScore = totalScore / validScores;
             const sampleSize = filteredData.length;
 
-            // 使用線性縮放根據樣本數量計算氣泡大小
-            const normalizedSampleSize =
-              (sampleSize - minSampleSize) / (maxSampleSize - minSampleSize);
-            const bubbleSize =
-              minBubbleSize +
-              (maxBubbleSize - minBubbleSize) * normalizedSampleSize;
-
             bubbleData[key] = {
-              x: gameIndex, // 使用遊戲類型的索引作為 x 座標
-              y: frequency, // 使用頻率作為 y 座標
-              r: bubbleSize, // 氣泡半徑根據樣本數量
-              avgScore: avgScore, // 平均分數
-              sampleCount: sampleSize, // 樣本數量
-              frequency: frequency, // 頻率，用於顏色計算
-              gameType: gameType, // 遊戲類型名稱
+              x: gameIndex,
+              y: frequency,
+              r: 20, // 固定基礎大小
+              avgScore: avgScore,
+              sampleCount: sampleSize,
+              frequency: frequency,
+              gameType: gameType,
             };
           }
         }
@@ -194,7 +161,10 @@ const CreativityAnalysis = ({ onMetricChange }) => {
     const avgScores = bubbles.map((bubble) => bubble.avgScore);
     const minAvgScore = Math.min(...avgScores);
     const maxAvgScore = Math.max(...avgScores);
-    console.log(minAvgScore, maxAvgScore);
+
+    // 計算氣泡大小的範圍
+    const minBubbleSize = 5; // 降低最小值
+    const maxBubbleSize = 40; // 提高最大值
 
     chartInstance.current = new Chart(ctx, {
       type: "bubble",
@@ -202,14 +172,20 @@ const CreativityAnalysis = ({ onMetricChange }) => {
         datasets: [
           {
             label: `Game Types and ${metricNames[selectedMetric]}`,
-            data: bubbles,
+            data: bubbles.map((bubble) => ({
+              ...bubble,
+              r:
+                minBubbleSize +
+                (maxBubbleSize - minBubbleSize) *
+                  ((bubble.avgScore - minAvgScore) /
+                    (maxAvgScore - minAvgScore)),
+            })),
             backgroundColor: (context) => {
               const point = context.raw;
-              // 線性映射到 0-1，然後用指數函數放大高值差異
               const normalizedScore =
                 (point.avgScore - minAvgScore) / (maxAvgScore - minAvgScore);
-              console.log(normalizedScore);
-              return `rgba(75, 192, 192, ${normalizedScore})`;
+              // 增加顏色對比度：最低分數更淺，最高分數更深
+              return `rgba(75, 192, 192, ${0.05 + normalizedScore * 0.9})`;
             },
             borderColor: "rgba(75, 192, 192, 1)",
             borderWidth: 1,
@@ -224,11 +200,10 @@ const CreativityAnalysis = ({ onMetricChange }) => {
         elements: {
           point: {
             hoverRadius: function (context) {
-              // hover時氣泡縮放邏輯：設置最大最小值，其他情況放大2倍
               const originalRadius = context.raw ? context.raw.r : 10;
-              const scaledRadius = originalRadius * 2;
+              const scaledRadius = originalRadius * 1.5;
               const minHoverSize = 20;
-              const maxHoverSize = 50;
+              const maxHoverSize = 50; // 提高hover時的最大尺寸
 
               return Math.min(
                 Math.max(scaledRadius, minHoverSize),

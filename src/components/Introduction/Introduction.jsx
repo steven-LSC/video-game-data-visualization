@@ -822,26 +822,22 @@ const Introduction = () => {
           </p>
           <ul>
             <li>
-              Physical activities: Students who frequently (5/5 frequency) play
-              Sports, Shooting, and Fantasy/Role-playing games show greater
-              willingness to exercise.
+              Except for students who frequently (4/5 frequency) play puzzle
+              games, all other game types and frequencies are associated with
+              active participation in physical activities.
             </li>
             <li>
-              Musical activities: Students who occasionally (3/5 frequency) play
-              Fantasy/Role-playing and Fighting games, and those who frequently
-              play Sports and Puzzle games, are more likely to engage in musical
-              activities.
-            </li>
-            <li>
-              Artistic activities: Students who occasionally (3/5 frequency)
-              play Fighting games are most engaged in artistic activities.
+              Except for students who frequently (5/5 frequency) play fighting
+              games, all other game types and frequencies are associated with
+              active participation in music and art activities.
             </li>
           </ul>
           <p>
-            <strong>Summary:</strong>If the goal is to encourage students to
-            participate in creative activities, then choosing the right type of
-            game and engaging in gaming in moderation can effectively enhance
-            their level of engagement—rather than simply being a waste of time.
+            <strong>Summary:</strong> Choosing the right type of game and
+            engaging in gameplay in moderation does not reduce students’
+            willingness to participate in creative activities. In fact, for
+            certain game types, higher frequency is associated with increased
+            willingness to engage in such activities.
           </p>
         </div>
         <GameTypesAnalysis onMetricChange={handleMetricChange} />
@@ -854,10 +850,9 @@ const Introduction = () => {
             <li>
               Each bubble represents a combination of game type and play
               frequency. - The size and color intensity of the bubble indicate
-              the relationship with the creative activity — larger bubbles
-              represent a greater number of participants in that combination,
-              while darker bubbles indicate a higher frequency of participation
-              in the creative activity.
+              the relationship with the creative activity — larger and darker
+              bubbles represent a higher average score in the creative activity,
+              while smaller and lighter bubbles indicate a lower average score.
             </li>
             <li>
               The vertical axis (1 to 5) represents how frequently participants
