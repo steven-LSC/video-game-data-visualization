@@ -7,6 +7,7 @@ const ImpactVisualization = ({ game }) => {
   const svgRef = useRef(null);
   const containerRef = useRef(null);
   const [negativeCirclePositions, setNegativeCirclePositions] = useState([]);
+  const [positiveCirclePositions, setPositiveCirclePositions] = useState([]);
 
   useEffect(() => {
     if (!game) return;
@@ -93,6 +94,7 @@ const ImpactVisualization = ({ game }) => {
 
     // 正面關鍵字資料
     const positiveKeywords = game.positiveKeywords || [];
+    const positiveReferences = game.positiveKeywordsReferences || [];
     const maxPositiveKeywords = 5; // 最多顯示5個
     const displayedPositiveKeywords = positiveKeywords.slice(
       0,
@@ -328,6 +330,16 @@ const ImpactVisualization = ({ game }) => {
         radius: getSeverityRadius(position.data.value),
       }));
     setNegativeCirclePositions(negativePositions);
+
+    // 保存正面圓圈位置數據用於 LinkPreview
+    const positivePositions = allCirclePositions
+      .filter((position) => position.type === "positive")
+      .map((position, index) => ({
+        ...position,
+        radius: 60, // positive 圓圈固定半徑
+        reference: positiveReferences[index] || null, // 如果沒有對應的 reference 則為 null
+      }));
+    setPositiveCirclePositions(positivePositions);
 
     // === 步驟7: 繪製所有圓圈 ===
     // 圖片映射
@@ -601,12 +613,36 @@ const ImpactVisualization = ({ game }) => {
                 borderRadius: "50%",
                 cursor: "pointer",
                 pointerEvents: "auto",
-                // 可選：添加半透明背景來幫助調試定位
-                // backgroundColor: "rgba(255, 0, 0, 0.1)"
               }}
             />
           </LinkPreview>
         ))}
+
+      {/* 為每個正面圓圈創建對應的 LinkPreview 覆蓋層 */}
+      {positiveCirclePositions.map(
+        (position, index) =>
+          position.reference && (
+            <LinkPreview
+              key={`positive-link-${index}`}
+              content={position.reference}
+              title="Positive Keywords Reference"
+              onlyShowOnHover={true}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  left: position.x - position.radius,
+                  top: position.y - position.radius,
+                  width: position.radius * 2,
+                  height: position.radius * 2,
+                  borderRadius: "50%",
+                  cursor: "pointer",
+                  pointerEvents: "auto",
+                }}
+              />
+            </LinkPreview>
+          )
+      )}
     </div>
   );
 };
