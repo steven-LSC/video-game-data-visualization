@@ -103,11 +103,9 @@
     "publisher": "Rockstar Games",
     "positiveKeywords": [
       "Emotional Empathy",
-      "Stress Relief",
-      "Emotional Experience",
-      "Immersive"
+      "Stress Relief"
     ],
-    "positiveKeywordsReferences": "https://www.researchgate.net/publication/375458722_Grand_Theft_Empathy_Evidence_for_the_absence_of_effects_of_violent_video_games_on_empathy_for_pain_and_emotional_reactivity_to_violence?utm_source=chatgpt.com\nhttps://medium.com/%40messagegurvi/exploring-the-psychological-and-sociological-impacts-of-the-gta-series-c0ff7c08e0e3?utm_source=chatgpt.com\nhttps://visualcompublications.es/revVISUAL/article/download/5387/3723/20914?utm_source=chatgpt.com\nhttps://www.cliffsnotes.com/study-notes/22002632?utm_source=chatgpt.com",
+    "positiveKeywordsReferences": "https://www.researchgate.net/publication/375458722_Grand_Theft_Empathy_Evidence_for_the_absence_of_effects_of_violent_video_games_on_empathy_for_pain_and_emotional_reactivity_to_violence?utm_source=chatgpt.com\nhttps://medium.com/%40messagegurvi/exploring-the-psychological-and-sociological-impacts-of-the-gta-series-c0ff7c08e0e3?utm_source=chatgpt.com",
     "description": "Developed by series creator Rockstar North, Grand Theft Auto V is the largest and most ambitious title in the series to date. Set in the sprawling city of Los Santos and the surrounding area, Grand Theft Auto V delivers a world of unprecedented scale and detail bursting with life, from mountaintops to the depths of the ocean.",
     "featureImage": "https://m.media-amazon.com/images/I/81htlTqEckL.jpg",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt2103188/parentalguide/?ref_=tt_stry_pg",
@@ -180,13 +178,12 @@
     "developer": "Nintendo EAD",
     "publisher": "Nintendo",
     "positiveKeywords": [
-      "Exercise Benefits",
       "Family-Friendly",
       "Social Interaction",
-      "Health Improvement",
-      "All Age Groups"
+      "All Age Groups",
+      "Health Improvement"
     ],
-    "positiveKeywordsReferences": "https://en.wikipedia.org/wiki/Wii_Sports\nhttps://www.researchgate.net/publication/282351117_Social_Benefits_of_Playing_Wii_Bowling_for_Older_Adults?utm_source=chatgpt.com\nhttps://medium.com/%40jsm36/the-nintendo-revolution-how-wii-sports-shaped-the-future-of-gaming-8bf004f5f459?utm_source=chatgpt.com\nhttps://pmc.ncbi.nlm.nih.gov/articles/PMC5590553/?utm_source=chatgpt.com\nhttps://www.brightwaterseniorliving.com/senior-living/ca/highland/highland/blog?article=the-surprising-benefits-of-video-games-for-seniors&utm_source=chatgpt.com",
+    "positiveKeywordsReferences": "https://www.researchgate.net/publication/282351117_Social_Benefits_of_Playing_Wii_Bowling_for_Older_Adults?utm_source=chatgpt.com\nhttps://www.researchgate.net/publication/282351117_Social_Benefits_of_Playing_Wii_Bowling_for_Older_Adults?utm_source=chatgpt.com\nhttps://medium.com/%40jsm36/the-nintendo-revolution-how-wii-sports-shaped-the-future-of-gaming-8bf004f5f459?utm_source=chatgpt.com\nhttps://pmc.ncbi.nlm.nih.gov/articles/PMC5590553/?utm_source=chatgpt.com",
     "description": "A compilation of simple, Wii-playable sports games. Included sports are Tennis, Golf, Baseball, Boxing and Bowling. All of these sports games have a stylized look that's designed after classic 8-bit game designs but brought to life with full 3D technology. Although each game will concentrate on the core mechanics of hitting a ball, swinging a racquet, and putting with a club, the games will offer full (albeit simplified) sports experiences of whole games in Baseball and Tennis as well as multiple holes to play in Golf. Also compatible with the Mii avatar system for a more personalized experience.",
     "featureImage": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/03/Wii-Sports-Featured.jpg",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt0934616/parentalguide/?ref_=tt_stry_pg",
@@ -243,11 +240,9 @@
     "positiveKeywords": [
       "Strategic Thinking",
       "Teamwork",
-      "Immersion",
-      "Social Interaction",
-      "Cognitive Enhancement"
+      "Stress Relief\nSocial Interaction"
     ],
-    "positiveKeywordsReferences": "https://vocal.media/gamers/pubg-merits-and-demerits?utm_source=chatgpt.com\nhttps://www.pcmag.com/reviews/playerunknowns-battlegrounds-for-pc?utm_source=chatgpt.com\nhttps://ivypanda.com/essays/pubg-positive-aspect-of-negative-video-games/?utm_source=chatgpt.com\nhttps://www.nih.gov/news-events/news-releases/video-gaming-may-be-associated-better-cognitive-performance-children\nhttps://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2022.909875/full",
+    "positiveKeywordsReferences": "https://vocal.media/gamers/pubg-merits-and-demerits?utm_source=chatgpt.com\nhttps://vocal.media/gamers/pubg-merits-and-demerits?utm_source=chatgpt.com\nhttps://ivypanda.com/essays/pubg-positive-aspect-of-negative-video-games/?utm_source=chatgpt.com\nhttps://vocal.media/gamers/pubg-merits-and-demerits?utm_source=chatgpt.com",
     "description": "PUBG: Battlegrounds is a last-man-standing shooter being developed with community feedback. Starting with nothing, players must fight to locate weapons and supplies in a battle to be the lone survivor. This realistic, high tension game is set on a massive 8x8 km island with a level of detail that showcases Unreal Engine 4's capabilities.",
     "featureImage": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/578080/3c8895a8ff87fb18d50ff17842511514d4200437/capsule_616x353.jpg?t=1746590920",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt7204362/parentalguide/",
@@ -319,8 +314,15 @@
     "pegi": 3,
     "developer": "Nintendo Entertainment Planning & Development (EPD)",
     "publisher": "Nintendo",
-    "positiveKeywords": null,
-    "positiveKeywordsReferences": "https://www.thesun.co.uk/tech/31218561/study-scientist-video-games-smart-cognition/\nhttps://hypebeast.com/2016/7/study-finds-playing-mario-kart-video-game-makes-you-a-better-driver\nhttps://www.vice.com/en/article/its-official-mario-kart-scientifically-makes-you-feel-awesome\nhttps://minds.care/mario-kart/\nhttps://www.huffpost.com/entry/mario-kart-teaching-children-mindfulness_b_3072671",
+    "positiveKeywords": [
+      "Improved Driving",
+      "Social Exercise",
+      "Social Interaction",
+      "Teamwork",
+      "Reduce Stress",
+      "Mindfulness"
+    ],
+    "positiveKeywordsReferences": "https://hypebeast.com/2016/7/study-finds-playing-mario-kart-video-game-makes-you-a-better-driver\nhttps://www.vice.com/en/article/its-official-mario-kart-scientifically-makes-you-feel-awesome\nhttps://minds.care/mario-kart/\nhttps://minds.care/mario-kart/\nhttps://minds.care/mario-kart/\nhttps://www.huffpost.com/entry/mario-kart-teaching-children-mindfulness_b_3072671",
     "description": "Feel the rush as your kart rockets across the ceiling! Race upside-down and along walls on anti-gravity tracks in the most action-fueled Mario Kart game yet! Take on racers across the globe and share videos of your greatest moments via Mario Kart TV.",
     "featureImage": "https://assets.nintendo.com/image/upload/q_auto/f_auto/ncom/software/switch/70010000000153/de697f487a36d802dd9a5ff0341f717c8486221f2f1219b675af37aca63bc453",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt6608826/parentalguide/?ref_=tt_stry_pg#nudity",
@@ -369,9 +371,8 @@
     "developer": "Nintendo R&D4",
     "publisher": "Nintendo",
     "positiveKeywords": [
+      "Prevention of Neurodegenerative Disease",
       "Enhanced Neuroplasticity",
-      "Cognitive Enhancement",
-      "Prevention of Age-Related Cognitive Decline",
       "Mental Health Improvement",
       "Cultural Globalization"
     ],
@@ -432,8 +433,11 @@
       "Rockstar Leeds"
     ],
     "publisher": "Rockstar Games",
-    "positiveKeywords": "Improves Empathy",
-    "positiveKeywordsReferences": "https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=10453&context=etd",
+    "positiveKeywords": [
+      "Improves Empathy",
+      "Educational Value"
+    ],
+    "positiveKeywordsReferences": "https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=10453&context=etd\nhttps://www.researchgate.net/publication/353123305_The_educational_value_of_virtual_ecologies_in_Red_Dead_Redemption_2",
     "description": "Red Dead Redemption 2 is an epic tale of life in America's unforgiving heartland. The game's vast and atmospheric world will also provide the foundation for a brand new online multiplayer experience.",
     "featureImage": "https://upload.wikimedia.org/wikipedia/en/thumb/4/44/Red_Dead_Redemption_II.jpg/250px-Red_Dead_Redemption_II.jpg",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt6161168/parentalguide/?ref_=tt_stry_pg",
@@ -488,10 +492,9 @@
     "publisher": "Nintendo",
     "positiveKeywords": [
       "Friendship and Respect",
-      "Cognitive Enhancement",
       "Social Interaction"
     ],
-    "positiveKeywordsReferences": "https://www.nintendojo.com/features/the-history-of-pokemon-red-and-blue-versions\nhttps://news.stanford.edu/stories/2019/05/regular-pokemon-players-pikachu-brain\nhttps://www.dynamiclynks.com/single-post/2016/07/27/gotta-catch-em-all-using-pok%C3%A9mon-to-work-on-socialemotional-skills-in-asd",
+    "positiveKeywordsReferences": "https://www.nintendojo.com/features/the-history-of-pokemon-red-and-blue-versions\nhttps://www.dynamiclynks.com/single-post/2016/07/27/gotta-catch-em-all-using-pok%C3%A9mon-to-work-on-socialemotional-skills-in-asd",
     "description": "It's the game that started a revolution, but it's not just the fad that convinced gamers to \"catch 'em all.\" This deceptively simple and child-friendly roleplaying game design is a far deeper game design than it looks. Pokemon features way more strategy and gameplay than it leads on, offering gamers almost infinite gaming possibilities even after the main adventure ends.",
     "featureImage": "https://pm1.aminoapps.com/6315/316ff2f9adf15e6b32b2b8aaf817b44bc4cff334_hq.jpg",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt0217733/parentalguide/?ref_=tt_stry_pg",
@@ -545,12 +548,8 @@
     "pegi": 12,
     "developer": "Re-Logic",
     "publisher": "505 Games",
-    "positiveKeywords": [
-      "Creativity",
-      "Social Interaction",
-      "Stress Relief"
-    ],
-    "positiveKeywordsReferences": "https://www.eurogamer.net/terraria-review\nhttps://www.ign.com/articles/2011/05/25/terraria-review\nhttps://www.lifewire.com/top-multiplayer-games-for-iphone-8751308\nhttps://jcls.org/2023/07/18/emotional-benefits-to-playing-video-games/",
+    "positiveKeywords": "Creativity\nCritical Thinking",
+    "positiveKeywordsReferences": "https://www.eurogamer.net/terraria-review\nhttps://learningcorner.co/activity/144133",
     "description": "Dig, fight, explore, build! Nothing is impossible in this action-packed adventure game. The world is your canvas and the ground itself is your paint.Grab your tools and go! Make weapons to fight off a variety of enemies in numerous biomes. Dig deep underground to find accessories, money, and other useful things. Gather resources to create everything you need to make the world your own. Build a house, a fort, or even a castle. People will move in to live there and perhaps even sell you different wares to assist you on your journey.But beware, there are even more challenges awaiting you... Are you up to the task?",
     "featureImage": "https://cdn.fastly.steamstatic.com/steam/apps/105600/header.jpg",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt3728808/parentalguide/?ref_=tt_stry_pg",
@@ -654,7 +653,7 @@
     "publisher": "Nintendo",
     "positiveKeywords": [
       "Prevention of Post-Traumatic Stress Disorder(PTSD)",
-      "Spatial Reasoning",
+      "Visuospatial Working Memory",
       "Cognitive Enhancement",
       "Positive Emotions"
     ],
@@ -711,12 +710,10 @@
     "publisher": "JP/DE: Namco\nNA/FRA: Midway",
     "positiveKeywords": [
       "Focus",
-      "Enhanced Neuroplasticity",
       "Memory Retention",
-      "Social Interaction",
       "Stress Relief"
     ],
-    "positiveKeywordsReferences": "https://www.researchgate.net/publication/317807169_Pacman_Game_Benefit_Analysis_on_Decision_Making_Speed\nhttps://andrettikarting.com/blog/arcade-gaming-and-memory-enhancement-the-cognitive-benefits-of-gaming\nhttps://medicalxpress.com/news/2023-11-pacman-cooperative-behavior.html?utm_source=chatgpt.com\nhttps://kathypikephd.com/five-on-friday/why-i-love-ms-pac-man/?utm_source=chatgpt.com",
+    "positiveKeywordsReferences": "https://www.researchgate.net/publication/317807169_Pacman_Game_Benefit_Analysis_on_Decision_Making_Speed\nhttps://andrettikarting.com/blog/arcade-gaming-and-memory-enhancement-the-cognitive-benefits-of-gaming\nhttps://kathypikephd.com/five-on-friday/why-i-love-ms-pac-man/?utm_source=chatgpt.com",
     "description": "Gobble, gobble, gulp! Who's munching Power Pellets? Who's zipping around the maze at top speed, chomping up ghosts and scoring big points? It's Pac-Man, the world's hungriest character! Devour a fruit treat and get a big bonus score. But if you're caught by the little haunters, you're ghostflakes! Use the warp tunnel for a quick escape. Hours of ghost-chomping action!",
     "featureImage": "https://i.guim.co.uk/img/media/8152f8ea7f06fd8ef5c68a3a594e6ac35dfd774b/0_342_800_480/master/800.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=42bb412858826e59cd33e40975ca3ee1",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt0260264/parentalguide/?ref_=tt_stry_pg",
@@ -769,13 +766,11 @@
     "developer": "Nintendo Entertainment Planning & Development (EPD)",
     "publisher": "Nintendo",
     "positiveKeywords": [
+      "Anxiety Relief",
       "Stress Relief",
-      "Social Connection",
-      "Loneliness Reduction",
-      "Creativity",
-      "Mindfulness"
+      "Social Interaction"
     ],
-    "positiveKeywordsReferences": "https://www.frontiersin.org/articles/10.3389/fpsyg.2021.678451/full\nhttps://psyarxiv.com/64jdr/\nhttps://www.sciencedirect.com/science/article/abs/pii/S0747563220301930",
+    "positiveKeywordsReferences": "https://medium.com/%40ryanhosseini/the-impact-of-animal-crossing-new-horizons-on-mental-health-and-well-being-994ba13ad858\nhttps://medium.com/%40ryanhosseini/the-impact-of-animal-crossing-new-horizons-on-mental-health-and-well-being-994ba13ad858\nhttps://dl.acm.org/doi/10.1145/3474711",
     "description": "A nonlinear life simulator played in real-time. The player assumes the role of a customizable character who moves to a deserted island after purchasing a vacation package from Tom Nook, a raccoon character who is a staple of the series.",
     "featureImage": "https://assets.nintendo.com/image/upload/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000027619/9989957eae3a6b545194c42fec2071675c34aadacd65e6b33fdfe7b3b6a86c3a",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt10476972/parentalguide/?ref_=tt_stry_pg",
@@ -824,13 +819,8 @@
     "pegi": 3,
     "developer": "No Brakes Games",
     "publisher": "505 Games",
-    "positiveKeywords": [
-      "Social Interaction",
-      "Creativity",
-      "Problem-Solving Skills",
-      "Stress Relief"
-    ],
-    "positiveKeywordsReferences": "https://www.reddit.com/r/humanfallflat/comments/r2iolb/how_do_i_enjoy_human_fall_flat/\nhttps://www.nintendoworldreport.com/review/45999/human-fall-flat-switch-eshop-review\nhttps://www.ign.com/articles/2016/07/28/human-fall-flat-review",
+    "positiveKeywords": "Creativity",
+    "positiveKeywordsReferences": "https://www.nintendoworldreport.com/review/45999/human-fall-flat-switch-eshop-review",
     "description": "Bob is just a normal human with no superpowers, but given the right tools he can do a lot. Misuse the tools and he can do even more! The world of Human: Fall Flat features advanced physics and innovative controls that cater for a wide range of challenges. Bob's dreams of falling are riddled with puzzles to solve and distractions to experiment with for hilarious results. The worlds may be fantastical, but the laws of physics are very real. Will you try to open that mysterious door, or would you rather see how far you can throw a speaker set out that window?",
     "featureImage": [
       "https://assets.nintendo.com/image/upload/c_fill",
@@ -885,10 +875,9 @@
     "publisher": "CD Projekt",
     "positiveKeywords": [
       "Immersion",
-      "Strong Emotional Bonds With Characters",
-      "Emotional Experience"
+      "Strong Emotional Bonds With Characters"
     ],
-    "positiveKeywordsReferences": "https://www.gamesfinity.com/editorial/the-witcher-3-wild-hunt-the-choice-driven-rpg-that-changed-the-gaming-industry/\nhttps://tryevidence.com/blog/psychology-behind-designing-iconic-video-game-characters/\nhttps://en.wikipedia.org/wiki/The_Bloody_Baron",
+    "positiveKeywordsReferences": "https://www.gamesfinity.com/editorial/the-witcher-3-wild-hunt-the-choice-driven-rpg-that-changed-the-gaming-industry/\nhttps://tryevidence.com/blog/psychology-behind-designing-iconic-video-game-characters/",
     "description": "In The Witcher 3 an ancient evil stirs, awakening. An evil that sows terror and abducts the young. An evil whose name is spoken only in whispers: the Wild Hunt. Led by four wraith commanders, this ravenous band of phantoms is the ultimate predator and has been for centuries. Its quarry: humans.",
     "featureImage": "https://cdn1.epicgames.com/offer/14ee004dadc142faaaece5a6270fb628/EGS_TheWitcher3WildHuntCompleteEdition_CDPROJEKTRED_S1_2560x1440-82eb5cf8f725e329d3194920c0c0b64f",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt2993508/parentalguide/?ref_=tt_stry_pg",
@@ -943,13 +932,14 @@
     ],
     "publisher": "Nintendo",
     "positiveKeywords": [
-      "Cognitive Enhancement",
-      "Better Driving Skills",
-      "Reduced Stress",
+      "Improved Driving",
+      "Social Exercise",
       "Social Interaction",
-      "Focus"
+      "Teamwork",
+      "Reduce stress",
+      "Mindfulness"
     ],
-    "positiveKeywordsReferences": "https://www.thesun.co.uk/tech/31218561/study-scientist-video-games-smart-cognition/\nhttps://hypebeast.com/2016/7/study-finds-playing-mario-kart-video-game-makes-you-a-better-driver\nhttps://www.vice.com/en/article/its-official-mario-kart-scientifically-makes-you-feel-awesome\nhttps://minds.care/mario-kart/\nhttps://www.huffpost.com/entry/mario-kart-teaching-children-mindfulness_b_3072671",
+    "positiveKeywordsReferences": "https://hypebeast.com/2016/7/study-finds-playing-mario-kart-video-game-makes-you-a-better-driver\nhttps://www.vice.com/en/article/its-official-mario-kart-scientifically-makes-you-feel-awesome\nhttps://minds.care/mario-kart/\nhttps://minds.care/mario-kart/\nhttps://minds.care/mario-kart/\nhttps://www.huffpost.com/entry/mario-kart-teaching-children-mindfulness_b_3072671",
     "description": "Mario Kart Wii will include 16 new courses and 16 classic courses from previous Mario Kart games. For the first time ever, players have the option of racing with either karts or motorbikes. Players can also hit the road as their personalized Mii caricatures in addition to the handful of classic Nintendo characters found in the game. True to the series, the game features tons of racing, plenty of power-ups and oodles of objects for players to use to slow down other drivers.",
     "featureImage": "https://m.media-amazon.com/images/I/71nP53cjs7L.jpg",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt1225687/parentalguide/?ref_=tt_stry_pg",
@@ -1002,13 +992,12 @@
     "developer": "Nintendo",
     "publisher": "Nintendo",
     "positiveKeywords": [
-      "Exercise Benefits",
-      "Family-Friendly",
-      "Social Interaction",
-      "Health Improvement",
-      "All Age Groups"
+      "Improvement in Balance",
+      "Motivation for Exercise",
+      "Use as a Rehabilitation Tool",
+      "Enhancement of Cardiovascular Health"
     ],
-    "positiveKeywordsReferences": "https://en.wikipedia.org/wiki/Wii_Sports\nhttps://www.researchgate.net/publication/282351117_Social_Benefits_of_Playing_Wii_Bowling_for_Older_Adults?utm_source=chatgpt.com\nhttps://medium.com/%40jsm36/the-nintendo-revolution-how-wii-sports-shaped-the-future-of-gaming-8bf004f5f459?utm_source=chatgpt.com\nhttps://pmc.ncbi.nlm.nih.gov/articles/PMC5590553/?utm_source=chatgpt.com\nhttps://www.brightwaterseniorliving.com/senior-living/ca/highland/highland/blog?article=the-surprising-benefits-of-video-games-for-seniors&utm_source=chatgpt.com",
+    "positiveKeywordsReferences": "https://jneuroengrehab.biomedcentral.com/articles/10.1186/1743-0003-11-12\nhttps://pmc.ncbi.nlm.nih.gov/articles/PMC3882950/\nhttps://pmc.ncbi.nlm.nih.gov/articles/PMC5590553/\nhttps://www.acefitness.org/about-ace/press-room/press-releases/433/ace-announces-study-findings-on-fitness-benefits-of-nintendo-wii/",
     "description": "In Wii Sports Resort, you'll use your Wii Remote to literally swing into action. Perform realistic sports moves to take on the competition in activities that include Sword Play, Power Cruising (racing a water scooter) and Disc Dog, in which you'll toss a disc to an adorable, Mii-like dog. Become even more immersed in the action courtesy of the included Wii MotionPlus accessory, which attaches to your Wii Remote to provide even greater responsiveness and precision. With the game's easy-to-use controls, anyone can pick up a Wii Remote and leap into the game to experience all the heated competition and hilarity.",
     "featureImage": "https://www.nintendo.com/eu/media/images/10_share_images/games_15/wii_24/SI_Wii_WiiSportsResort_image1600w.jpg",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt1523579/parentalguide/?ref_=tt_stry_pg",
@@ -1062,9 +1051,8 @@
     ],
     "publisher": "Nintendo",
     "positiveKeywords": [
+      "Prevention of Neurodegenerative Disease",
       "Enhanced Neuroplasticity",
-      "Cognitive Enhancement",
-      "Prevention of Age-Related Cognitive Decline",
       "Mental Health Improvement",
       "Cultural Globalization"
     ],
@@ -1180,11 +1168,8 @@
       "Nintendo"
     ],
     "publisher": "Nintendo",
-    "positiveKeywords": [
-      "Social Interaction",
-      "Emotional Support"
-    ],
-    "positiveKeywordsReferences": "https://www.sfgate.com/sports/article/bay-area-video-game-tournament-super-smash-bros-20177840.php\nhttps://www.eurogamer.net/smash-bros-tournament-enlists-help-of-therapy-dogs-to-help-combat-performance-anxiety\nhttps://aminoapps.com/c/smash/page/blog/smash-psychology-v-making-social-connections-through-smash/NLfM_u3wB53RlzaXzV4qrLZpevvxZZ",
+    "positiveKeywords": "Social Interaction",
+    "positiveKeywordsReferences": "https://aminoapps.com/c/smash/page/blog/smash-psychology-v-making-social-connections-through-smash/NLfM_u3wB53RlzaXzV4qrLZpevvxZZ",
     "description": "Legendary game worlds and fighters collide in the ultimate showdown- a new entry in the Super Smash Bros. series for the Nintendo Switch system! New fighters like Inkling from the Splatoon Series and Ridley from the Metroid series, make their Super Smash Bros. series debut along side every Super Smash Bros. fighter in the series... EVER! Faster combat, new items, new attacks, new defensive options and more will keep the battle raging whether you're at home or on the go.",
     "featureImage": "https://assets.nintendo.com/image/upload/q_auto/f_auto/ncom/software/switch/70010000012332/ac4d1fc9824876ce756406f0525d50c57ded4b2a666f6dfe40a6ac5c3563fad9",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt5370130/parentalguide/?ref_=tt_stry_pg",
@@ -1238,9 +1223,8 @@
     ],
     "publisher": "Nintendo",
     "positiveKeywords": [
+      "Prevention of Neurodegenerative Disease",
       "Enhanced Neuroplasticity",
-      "Cognitive Enhancement",
-      "Prevention of Age-Related Cognitive Decline",
       "Mental Health Improvement",
       "Cultural Globalization"
     ],
@@ -1300,13 +1284,10 @@
     "developer": "Infinity Ward",
     "publisher": "Activision",
     "positiveKeywords": [
-      "Strategic Thinking",
-      "Decision-Making",
-      "Social Interaction",
-      "Emotional Experience",
-      "Cognitive Enhancement"
+      "Neuroplasticity",
+      "Cognitive Skills"
     ],
-    "positiveKeywordsReferences": "https://www.frontiersin.org/articles/10.3389/fpsyg.2018.00728/full\nhttps://www.apa.org/news/press/releases/2014/08/video-games\nhttps://psycnet.apa.org/record/2017-51659-002\nhttp://gamestudies.org/2008/articles/narratives_in_fps\nhttps://www.nature.com/articles/nature01866",
+    "positiveKeywordsReferences": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6826942/\nhttps://tmb.apaopen.org/pub/qj0c4ij2/release/3",
     "description": "The stakes have never been higher as players take on the role of lethal Tier One operators in a heart-racing saga that will affect the global balance of power. Call of Duty: Modern Warfare engulfs fans in an incredibly raw, gritty, provocative narrative that brings unrivaled intensity and shines a light on the changing nature of modern war. Developed by the studio that started it all, Infinity Ward delivers an epic reimagining of the iconic Modern Warfare® series from the ground up.",
     "featureImage": "https://image.api.playstation.com/cdn/HP0002/CUSA05373_00/us76R5zRi3SYn6IhmVnwmbg8pW6brdpVCsMIwsC6JeBdNnSHtltWLUdpjAOnttrM.png",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt10417512/parentalguide/?ref_=tt_stry_pg",
@@ -1357,14 +1338,8 @@
     "pegi": 16,
     "developer": "Blizzard Entertainment",
     "publisher": "Blizzard Entertainment",
-    "positiveKeywords": [
-      "Sense of Achievement",
-      "Stress Relief",
-      "Strategic Thinking",
-      "Problem-Solving Skills",
-      "Social Interaction"
-    ],
-    "positiveKeywordsReferences": "https://www.frontiersin.org/articles/10.3389/fpsyg.2018.01689/full\nhttps://www.hogrefe.com/us/journal/journal-of-media-psychology\nhttps://www.apa.org/news/press/releases/2014/08/video-games\nhttps://www.liebertpub.com/doi/10.1089/cyber.2010.0130\nhttps://psycnet.apa.org/record/2017-51659-002",
+    "positiveKeywords": "Comfort",
+    "positiveKeywordsReferences": "https://www.reddit.com/r/diablo3/comments/1dghgab/i_love_this_game/",
     "description": "This world was saved twenty years prior by a handful of unnamed heroes in Diablo II. Warriors that survived the onslaught of the armies of the Burning Hells have gone mad from their ordeals and it is up to a new generation of heroes to face the forces of evil threatening the world of Sanctuary. Players will have the opportunity to explore familiar settings such as Tristram.",
     "featureImage": "https://upload.wikimedia.org/wikipedia/en/8/80/Diablo_III_cover.png",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt2186735/parentalguide/?ref_=tt_stry_pg",
@@ -1420,13 +1395,10 @@
     ],
     "publisher": "Bethesda Softworks",
     "positiveKeywords": [
-      "Stress Relief",
-      "Cognitive Stimulation",
-      "Motivation",
-      "Moral and Ethical Awareness",
-      "Social Interaction"
+      "Resilience",
+      "Helping with Depression"
     ],
-    "positiveKeywordsReferences": "https://www.frontiersin.org/articles/10.3389/fpsyg.2017.00860/full\nhttps://www.hogrefe.com/us/journal/journal-of-media-psychology\nhttps://link.springer.com/article/10.3758/s13423-018-1519-7\nhttps://www.apa.org/news/press/releases/2014/08/video-games\nhttps://www.researchgate.net/publication/332390321_The_Psychology_of_Moral_Decision-Making_in_Video_Games\nhttps://www.liebertpub.com/doi/10.1089/cyber.2018.0215",
+    "positiveKeywordsReferences": "https://gamingthemind.org/2024/06/11/finding-comfort-and-resilience-in-skyrim-stories-of-hope-and-recovery/\nhttps://www.wired.com/story/skyrim-seasonal-depression/",
     "description": "The Empire of Tamriel is on the edge. The High King of Skyrim has been murdered. Alliances form as claims to the throne are made. In the midst of this conflict, a far more dangerous, ancient evil is awakened. Dragons, long lost to the passages of the Elder Scrolls, have returned to Tamriel. The future of Skyrim, even the Empire itself, hangs in the balance as they wait for the prophesized Dragonborn to come; a hero born with the power of The Voice, and the only one who can stand amongst the dragons.",
     "featureImage": [
       "https://assets.nintendo.com/image/upload/c_fill",
@@ -1484,10 +1456,9 @@
     "publisher": "Nintendo",
     "positiveKeywords": [
       "Friendship and Respect",
-      "Cognitivie Enhancement",
       "Social Interaction"
     ],
-    "positiveKeywordsReferences": "https://www.nintendojo.com/features/the-history-of-pokemon-red-and-blue-versions\nhttps://news.stanford.edu/stories/2019/05/regular-pokemon-players-pikachu-brain\nhttps://www.dynamiclynks.com/single-post/2016/07/27/gotta-catch-em-all-using-pok%C3%A9mon-to-work-on-socialemotional-skills-in-asd",
+    "positiveKeywordsReferences": "https://www.nintendojo.com/features/the-history-of-pokemon-red-and-blue-versions\nhttps://www.dynamiclynks.com/single-post/2016/07/27/gotta-catch-em-all-using-pok%C3%A9mon-to-work-on-socialemotional-skills-in-asd",
     "description": "Explore a world with more than 250 Pokemon! The game keeps track of the time via an internal clock, and some Pokemon will only come out during certain times of the day, which means you will quite literally have to get up early in the morning to find them all.",
     "featureImage": "https://mediaproxy.tvtropes.org/width/1200/https://static.tvtropes.org/pmwiki/pub/images/pokemon_gsc3.png",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt0310011/parentalguide/?ref_=tt_stry_pg",
@@ -1537,13 +1508,10 @@
     "developer": "Nintendo",
     "publisher": "Nintendo",
     "positiveKeywords": [
-      "Hand-Eye Coordination",
-      "Reflexes",
-      "Simple and Stress-Free",
-      "Social Interaction",
-      "Cognitive Stimulation"
+      "Mental Health Benefits",
+      "Focus"
     ],
-    "positiveKeywordsReferences": "https://www.journalofvision.org/\nhttps://journals.sagepub.com/home/emr\nhttps://www.sciencedirect.com/journal/journal-of-behavioral-health\nhttps://journals.sagepub.com/home/gac\nhttps://www.springer.com/journal/41236",
+    "positiveKeywordsReferences": "https://www.linkedin.com/pulse/how-lightgun-videogames-like-duck-hunt-help-our-mental-chris-hatala?trk=public_post\nhttps://www.linkedin.com/pulse/how-lightgun-videogames-like-duck-hunt-help-our-mental-chris-hatala?trk=public_post",
     "description": "In Duck Hunt, players use the Nintendo Zapper Light Gun and attempt to shoot down either ducks or clay pigeons in mid-flight.",
     "featureImage": "https://miro.medium.com/v2/resize:fit:1000/1*CHpGqF5_AjZCgQokepOIHQ.jpeg",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt0186046/parentalguide/?ref_=tt_stry_pg",
@@ -1593,14 +1561,8 @@
     "pegi": 3,
     "developer": "Nintendo",
     "publisher": "Nintendo",
-    "positiveKeywords": [
-      "Stress Relief",
-      "Family Bonding",
-      "Hand-Eye Coordination",
-      "Motor Skills",
-      "All Age Groups"
-    ],
-    "positiveKeywordsReferences": "https://www.sciencedirect.com/journal/journal-of-behavioral-health\nhttps://journals.sagepub.com/home/gac\nhttps://www.journals.elsevier.com/human-movement-science\nhttps://academic.oup.com/jcmc\nhttps://www.psychologyofgames.com/",
+    "positiveKeywords": null,
+    "positiveKeywordsReferences": null,
     "description": "Wii Play collects nine quick and addictive games that are easy to pick up and play and hard to put away. Thanks to the intuitive controls of the Wii Remote, even the most inexperienced gamers will have no trouble mastering the controls.",
     "featureImage": [
       "https://m.media-amazon.com/images/I/91m5LFxiPkL._AC_UF1000",
@@ -1653,13 +1615,10 @@
     "developer": "Telltale Games",
     "publisher": "Telltale Games",
     "positiveKeywords": [
-      "Emotional Empathy",
-      "Decision-Making",
-      "Critical Thinking",
-      "Deep Emotional Engagement and Catharsis",
-      "Moral and Ethical Awareness"
+      "Empathy",
+      "Responsibility"
     ],
-    "positiveKeywordsReferences": "https://www.apa.org/pubs/journals/ppm\nhttps://www.springer.com/journal/41465\nhttps://gamestudies.org/\nhttps://www.liebertpub.com/cyber\nhttps://www.journals.elsevier.com/digital-media-ethics",
+    "positiveKeywordsReferences": "https://www.researchgate.net/publication/275252955_Playing_with_Trauma_Interreactivity_Empathy_and_Complicity_in_The_Walking_Dead_Video_Game\nhttps://www.researchgate.net/publication/292386045_Prescription_play_A_primer_on_innovative_use_of_video_games_technology_in_healthcare",
     "description": "The Walking Dead is a five-part game series set in the same universe as Robert Kirkman's award-winning comic book series. Play as Lee Everett, a convicted criminal, who has been given a second chance at life in a world devastated by the undead. With corpses returning to life and survivors stopping at nothing to maintain their own safety, protecting an orphaned girl named Clementine may offer him redemption in a world gone to hell.",
     "featureImage": "https://image.api.playstation.com/cdn/UP2026/CUSA11998_00/SV3Q3aE4B7eJHJix5gw5GFqnx5gIndbW.png",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt2006890/parentalguide/?ref_=tt_stry_pg",
@@ -1716,13 +1675,10 @@
     ],
     "publisher": "Rockstar Games",
     "positiveKeywords": [
-      "Problem-Solving Skills",
-      "Strategic Thinking",
-      "Spatial Reasoning",
-      "Creativity",
-      "Social Interaction"
+      "Emotional Empathy",
+      "Stress Relief"
     ],
-    "positiveKeywordsReferences": "https://www.springer.com/journal/41465\nhttps://www.liebertpub.com/cyber\nhttps://www.apa.org/pubs/journals/ppm\nhttps://gamestudies.org/\nhttps://www.journals.elsevier.com/digital-media-ethics\nhttps://www.intellectbooks.com/journal-of-gaming-virtual-worlds",
+    "positiveKeywordsReferences": "https://www.researchgate.net/publication/375458722_Grand_Theft_Empathy_Evidence_for_the_absence_of_effects_of_violent_video_games_on_empathy_for_pain_and_emotional_reactivity_to_violence\nhttps://medium.com/%40messagegurvi/exploring-the-psychological-and-sociological-impacts-of-the-gta-series-c0ff7c08e0e3",
     "description": "Five years ago Carl Johnson escaped from the pressures of life in Los Santos, San Andreas... a city tearing itself apart with gang trouble, drugs and corruption. Where filmstars and millionaires do their best to avoid the dealers and gangbangers.Now, it's the early 90s. Carl's got to go home. His mother has been murdered, his family has fallen apart and his childhood friends are all heading towards disaster.On his return to the neighborhood, a couple of corrupt cops frame him for homicide. CJ is forced on a journey that takes him across the entire state of San Andreas, to save his family and to take control of the streets.",
     "featureImage": "https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt0383385/parentalguide/?ref_=tt_stry_pg",
@@ -1771,13 +1727,12 @@
     "developer": "Nintendo",
     "publisher": "Nintendo",
     "positiveKeywords": [
-      "Problem-Solving Skills",
-      "Stress Relief",
-      "Resilience",
-      "Hand-Eye Coordination",
-      "Reaction Time"
+      "Prevention of Neurodegenerative Disease",
+      "Enhanced Neuroplasticity",
+      "Mental Health Improvement",
+      "Cultural Globalization"
     ],
-    "positiveKeywordsReferences": "https://www.apa.org/pubs/journals/xge\nhttps://www.frontiersin.org/journals/psychology\nhttps://www.apa.org/\nhttps://www.tandfonline.com/toc/rpos20/current\nhttps://www.sciencedirect.com/journal/neuroscience-and-biobehavioral-reviews\nhttps://cognitivesciencesociety.org/",
+    "positiveKeywordsReferences": "https://pubmed.ncbi.nlm.nih.gov/24166407/\nhttps://www.themantic-education.com/ibpsych/2019/01/26/computer-games-and-the-brain-a-summary-with-two-key-studies/\nhttps://www.nature.com/articles/s41398-024-02945-5\nhttps://thesocietypages.org/socimages/2017/01/18/super-mario-and-cultural-globalization/",
     "description": "Mario's off on his biggest adventure ever, and this time he's brought along a friend. Yoshi the dinosaur teams up with Mario to battle Bowser, who has kidnapped Princess Toadstool once again. Guide Mario and Yoshi through nine peril-filled worlds to the final showdown in Bowser's castle. Use Mario's new powers and Yoshi's voracious monster-gobbling appetite as you explore 96 levels filled with dangerous new monsters and traps. Climb mountains and cross rivers, and descend into subterranean depths. Destroy the seven Koopa castles and find keys to gain entrance to hidden levels. Discover more warps and thrilling bonus worlds than ever before!",
     "featureImage": "https://www.nintendo.com/eu/media/images/10_share_images/games_15/super_nintendo_5/H2x1_SNES_SuperMarioWorld.jpg",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt0221606/parentalguide/?ref_=tt_stry_pg",
@@ -1829,8 +1784,11 @@
     "pegi": 18,
     "developer": "Infinity Ward",
     "publisher": "Activision",
-    "positiveKeywords": "Empowerment",
-    "positiveKeywordsReferences": "https://checkpointgaming.net/reviews/2023/11/call-of-duty-modern-warfare-iii-review-press-f-to-pay-respects/?utm_source=chatgpt.com\nhttps://gamingnexus.com/Article/13949/Call-of-Duty-Modern-Warfare-3-%282023%29/?utm_source=chatgpt.com\nhttps://www.inkl.com/news/call-of-duty-modern-warfare-3-2023-review-a-balancing-act-of-remembering-the-past-while-looking-forward?utm_source=chatgpt.com\nhttps://www.theguardian.com/games/2023/nov/14/call-of-duty-modern-warfare-iii-review-exhilarating-game-engineering-rescues-a-tired-format?utm_source=chatgpt.com\nhttps://toxigon.com/call-of-duty-modern-warfare-3-review?utm_source=chatgpt.com",
+    "positiveKeywords": [
+      "Neuroplasticity",
+      "Cognitive Skills"
+    ],
+    "positiveKeywordsReferences": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6826942/\nhttps://tmb.apaopen.org/pub/qj0c4ij2/release/3",
     "description": "Call of Duty: Modern Warfare 3 is First-person Shooter rooted in a fictional, but ultra realistic near-future conflict of mostly American forces with those of the Russian Federation around the globe. The third installment in the Modern Warfare branch of the Call of Duty franchise, Modern Warfare 3 features a heavy focus on multiplayer gameplay which includes innovative new functionality that encourages multiple gameplay combat strategies, a new 2-player co-op option, new play modes, weapons and more. The game also includes a gripping single player campaign that picks up where Call of Duty: Modern Warfare 2 left off, and game integration with the Call of Duty: Elite online service.",
     "featureImage": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2519060/capsule_616x353.jpg?t=1731633494",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt1937113/parentalguide/?ref_=tt_stry_pg",
@@ -1884,10 +1842,10 @@
     "developer": "Infinity Ward",
     "publisher": "Activision",
     "positiveKeywords": [
-      "Engagement",
-      "Empowerment"
+      "Neuroplasticity",
+      "Cognitive Skills"
     ],
-    "positiveKeywordsReferences": "https://www.gamesradar.com/call-of-duty-black-ops-cold-war-campaign-review/?utm_source=chatgpt.com\nhttps://htxt.co.za/2020/11/call-of-duty-black-ops-cold-war-review-a-good-but-flawed-effort/?utm_source=chatgpt.com\nhttps://www.ign.com/articles/call-of-duty-black-ops-cold-war-campaign-review-2?utm_source=chatgpt.com\nhttps://eu.turtlebeach.com/blog/call-of-duty-black-ops-cold-war-multiplayer-breakdown?utm_source=chatgpt.com\nhttps://www.ign.com/articles/call-of-duty-black-ops-cold-war-campaign-review-2?utm_source=chatgpt.com\nhttps://www.gamesradar.com/call-of-duty-black-ops-cold-war-campaign-review/?utm_source=chatgpt.com",
+    "positiveKeywordsReferences": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6826942/\nhttps://tmb.apaopen.org/pub/qj0c4ij2/release/3",
     "description": "Call of Duty: Black Ops is a first-person shooter with stealth and tactical play aspect that puts players in the role of a shadow soldier fighting in a variety of historically representative fictional Black Ops missions of the Cold War era. Created with the input of actual Black Ops soldiers from the time, the game mixes traditional Call of Duty tactical shooter gameplay with new gameplay options designed to expand the players' experience. Additional features include extensive multiplayer options, along with new vehicles and explosive new weapons.",
     "featureImage": "https://upload.wikimedia.org/wikipedia/en/0/02/CoD_Black_Ops_cover.png",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt1632479/parentalguide/?ref_=tt_stry_pg",
@@ -1942,11 +1900,10 @@
     "developer": "Gearbox Software",
     "publisher": "2K",
     "positiveKeywords": [
-      "Engagement",
-      "Empowerment",
-      "Camaraderie"
+      "Helping with Anxiety",
+      "Helping with Depression"
     ],
-    "positiveKeywordsReferences": "https://www.destructoid.com/reviews/review-borderlands-2/?utm_source=chatgpt.com\nhttps://www.destructoid.com/reviews/review-borderlands-2/?utm_source=chatgpt.com\nhttps://www.ign.com/articles/2012/09/14/borderlands-2-review?utm_source=chatgpt.com\nhttps://www.ign.com/articles/2012/09/14/borderlands-2-review-in-progress?utm_source=chatgpt.com\nhttps://www.ign.com/articles/2018/12/20/borderlands-2-vr-review?utm_source=chatgpt.com",
+    "positiveKeywordsReferences": "https://www.reddit.com/r/Borderlands/comments/qtt9x0/borderlands_and_mental_health\nhttps://www.reddit.com/r/Borderlands/comments/qtt9x0/borderlands_and_mental_health",
     "description": "A new era of shoot and loot is about to begin. Play as one of four new vault hunters facing off against a massive new world of creatures, psychos and the evil mastermind, Handsome Jack. Make new friends, arm them with a bazillion weapons and fight alongside them in 4 player co-op on a relentless quest for revenge and redemption across the undiscovered and unpredictable living planet.",
     "featureImage": "https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fborderlands-2%2Fhome%2FEGS_Borderlands2_GearboxSoftware_S5-1360x766-8546dab7d7968b51fae34f402d61c1f9ea1b6891.jpg",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt2385021/parentalguide/?ref_=tt_stry_pg",
@@ -1999,10 +1956,10 @@
     "developer": "Game Freak",
     "publisher": "Nintendo",
     "positiveKeywords": [
-      "Community",
+      "Friendship and Respect",
       "Social Interaction"
     ],
-    "positiveKeywordsReferences": "https://www.gamesindustry.biz/pok-mon-sword-and-shield-critical-consensus?utm_source=chatgpt.com\nhttps://www.gamesindustry.biz/pok-mon-sword-and-shield-critical-consensus?utm_source=chatgpt.com",
+    "positiveKeywordsReferences": "https://www.nintendojo.com/features/the-history-of-pokemon-red-and-blue-versions\nhttps://www.dynamiclynks.com/single-post/2016/07/27/gotta-catch-em-all-using-pok%C3%A9mon-to-work-on-socialemotional-skills-in-asd",
     "description": "Become a Pokemon Trainer and embark on a new journey in the new Galar region! Choose from one of three new partner Pokemon: Grookey, Scorbunny, or Sobble. In this all new adventure, you'll encounter new and familiar Pokemon as you catch, battle, and trade Pokemon while exploring new areas and uncovering an all-new story. Get ready for the next Pokemon adventure in the Pokemon Sword and Pokemon Shield games.",
     "featureImage": "https://www.nintendo.com/sg/switch/sword_shield/img/hero_sp.jpg",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt9910948/parentalguide/?ref_=tt_stry_pg",
@@ -2055,10 +2012,10 @@
     "developer": "Game Freak",
     "publisher": "Nintendo",
     "positiveKeywords": [
-      "Community",
+      "Friendship and Respect",
       "Social Interaction"
     ],
-    "positiveKeywordsReferences": "https://www.gamesindustry.biz/pok-mon-sword-and-shield-critical-consensus?utm_source=chatgpt.com\nhttps://www.gamesindustry.biz/pok-mon-sword-and-shield-critical-consensus?utm_source=chatgpt.com",
+    "positiveKeywordsReferences": "https://www.nintendojo.com/features/the-history-of-pokemon-red-and-blue-versions\nhttps://www.dynamiclynks.com/single-post/2016/07/27/gotta-catch-em-all-using-pok%C3%A9mon-to-work-on-socialemotional-skills-in-asd",
     "description": "As a trainer in the Alola region, your task is to journey across the islands, catch all the Pokemon, complete the island challenges, defeat the 4 islands guardians, and eventually meet the legendary Solgaleo and Lunala.",
     "featureImage": "https://s.yimg.com/ny/api/res/1.2/lWUZyBUfadgx8lu3gCOJxw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyNDI7aD03MDE-/https://media.zenfs.com/en-US/homerun/ibtimes_176/7931a70c32eb3c159439f42413758aef",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt5291066/parentalguide/?ref_=tt_stry_pg",
@@ -2114,7 +2071,7 @@
       "Problem-Solving",
       "Positive Impact on Mental Health"
     ],
-    "positiveKeywordsReferences": "https://mynintendonews.com/2023/12/26/a-german-study-revealed-playing-mario-odyssey-reduced-depressive-symptoms-by-nearly-50/?utm_source=chatgpt.com\nhttps://www.gameinformer.com/games/super_mario_odyssey/b/switch/archive/2017/10/26/super-mario-odyssey-review.aspx?utm_source=chatgpt.com\nhttps://www.nintendoworldreport.com/review/45731/super-mario-odyssey-switch-review?utm_source=chatgpt.com\nhttps://www.polygon.com/2017/10/26/16551724/super-mario-odyssey-review?utm_source=chatgpt.com\nhttps://gamerant.com/super-mario-odyssey-depression-study/?utm_source=chatgpt.com",
+    "positiveKeywordsReferences": "https://mynintendonews.com/2023/12/26/a-german-study-revealed-playing-mario-odyssey-reduced-depressive-symptoms-by-nearly-50/?utm_source=chatgpt.com\nhttps://www.polygon.com/2017/10/26/16551724/super-mario-odyssey-review?utm_source=chatgpt.com\nhttps://gamerant.com/super-mario-odyssey-depression-study/?utm_source=chatgpt.com",
     "description": "Mario embarks on a new journey through unknown worlds, running and jumping through huge 3D worlds in the first sandbox-style Mario game since Super Mario 64 and Super Mario Sunshine. Set sail between expansive worlds aboard an airship, and perform all-new actions, such as throwing Mario's cap.",
     "featureImage": [
       "https://assets.nintendo.com/image/upload/ar_16:9",
@@ -2169,10 +2126,13 @@
     ],
     "sales": 25000000,
     "pegi": 18,
-    "developer": null,
-    "publisher": null,
-    "positiveKeywords": "Emotional Empathy\nStress Relief\nIdentity Exploration\nEmotional Experience",
-    "positiveKeywordsReferences": "https://www.researchgate.net/publication/375458722_Grand_Theft_Empathy_Evidence_for_the_absence_of_effects_of_violent_video_games_on_empathy_for_pain_and_emotional_reactivity_to_violence?utm_source=chatgpt.com\nhttps://medium.com/%40messagegurvi/exploring-the-psychological-and-sociological-impacts-of-the-gta-series-c0ff7c08e0e3?utm_source=chatgpt.com\nhttps://visualcompublications.es/revVISUAL/article/download/5387/3723/20914?utm_source=chatgpt.com\nhttps://www.cliffsnotes.com/study-notes/22002632?utm_source=chatgpt.com",
+    "developer": "Rockstar North",
+    "publisher": "Rockstar Games",
+    "positiveKeywords": [
+      "Emotional Empathy",
+      "Stress Relief"
+    ],
+    "positiveKeywordsReferences": "https://www.researchgate.net/publication/375458722_Grand_Theft_Empathy_Evidence_for_the_absence_of_effects_of_violent_video_games_on_empathy_for_pain_and_emotional_reactivity_to_violence?utm_source=chatgpt.com\nhttps://medium.com/%40messagegurvi/exploring-the-psychological-and-sociological-impacts-of-the-gta-series-c0ff7c08e0e3?utm_source=chatgpt.com",
     "description": "What does the American Dream mean today? For Niko Bellic, fresh off the boat from Europe, it is the hope he can escape his past. For his cousin, Roman, it is the vision that together they can find fortune in Liberty City, gateway to the land of opportunity. As they slip into debt and are dragged into a criminal underworld by a series of shysters, thieves and sociopaths, they discover that the reality is very different from the dream in a city that worships money and status, and is heaven for those who have them and a living nightmare for those who don't.",
     "featureImage": "https://upload.wikimedia.org/wikipedia/en/b/b7/Grand_Theft_Auto_IV_cover.jpg",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt0802999/parentalguide/?ref_=tt_stry_pg",
@@ -2225,11 +2185,10 @@
     "developer": "Game Freak",
     "publisher": "Nintendo",
     "positiveKeywords": [
-      "Enhanced Memory",
-      "Strategic Thinking",
-      "Emotional Connection"
+      "Friendship and Respect",
+      "Social Interaction"
     ],
-    "positiveKeywordsReferences": "https://www.polygon.com/reviews/23526202/pokemon-diamond-pearl-platinum-review-remakes-sword-shield-cosmetic-execution\nhttps://www.gamesradar.com/pokemon-diamond-and-pearl-review/\nhttps://www.siliconera.com/why-pokemon-diamond-and-pearl-remakes-are-so-good/\nhttps://screenrant.com/pokemon-diamond-pearl-platinum-mental-health-impacts/\nhttps://www.gamesradar.com/pokemon-diamond-and-pearl-review/",
+    "positiveKeywordsReferences": "https://www.nintendojo.com/features/the-history-of-pokemon-red-and-blue-versions\nhttps://www.dynamiclynks.com/single-post/2016/07/27/gotta-catch-em-all-using-pok%C3%A9mon-to-work-on-socialemotional-skills-in-asd",
     "description": "In the Sinnoh region, there are two Pokemon that symbolize the region. They appear in the Sinnoh reigon's myths and old folklore. One is called Dialga, and is said to have the power to control time. The other is called Palkia, who is said to have the ability to distort space. The sinister organization called Team Galaxy is trying to rule the region by utilizing these two Pokemon's power. During your adventure to complete your Pokedex and become the Champion, these two Pokemon, and Team Galactic, will intertwine into the story and lead you on a fantastic journey across the Sinnoh region.",
     "featureImage": "https://static1.srcdn.com/wordpress/wp-content/uploads/2017/02/Pokemon-Diamond-and-Pearl-covers.jpg",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt2009554/parentalguide/?ref_=tt_stry_pg",
@@ -2278,8 +2237,8 @@
     "developer": "Nintendo EPD",
     "publisher": "Nintendo",
     "positiveKeywords": [
+      "Prevention of Neurodegenerative Disease",
       "Enhanced Neuroplasticity",
-      "Cognitive Function Improvement\nPrevention of Age-Related Cognitive Decline",
       "Mental Health Improvement",
       "Cultural Globalization"
     ],
@@ -2336,8 +2295,11 @@
     "pegi": 18,
     "developer": "Infinity Ward",
     "publisher": "Activision",
-    "positiveKeywords": "Empowerment",
-    "positiveKeywordsReferences": "https://www.gamesradar.com/call-of-duty-black-ops-cold-war-campaign-review/?utm_source=chatgpt.com\nhttps://htxt.co.za/2020/11/call-of-duty-black-ops-cold-war-review-a-good-but-flawed-effort/?utm_source=chatgpt.com\nhttps://www.ign.com/articles/call-of-duty-black-ops-cold-war-campaign-review-2?utm_source=chatgpt.com\nhttps://eu.turtlebeach.com/blog/call-of-duty-black-ops-cold-war-multiplayer-breakdown?utm_source=chatgpt.com\nhttps://www.ign.com/articles/call-of-duty-black-ops-cold-war-campaign-review-2?utm_source=chatgpt.com\nhttps://www.gamesradar.com/call-of-duty-black-ops-cold-war-campaign-review/?utm_source=chatgpt.com",
+    "positiveKeywords": [
+      "Neuroplasticity",
+      "Cognitive Skills"
+    ],
+    "positiveKeywordsReferences": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6826942/\nhttps://tmb.apaopen.org/pub/qj0c4ij2/release/3",
     "description": "Pushing the boundaries of what fans have come to expect from the record-setting entertainment franchise, Call of Duty: Black Ops II propels players into a near future, 21st Century Cold War, where technology and weapons have converged to create a new generation of warfare.",
     "featureImage": "https://m.media-amazon.com/images/M/MV5BMjFiYjBjYmMtOGNjMS00ZWU1LWFjYjEtYjQzMWJjODYzYWM5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt2387409/parentalguide/?ref_=tt_stry_pg",
@@ -2389,8 +2351,8 @@
     "pegi": 3,
     "developer": "EA Vancouver\nEA Romania",
     "publisher": "EA Sports",
-    "positiveKeywords": "Enhanced Player Responsiveness",
-    "positiveKeywordsReferences": "https://www.telegraph.co.uk/gaming/reviews/fifa-18-review-significant-improvement-pitch/?utm_source=chatgpt.com\nhttps://www.polygon.com/2017/9/28/16378478/fifa-18-review?utm_source=chatgpt.com\nhttps://www.forbes.com/sites/games/2017/09/21/fifa-18-review-the-most-complete-football-experience/?utm_source=chatgpt.com\nhttps://www.ign.com/articles/2017/09/21/fifa-18-review?utm_source=chatgpt.com\nhttps://www.gq.com/story/fifa-18-review?utm_source=chatgpt.com",
+    "positiveKeywords": null,
+    "positiveKeywordsReferences": null,
     "description": "Powered by Frostbite, EA SPORTS FIFA 18 blurs the line between the virtual and real worlds, bringing to life the players, teams, and atmospheres that immerse you in the emotion of The World’s Game. The biggest step in gameplay innovation in franchise history, FIFA 18 introduces Real Player Motion Technology, an all-new animation system which unlocks a new level of responsiveness, and player personality – now Cristiano Ronaldo and other top players feel and move exactly like they do on the real pitch.",
     "featureImage": "https://i.namu.wiki/i/R-oUEMgO2TxqtOYbqw9jDA1TWbkdRw4MR1qNVIXGa3JzVGQpLI3W943aJug7pAKR5_f1p-UtDjROUKhQiisHXw.webp",
     "negativeKeywordsReferences": "https://www.commonsensemedia.org/game-reviews/fifa-18",
@@ -2443,13 +2405,12 @@
     "developer": "Good Science Studio\nSmoking Gun Interactive",
     "publisher": "Microsoft Game Studios",
     "positiveKeywords": [
-      "Enhancement of Mental Well-Being",
       "Reduction of Depressive Symptoms",
       "Promotion of Positive Emotions",
       "Increased Motivation",
       "Social Interaction"
     ],
-    "positiveKeywordsReferences": "https://www.researchgate.net/figure/Description-from-interactive-video-game-Kinect-Adventures_tbl1_346942167?utm_source=chatgpt.com\nhttps://www.scielo.br/j/fm/a/qKxSkThZPL8zMqTkDMbmrqQ/?utm_source=chatgpt.com\nhttps://pmc.ncbi.nlm.nih.gov/articles/PMC10512833/?utm_source=chatgpt.com\nhttps://www.scielo.br/j/fm/a/qKxSkThZPL8zMqTkDMbmrqQ/?utm_source=chatgpt.com\nhttps://pmc.ncbi.nlm.nih.gov/articles/PMC4196027/?utm_source=chatgpt.com",
+    "positiveKeywordsReferences": "https://www.researchgate.net/figure/Description-from-interactive-video-game-Kinect-Adventures_tbl1_346942167?utm_source=chatgpt.com\nhttps://pmc.ncbi.nlm.nih.gov/articles/PMC10512833/?utm_source=chatgpt.com\nhttps://www.scielo.br/j/fm/a/qKxSkThZPL8zMqTkDMbmrqQ/?utm_source=chatgpt.com\nhttps://pmc.ncbi.nlm.nih.gov/articles/PMC4196027/?utm_source=chatgpt.com",
     "description": "Float in outer space. Experience the thrill of roaring rapids. Tackle mountaintop obstacle courses. And dive into the deep to explore a leaky underwater observatory -- all from your living room. With Kinect Adventures, you are the controller as you jump, dodge and kick your way through exciting adventures set in a variety of exotic locations.",
     "featureImage": "https://howlongtobeat.com/games/4993_Kinect_Adventures.png",
     "negativeKeywordsReferences": "https://www.commonsensemedia.org/game-reviews/kinect-adventures",
@@ -2501,8 +2462,12 @@
       "Ltd.AspectBackbone EntertainmentBioWareGameloftBig Red Button EntertainmentSanzaru GamesChristian WhiteheadHeadcannonPadogaWest GamesHyperkinetic StudiosGamefam StudiosArzest"
     ],
     "publisher": "Sega",
-    "positiveKeywords": null,
-    "positiveKeywordsReferences": "https://averagejoe351213450.wordpress.com/2020/02/25/sonic-the-hedgehog-movie-review-spoilers/?utm_source=chatgpt.com\nhttps://www.pressherald.com/2020/02/17/movie-review-sonic-the-hedgehog-is-a-surprisingly-good-time/?utm_source=chatgpt.com\nhttps://www.livemint.com/news/trends/sonic-the-hedgehog-3-review-action-emotion-and-nostalgia-fans-are-loving-every-moment-11735929353938.html?utm_source=chatgpt.com",
+    "positiveKeywords": [
+      "Memory",
+      "Attention to Detail",
+      "Problem Solving"
+    ],
+    "positiveKeywordsReferences": "https://www.yellowbusaba.com/post/why-do-autistic-people-like-sonic\nhttps://www.yellowbusaba.com/post/why-do-autistic-people-like-sonic\nhttps://www.yellowbusaba.com/post/why-do-autistic-people-like-sonic",
     "description": "A blue hedgehog with supersonic speed must rescue animals from being turned into robots by a mad scientist.",
     "featureImage": "https://upload.wikimedia.org/wikipedia/en/b/ba/Sonic_the_Hedgehog_1_Genesis_box_art.jpg",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt0291490/parentalguide/?ref_=tt_stry_pg",
@@ -2554,10 +2519,10 @@
     "developer": "Nintendo EAD",
     "publisher": "Nintendo",
     "positiveKeywords": [
-      "Development of Responsibility",
-      "Development of Nurturing Instincts"
+      "Positive Emotions",
+      "Mental Health Benefits"
     ],
-    "positiveKeywordsReferences": "https://www.wired.com/2005/08/nintendogs-teach-us-new-tricks?utm_source=chatgpt.com\nhttps://www.wired.com/2006/04/nintendog?utm_source=chatgpt.com\nhttps://core.ac.uk/download/pdf/160755262.pdf?utm_source=chatgpt.com",
+    "positiveKeywordsReferences": "https://core.ac.uk/download/pdf/160755262.pdf?utm_source=chatgpt.com\nhttps://www.reddit.com/r/truenintendogs/comments/1gfs5m3/nintendogs_and_mental_health/?utm_source=chatgpt.com",
     "description": "Nintendogs is an animal simulation where you can raise one or more adorable puppies and play with them to your heart's content. Teach your pups new tricks. Just speak into the system's microphone and they'll respond to the voice commands you've taught them, then use the DS touch screen to play with your puppy.",
     "featureImage": "https://assets-prd.ignimgs.com/2022/10/17/nintendogslab-1666046251413.jpg",
     "negativeKeywordsReferences": "https://www.commonsensemedia.org/game-reviews/nintendogs",
@@ -2608,9 +2573,8 @@
     "developer": "Nintendo EPD",
     "publisher": "Nintendo",
     "positiveKeywords": [
+      "Prevention of Neurodegenerative Disease",
       "Enhanced Neuroplasticity",
-      "Cognitive Function Improvement",
-      "Prevention of Age-Related Cognitive Decline",
       "Mental Health Improvement",
       "Cultural Globalization"
     ],
@@ -2669,8 +2633,15 @@
       "Nintendo"
     ],
     "publisher": "Nintendo",
-    "positiveKeywords": "Social Interaction",
-    "positiveKeywordsReferences": "https://www.nintendolife.com/news/2019/09/talking_point_mario_kart_tour_is_certainly_dividing_opinion_but_why?utm_source=chatgpt.com\nhttps://www.geekwire.com/2019/review-mario-kart-tour-simple-fun-racing-game-troubling-monetization-platform/?utm_source=chatgpt.com\nhttps://hangzone.com/an-analysis-of-mario-kart-tour/?utm_source=chatgpt.com\nhttps://www.lifewire.com/top-multiplayer-games-for-iphone-8751308?utm_source=chatgpt.com\nhttps://www.destructoid.com/reviews/review-mario-kart-tour/?utm_source=chatgpt.com",
+    "positiveKeywords": [
+      "Improved Driving",
+      "Social Exercise",
+      "Social Interaction",
+      "Teamwork",
+      "Reduce stress",
+      "Mindfulness"
+    ],
+    "positiveKeywordsReferences": "https://hypebeast.com/2016/7/study-finds-playing-mario-kart-video-game-makes-you-a-better-driver\nhttps://www.vice.com/en/article/its-official-mario-kart-scientifically-makes-you-feel-awesome\nhttps://minds.care/mario-kart/\nhttps://minds.care/mario-kart/\nhttps://minds.care/mario-kart/\nhttps://www.huffpost.com/entry/mario-kart-teaching-children-mindfulness_b_3072671",
     "description": "Now you can play Mario Kart against opponents all over the world with Mario Kart DS. Mario Kart DS includes new tracks, as well as retro tracks selected from all the previous Mario Kart versions. In addition to a handful of single-player modes, you can play with up to eight players locally or with four players over the Internet. Your records are stored in your cartridge, and a unique friend code lets you keep track of friends online.",
     "featureImage": "https://m.media-amazon.com/images/M/MV5BYTVkYWI3ZjgtZDI1Ni00ZTVkLThhMWItODk0NDdjM2UzNzg5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt0496536/parentalguide/?ref_=tt_stry_pg",
@@ -2722,9 +2693,10 @@
     "developer": "Game Freak",
     "publisher": "Nintendo",
     "positiveKeywords": [
-      "Strategic Thinking"
+      "Friendship and Respect",
+      "Social Interaction"
     ],
-    "positiveKeywordsReferences": "https://pokemon.fandom.com/wiki/Wally?utm_source=chatgpt.com\nhttps://www.gamesradar.com/best-pokemon-games/?utm_source=chatgpt.com\nhttps://www.gamesradar.com/best-pokemon-games/?utm_source=chatgpt.com\nhttps://en.wikipedia.org/wiki/Pok%C3%A9mon_Ruby_and_Sapphire?utm_source=chatgpt.com",
+    "positiveKeywordsReferences": "https://www.nintendojo.com/features/the-history-of-pokemon-red-and-blue-versions\nhttps://www.dynamiclynks.com/single-post/2016/07/27/gotta-catch-em-all-using-pok%C3%A9mon-to-work-on-socialemotional-skills-in-asd",
     "description": "In the third generation of Pokemon games, the player roams the Hoenn region of the Pokemon world in hopes of catching all 350+ species of Pokemon and becoming a Pokemon Master.",
     "featureImage": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2021/04/Pokemon-Ruby-and-Sapphire.jpg",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt0344215/parentalguide/?ref_=tt_stry_pg",
@@ -2777,7 +2749,7 @@
       "Deep Emotional Engagement",
       "Empathy"
     ],
-    "positiveKeywordsReferences": "https://www.reddit.com/r/GodofWar/comments/10g3q26/i_never_thought_god_of_war_ragnarok_would_be_this/?utm_source=chatgpt.com\nhttps://www.theverge.com/23437043/god-of-war-ragnarok-review-sony-ps5?utm_source=chatgpt.com\nhttps://mashable.com/article/god-of-war-fatherhood-patriarchy-destruction-male-power-fantasy?utm_source=chatgpt.com",
+    "positiveKeywordsReferences": "https://www.reddit.com/r/GodofWar/comments/10g3q26/i_never_thought_god_of_war_ragnarok_would_be_this/?utm_source=chatgpt.com\nhttps://mashable.com/article/god-of-war-fatherhood-patriarchy-destruction-male-power-fantasy?utm_source=chatgpt.com",
     "description": "His vengeance against the Gods of Olympus years behind him, Kratos now lives as a man in the realm of Norse Gods and monsters. It is in this harsh, unforgiving world that he must fight to survive… and teach his son to do the same.",
     "featureImage": "https://image.api.playstation.com/vulcan/img/rnd/202010/2217/p3pYq0QxntZQREXRVdAzmn1w.png",
     "negativeKeywordsReferences": "https://www.commonsensemedia.org/game-reviews/god-of-war-2018s",
@@ -2836,7 +2808,7 @@
       "Benefits for Mental Health",
       "Empathy"
     ],
-    "positiveKeywordsReferences": "https://www.reddit.com/r/patientgamers/comments/n5fuco/i_recently_finished_red_dead_redemption_2_what_an/?utm_source=chatgpt.com\nhttps://www.reddit.com/r/RDR2/comments/12hr05r/rdr2_is_my_mental_health_treatment_i_also_get/?utm_source=chatgpt.com\nhttps://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=10453&context=etd&utm_source=chatgpt.com\nhttps://thenextweb.com/news/or-red-dead-redemption-2-final-review-story?utm_source=chatgpt.com\nhttps://medium.com/j-king-s-labratory-project/red-dead-redemption-2-and-what-it-has-to-say-about-the-human-condition-7f682e076f27?utm_source=chatgpt.com",
+    "positiveKeywordsReferences": "https://www.reddit.com/r/patientgamers/comments/n5fuco/i_recently_finished_red_dead_redemption_2_what_an/?utm_source=chatgpt.com\nhttps://www.reddit.com/r/RDR2/comments/12hr05r/rdr2_is_my_mental_health_treatment_i_also_get/?utm_source=chatgpt.com\nhttps://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=10453&context=etd&utm_source=chatgpt.com",
     "description": "Red Dead Redemption is a Western epic, set at the turn of the 20th century when the lawless and chaotic badlands began to give way to the expanding reach of government and the spread of the Industrial Age. The story of former outlaw, John Marston, Red Dead Redemption takes players on a great adventure across the American frontier.",
     "featureImage": "https://gaming-cdn.com/images/products/16200/616x353/red-dead-redemption-playstation-4-game-playstation-store-cover.jpg?v=1730298578",
     "negativeKeywordsReferences": "https://www.imdb.com/title/tt1479962/parentalguide/?ref_=tt_stry_pg",
